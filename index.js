@@ -1,7 +1,7 @@
-const submit = document.getElementById("button");
-submit.addEventListener('click', validate);
-function validate(e) {
-    e.preventDefault();
+//const submit = document.getElementById("button");
+//submit.addEventListener('click', validate);
+function validate() {
+//    e.preventDefault();
 
     const url = document.getElementById("URL");
     const glink = document.getElementById("GLink");
@@ -48,7 +48,13 @@ function validate(e) {
         error.setAttribute('aria-hidden', true);
         error.setAttribute('aria-invalid', false);
         console.log("Valid");
-        return valid;
+
+	return valid;
+
+/*	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open('GET','result.php',true);
+	xmlhttp.send();
+	console.log(xmlhttp.responseText);*/
     } else {
 
         /*flag*/
@@ -62,6 +68,7 @@ function validate(e) {
         url.classList.add("invalid");
         error.setAttribute('aria-hidden', false);
         error.setAttribute('aria-invalid', true);
+	return false;
     }
 
 }
