@@ -1,0 +1,21 @@
+ul {
+    display: flex;
+    list-style: none;
+}
+li {
+    padding-left: 10px;
+}
+#root {
+    color: black;
+    font-family: chalkduster;
+}
+#button {
+    width: 100px;
+    height: 30px;
+    background: pink;
+    font-size: large;
+    font-family: Futura;
+}
+.glink {
+    font-family: "Avenir Next"
+}

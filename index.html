@@ -1,0 +1,46 @@
+<html>
+<head>
+    <title>GLink</title>
+    <link rel="stylesheet" href="index.css">
+<!--    <script src="./index.js"></script>-->
+</head>
+<body>
+<div id="root">
+    <h1>Link Shortener</h1>
+    <form id="form">
+        <label for="URL">URL: </label>
+        <input type="text" name="url" id="URL" value="example.com" required><br><br>
+
+        <label for="labels">GLink: </label>
+        <label for="GLink" id="labels" class="glink">glink.zip/</label>
+        <input type="text" name="glink" id="GLink" class="glink" value="exampleWebsite" required>
+
+        <span class="error" aria-live="polite"></span>
+
+        <br><br>
+        <input type="submit" id="button" value="Zip It!">
+    </form>
+    <hr>
+    <div>
+        <img src="cat.gif">
+    </div>
+
+<!--    <div id="url">-->
+<!--        <ul id="url-list">-->
+<!--            <li>URL: </li>-->
+<!--            <li><input type="text" id="link"></li>-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--    <br>-->
+<!--    <div id="glink">-->
+<!--        <ul id="glink-list">-->
+<!--            <li>glink: </li>-->
+<!--            <li><input type="text" id="short-link"></li>-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--    <div id="generate">-->
+<!--        <button id="zip" onclick="window.location.href = 'www.google.com';"></button>-->
+<!--    </div>-->
+</div>
+</body>
+</html>
