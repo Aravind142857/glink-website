@@ -29,9 +29,13 @@ li {
 }
 input.invalid {
     border-color: red;
+    border-style: solid;
+    border-width: medium;
 }
 input.valid {
     border-color: green;
+    border-style: solid;
+    border-width: medium
 }
 .mandatory {
     color: red;
