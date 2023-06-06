@@ -7,9 +7,11 @@
 <body>
 <div id="root">
     <h1>Link Shortener</h1>
-    <form id="form" action="result.js">
+   <form id="form" method="GET" action="result.php" onsubmit="return validate()">
+
+<!--	<form id="form"> -->
         <label for="url">URL:</label><span class="mandatory">*</span>
-        <input type="text" name="url" id="URL" value="example.com" required><br><br>
+        <input type="text" name="url" id="URL" value="https://example.com" required><br><br>
 
         <label for="labels">GLink:</label><span class="mandatory">*</span>
         <label for="GLink" id="labels" class="glink">glink.zip/</label><input type="text" name="glink" id="GLink" class="glink" value="exampleWebsite" required>
