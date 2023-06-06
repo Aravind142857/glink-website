@@ -2,20 +2,19 @@
 <head>
     <title>GLink</title>
     <link rel="stylesheet" href="index.css">
-<!--    <script src="./index.js"></script>-->
+
 </head>
 <body>
 <div id="root">
     <h1>Link Shortener</h1>
     <form id="form">
-        <label for="URL">URL: </label>
+        <label for="url">URL:</label><span class="mandatory">*</span>
         <input type="text" name="url" id="URL" value="example.com" required><br><br>
 
-        <label for="labels">GLink: </label>
-        <label for="GLink" id="labels" class="glink">glink.zip/</label>
-        <input type="text" name="glink" id="GLink" class="glink" value="exampleWebsite" required>
+        <label for="labels">GLink:</label><span class="mandatory">*</span>
+        <label for="GLink" id="labels" class="glink">glink.zip/</label><input type="text" name="glink" id="GLink" class="glink" value="exampleWebsite" required>
 
-        <span class="error" aria-live="polite"></span>
+        <span role="alert" id="error" aria-hidden="true">Invalid URL</span>
 
         <br><br>
         <input type="submit" id="button" value="Zip It!">
@@ -41,6 +40,7 @@
 <!--    <div id="generate">-->
 <!--        <button id="zip" onclick="window.location.href = 'www.google.com';"></button>-->
 <!--    </div>-->
+    <script src="./result.js"></script>
 </div>
 </body>
 </html>

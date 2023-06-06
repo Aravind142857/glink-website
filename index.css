@@ -12,10 +12,27 @@ li {
 #button {
     width: 100px;
     height: 30px;
-    background: pink;
+    background: lightgreen;
     font-size: large;
     font-family: Futura;
 }
 .glink {
     font-family: "Avenir Next"
+}
+#error {
+    display: none;
+    color: red;
+    font-family: "Big Caslon"
+}
+#error.visible {
+    display: block;
+}
+input.invalid {
+    border-color: red;
+}
+input.valid {
+    border-color: green;
+}
+.mandatory {
+    color: red;
 }
