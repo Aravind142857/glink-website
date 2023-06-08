@@ -6,24 +6,30 @@ $cluster = Cassandra::cluster()->build();
 $keyspace = 'glink';
 
 $url = $_GET["url"];
+$matches = preg_match('/^http(s)*:\\/\\/[a-zA-Z0-9\\-]+(\\.[a-zA-Z0-9\\-]+)+$/',$url);
+if (($matches == 0) || ($matches == false)) {
+	printf("The URL entered was invalid. Please try again.");
+	return;
+}
+
 $shortlink = $_GET["glink"];
+$matches_shortlink = preg_match('/^[a-zA-Z]+$/',$shortlink);
+if (($matches_shortlink == 0) || ($matches_shortlink == false)) {
+        printf("The GLink entered was invalid. The GLink can only contain letters. Please try again.");
+        return;
+}
+
 
 $session = $cluster->connect($keyspace);
 
 //$statement = new Cassandra\SimpleStatement('SELECT name FROM data WHERE id=5');
 $rand_num = rand(0,99999999);
 
-$values = array(
-	'id' => $rand_num,
-	'url' => $url,
-	'shortlink' => $shortlink,
-);
-$statement = new Cassandra\SimpleStatement('INSERT INTO data (id, url, shortlink, when_created) VALUES (?,?,?,toTimestamp(now()))');
-$options = array('arguments' => $values);
-$result = $session->execute($statement,$options);
+$statement = $session->prepare('INSERT INTO data (id, url, shortlink, when_created) VALUES (?,?,?,toTimestamp(now()))');
+$result = $session->execute($statement,array('arguments' => array($rand_num,$url,$shortlink)));
 
-$statement = new Cassandra\SimpleStatement('SELECT url,shortlink FROM data WHERE id=?');
-$options = array('arguments' => array('id' => $rand_num));
+$statement = $session->prepare('SELECT url,shortlink FROM data WHERE id=?');
+$options = array('arguments' => array($rand_num));
 $result = $session->execute($statement,$options);
 
 //$stringRepresentation= json_encode($result[0]);
