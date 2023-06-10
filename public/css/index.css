@@ -1,0 +1,42 @@
+ul {
+    display: flex;
+    list-style: none;
+}
+li {
+    padding-left: 10px;
+}
+#root {
+    color: black;
+    font-family: chalkduster;
+}
+#button {
+    width: 100px;
+    height: 30px;
+    background: lightgreen;
+    font-size: large;
+    font-family: Futura;
+}
+.glink {
+    font-family: "Avenir Next"
+}
+#error {
+    display: none;
+    color: red;
+    font-family: "Big Caslon"
+}
+#error.visible {
+    display: block;
+}
+input.invalid {
+    border-color: red;
+    border-style: solid;
+    border-width: medium;
+}
+input.valid {
+    border-color: green;
+    border-style: solid;
+    border-width: medium
+}
+.mandatory {
+    color: red;
+}

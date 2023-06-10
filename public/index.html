@@ -1,0 +1,29 @@
+<html>
+<head>
+    <title>GLink</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+<div id="root">
+    <h1>Link Shortener</h1>
+    <form id="form" action="/add" method="post" onsubmit="return validate()">
+        <label for="url">URL:</label><span class="mandatory">*</span>
+        <input type="text" name="url" id="URL" value="https://example.com" required><br><br>
+
+        <label for="labels">GLink:</label><span class="mandatory">*</span>
+        <label for="GLink" id="labels" class="glink">glink.zip/</label><input type="text" name="glink" id="GLink" class="glink" value="exampleWebsite">
+
+        <span role="alert" id="error" aria-hidden="true">Invalid entry</span>
+
+        <br><br>
+        <input type="submit" id="button" value="Zip It!">
+    </form>
+    <hr>
+    <div>
+        <img src="./images/cat.gif">
+    </div>
+    <script src="./src/index.js"></script>
+
+</div>
+</body>
+</html>
