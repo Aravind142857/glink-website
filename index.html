@@ -18,8 +18,22 @@
 
         <span role="alert" id="error" aria-hidden="true">Invalid URL</span>
 
+	<br><br>
+	<label for="restricted">Geo-restricted?: </label><input type="checkbox" name="restricted" id="restricted">
+	<br><br>
+	<label for="radius">Radius: </label>
+	<select name="radius" id="radius">
+		<option value="5">5 mi</option>
+		<option value="10">10 mi</option>
+		<option value="15">15 mi</option>
+		<option value="20">20 mi</option>
+	</select>
         <br><br>
         <input type="submit" id="button" value="Zip It!">
+
+
+	<input type="hidden" name="latitude" id="latitude">
+	<input type="hidden" name="longitude" id="longitude">
     </form>
     <hr>
     <div>
