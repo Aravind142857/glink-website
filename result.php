@@ -32,6 +32,7 @@ use Casssandra;
 
 $cluster = Cassandra::cluster()->withPersistentSessions(true)->build();
 $keyspace = 'glink';
+$session = $cluster->connect($keyspace);
 
 $url = $_GET["url"];
 $matches = preg_match('/^http(s)*:\\/\\/[a-zA-Z0-9\\-]+(\\.[a-zA-Z0-9\\-]+)+$/',$url);
@@ -55,7 +56,7 @@ if ($shortlink != '') {
 		$shortlink = $rand_string;
 
 		/* Check if shortlink is already taken by querying the database */
-		$statement = $session->prepare('SELECT url FROM data WHERE id=?');
+		$statement = $session->prepare('SELECT url FROM data WHERE shortlink=? ALLOW FILTERING');
 		$result = $session->execute($statement,array('arguments' => array($shortlink)));
 
 		if ($result->count() != 0) {
@@ -63,8 +64,6 @@ if ($shortlink != '') {
 		}
 
 }
-
-$session = $cluster->connect($keyspace);
 
 //$statement = new Cassandra\SimpleStatement('SELECT name FROM data WHERE id=5');
 
