@@ -1,8 +1,5 @@
 // const submit = document.getElementById("button");
-function getRandomGLink() {
-    //
-    return undefined;
-}
+
 
 // submit.addEventListener('click', validate);
     function validate() {
@@ -49,8 +46,6 @@ function getRandomGLink() {
             var result = window.confirm("You have left the glink field blank. A random one will be generated for you.");
             if (result === false) {
                 return false;
-            } else {
-                glinkStr = getRandomGLink();
             }
         }
 

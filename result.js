@@ -20,13 +20,46 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static(staticPath));
 
+const GLINK_SIZE = 6;
+function getRandomGLink() {
+	let glink = "";
+	glink = newString(GLINK_SIZE);
+	//console.log(glink);
+	validateLink(glink);
+	return glink;
+}
+function validateLink(glink) {
+	let qry = "SELECT id FROM data WHERE glink = ? allow filtering";
+	client.execute(qry, [glink], {}, (err, result) => {
+		if(err) {
+			console.log(err.message);
+			glink = null;
+		}
+		if (result.rows.length === 0) {
+			console.log("Done");
+		} else {
+			console.log(glink);
+			glink = getRandomGLink();
+		}
+	});
+	return glink;
+}
+function newString(n) {
+	let str = "";
+	let symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	for (let i = 0; i < n; i ++) {
+		str += symbols.charAt(Math.floor(Math.random() * 52));
+	}
+	return str;
+}
+
 function nextId() {
 	let next = id;
 	id = id + 1;
 	return next;
 }
 function filter(path) {
-	if (path.match(new RegExp("^/[a-zA-Z]+/$"))) {
+	if (path.match(new RegExp("^/[a-zA-Z]+/*$"))) {
 		if (path.charAt(0) === '/') {
 			path = path.substring(1);
 		}
@@ -57,22 +90,46 @@ const query = "INSERT INTO data (id, url, glink) VALUES (?, ?, ?)";
 app.post('/add', function(req, res) {
 	let input_url = req.body.url;
 	let input_glink = req.body.glink;
-	console.log("Received query " + input_url + " and " + input_glink)
+	console.log("Received query " + input_url + " and " + input_glink);
 	let currID = nextId();
-	let selectQuery = "SELECT id FROM data where glink = ? allow filtering";
-	client.execute(selectQuery, [input_glink],{} ,function(err, result) {
-		if (result.rows.length === 0) {
-			client.execute(query, [currID, input_url, input_glink], {prepare: true}, function(err,result) {
-				if (err) {
-					res.send("<html><body><p style=\"font-family:Futura; font-size:large; color:red;\">{err.message}</p></body></html>");
-				} else {
-					res.send("<html><body><p style=\"font-family:Futura; font-size:large; color:green;\">New entry has been added with url = " + req.body.url + " and glink = " + req.body.glink + "</p></body></html>");
-				}
-			});
-		} else {
-			res.send("<html><body><p style=\"font-family:futura; font-size:large; color:red;\">This glink has already been registered. Please try a different glink</p></body></html>");
-		}
-	});
+	if (input_glink === "") {
+		input_glink = getRandomGLink();
+		client.execute(query, [currID, input_url, input_glink], {prepare: true}, function(err,result) {
+			if (err) {
+				res.send("<html><body><p style=\"font-family:Futura; font-size:large; color:red;\">" + err.message + "</p></body></html>");
+			} else {
+				res.send("<html><body><p style=\"font-family:Futura; font-size:large; color:green;\">New entry has been added with url = " + req.body.url + " and glink = " + input_glink + "</p></body></html>");
+			}
+		});
+	} else {
+		let selectQuery = "SELECT id FROM data where glink = ? allow filtering";
+		client.execute(selectQuery, [input_glink],{} ,function(err, result) {
+			if (result.rows.length === 0) {
+				client.execute(query, [currID, input_url, input_glink], {prepare: true}, function(err,result) {
+					if (err) {
+						res.send("<html><body><p style=\"font-family:Futura; font-size:large; color:red;\">{err.message}</p></body></html>");
+					} else {
+						res.send("<html><head><link rel=\"stylesheet\" href=\"./css/response.css\"></head>" +
+							"<body><p class=\"para\">" +
+							"New entry has been added with url = " + req.body.url + " and glink = " /*+ req.body.glink*/ + "" +
+							"</p>" +
+							"<input type=\"text\" value=\"" + req.body.glink + "\" readOnly=\"true\" id=\"myInput\" class=\"textbox\">" +
+							"<div class=\"tooltip\">" +
+								"<button onClick=\"myFunction()\" onMouseOut=\"outFunc()\">" +
+									"<span class=\"tooltiptext\" id=\"myTooltip\">Copy to clipboard</span>" +
+									"Copy text" +
+								"</button>" +
+							"</div>" +
+							"<script src=\"./src/response.js\"></script>" +
+							"</body></html>");
+					}
+				});
+			} else {
+				res.send("<html><body><p style=\"font-family:futura; font-size:large; color:red;\">This glink has already been registered. Please try a different glink</p></body></html>");
+			}
+		});
+	}
+
 })
 
 /* Redirect requests to corresponding entry in database */
@@ -103,3 +160,4 @@ app.listen(port, function(){
 	console.log("server listening on port 63342");
 })
 /** Validate url and glink on client side as well */
+/** Put the glink in a span or label and make it copyable */
