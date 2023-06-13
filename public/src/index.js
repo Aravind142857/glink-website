@@ -10,13 +10,11 @@ function checkboxCallback(event) {
         radiusLabel.hidden = false;
         mandatoryRadius.hidden = false;
         radiusSelect.hidden = false;
-        //radiusSelect.required = true;
         getLocation();
     } else {
         radiusLabel.hidden = true;
         mandatoryRadius.hidden = true;
         radiusSelect.hidden = true;
-        //radiusSelect.required = false;
     }
 }
 
