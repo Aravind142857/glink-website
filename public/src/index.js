@@ -1,5 +1,42 @@
 // const submit = document.getElementById("button");
+mycheckbox = document.getElementById("restricted");
+mycheckbox.addEventListener('change',checkboxCallback);
 
+function checkboxCallback(event) {
+    const radiusLabel = document.getElementById("radiusLabel");
+    const radiusSelect = document.getElementById("radiusSelect");
+    const mandatoryRadius = document.getElementById("mandatory-radius");
+    if (event.currentTarget.checked) {
+        radiusLabel.hidden = false;
+        mandatoryRadius.hidden = false;
+        radiusSelect.hidden = false;
+        //radiusSelect.required = true;
+        getLocation();
+    } else {
+        radiusLabel.hidden = true;
+        mandatoryRadius.hidden = true;
+        radiusSelect.hidden = true;
+        //radiusSelect.required = false;
+    }
+}
+
+function getLocation() {
+    console.log("GeoLocation");
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        console.log("Your browser does not support geolocation.");
+    }
+}
+
+function showPosition(position) {
+    console.log(position.coords.latitude);
+    console.log(position.coords.longitude);
+
+    document.getElementById("latitude").value = position.coords.latitude;
+    document.getElementById("longitude").value = position.coords.longitude;
+    console.log("done");
+}
 
 // submit.addEventListener('click', validate);
     function validate() {

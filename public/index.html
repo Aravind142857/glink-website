@@ -16,7 +16,20 @@
         <span role="alert" id="error" aria-hidden="true">Invalid entry</span>
 
         <br><br>
+        <label for="restricted">Geo-restricted?: </label><input type="checkbox" name="restricted" id="restricted">
+        <br><br>
+        <label for="radiusSelect" hidden="hidden" id="radiusLabel">Radius: </label><span id="mandatory-radius"class="mandatory" hidden="hidden">*</span>
+        <select name="radiusSelect" id="radiusSelect" hidden="hidden" required>
+            <option value="" selected disabled hidden>Choose a radius for your geo link</option>
+            <option value="5">5 mi</option>
+            <option value="10">10 mi</option>
+            <option value="15">15 mi</option>
+            <option value="20">20 mi</option>
+        </select>
+        <br><br>
         <input type="submit" id="button" value="Zip It!">
+        <input type="hidden" name="latitude" id="latitude">
+        <input type="hidden" name="longitude" id="longitude">
     </form>
     <hr>
     <div>

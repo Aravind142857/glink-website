@@ -68,7 +68,7 @@ function filter(path) {
 		}
 		return path;
 	} else {
-		console.log("failed check");
+		console.log("failed check. path is " + path);
 		return null;
 	}
 
