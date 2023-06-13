@@ -24,7 +24,6 @@ const GLINK_SIZE = 6;
 function getRandomGLink() {
 	let glink = "";
 	glink = newString(GLINK_SIZE);
-	//console.log(glink);
 	validateLink(glink);
 	return glink;
 }
@@ -90,6 +89,10 @@ const query = "INSERT INTO data (id, url, glink) VALUES (?, ?, ?)";
 app.post('/add', function(req, res) {
 	let input_url = req.body.url;
 	let input_glink = req.body.glink;
+	let input_checkbox = req.body.restricted;
+	let input_radius = req.body.radiusSelect;
+	let input_latitude = req.body.latitude;
+	let input_longitude = req.body.longitude;
 	console.log("Received query " + input_url + " and " + input_glink);
 	let currID = nextId();
 	if (input_glink === "") {

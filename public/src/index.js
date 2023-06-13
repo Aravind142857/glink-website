@@ -1,7 +1,34 @@
 // const submit = document.getElementById("button");
 mycheckbox = document.getElementById("restricted");
 mycheckbox.addEventListener('change',checkboxCallback);
+window.onload = function() {
+    if (mycheckbox.checked) {
+        document.getElementById("radiusLabel").hidden = false;
+        document.getElementById("mandatory-radius").hidden = false;
+        var radiusSelect = document.getElementById("radiusSelect");
+        radiusSelect.hidden = false;
+        radiusSelect.required = true;
+    }
+}
 
+var lat = document.getElementById("latitude");
+lat.setValue = function(newValue) {
+    this.value = newValue;
+    valueReceived();
+}
+
+function valueReceived() {
+    let load = document.getElementById("loadingText");
+    load.innerHTML = "Location retrieved";
+    load.style.color = "green";
+
+}
+function valueRequested() {
+    let load = document.getElementById("loadingText");
+    load.innerHTML = "Location requested. Please wait...";
+    load.style.color = "red";
+
+}
 function checkboxCallback(event) {
     const radiusLabel = document.getElementById("radiusLabel");
     const radiusSelect = document.getElementById("radiusSelect");
@@ -10,11 +37,14 @@ function checkboxCallback(event) {
         radiusLabel.hidden = false;
         mandatoryRadius.hidden = false;
         radiusSelect.hidden = false;
+        radiusSelect.required = true;
+        valueRequested();
         getLocation();
     } else {
         radiusLabel.hidden = true;
         mandatoryRadius.hidden = true;
         radiusSelect.hidden = true;
+        radiusSelect.required = false;
     }
 }
 
@@ -28,10 +58,11 @@ function getLocation() {
 }
 
 function showPosition(position) {
+    console.log("Gotten positions");
     console.log(position.coords.latitude);
     console.log(position.coords.longitude);
 
-    document.getElementById("latitude").value = position.coords.latitude;
+    document.getElementById("latitude").setValue(position.coords.latitude);
     document.getElementById("longitude").value = position.coords.longitude;
     console.log("done");
 }
@@ -39,6 +70,15 @@ function showPosition(position) {
 // submit.addEventListener('click', validate);
     function validate() {
         //e.preventDefault();
+        const checked = document.getElementById("restricted");
+        if (checked.checked) {
+            const lat = document.getElementById("latitude");
+            const long = document.getElementById("longitude");
+            if (lat.value === "" || long.value === "") {
+                /* wait */
+                return false
+            }
+        }
 
         const url = document.getElementById("URL");
         let glink = document.getElementById("GLink");

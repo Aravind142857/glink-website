@@ -7,29 +7,32 @@
 <div id="root">
     <h1>Link Shortener</h1>
     <form id="form" action="/add" method="post" onsubmit="return validate()">
-        <label for="url">URL:</label><span class="mandatory">*</span>
+        <label for="URL">URL:</label><span class="mandatory">*</span>
         <input type="text" name="url" id="URL" value="https://example.com" required><br><br>
 
         <label for="labels">GLink:</label><span class="mandatory">*</span>
         <label for="GLink" id="labels" class="glink">glink.zip/</label><input type="text" name="glink" id="GLink" class="glink" value="exampleWebsite">
 
-        <span role="alert" id="error" aria-hidden="true">Invalid entry</span>
+
 
         <br><br>
-        <label for="restricted">Geo-restricted?: </label><input type="checkbox" name="restricted" id="restricted">
+        <label for="restricted">Geo-restricted?: </label><input type="checkbox" name="restricted" id="restricted"><span id="loadingText" style="position: relative; left: 20px;"></span>
         <br><br>
-        <label for="radiusSelect" hidden="hidden" id="radiusLabel">Radius: </label><span id="mandatory-radius"class="mandatory" hidden="hidden">*</span>
-        <select name="radiusSelect" id="radiusSelect" hidden="hidden" required>
+        <label for="radiusSelect" hidden="hidden" id="radiusLabel">Radius: </label><span id="mandatory-radius" class="mandatory" hidden="hidden">*</span>
+        <select name="radiusSelect" id="radiusSelect" hidden="hidden">
             <option value="" selected disabled hidden>Choose a radius for your geo link</option>
             <option value="5">5 mi</option>
             <option value="10">10 mi</option>
             <option value="15">15 mi</option>
             <option value="20">20 mi</option>
         </select>
+        <span role="alert" id="error" aria-hidden="true">Invalid entry</span>
         <br><br>
+
         <input type="submit" id="button" value="Zip It!">
         <input type="hidden" name="latitude" id="latitude">
         <input type="hidden" name="longitude" id="longitude">
+
     </form>
     <hr>
     <div>
