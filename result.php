@@ -28,13 +28,29 @@ function gen_rand_shortlink($len) {
 
 
 ini_set('display_errors', 1);
-use Casssandra;
 
 $cluster = Cassandra::cluster()->withPersistentSessions(true)->build();
 $keyspace = 'glink';
 $session = $cluster->connect($keyspace);
 
 $url = $_GET["url"];
+
+if (isset($_GET["restricted"])) {
+	$is_geo = 1;
+} else {
+	$is_geo = 0;
+}
+
+if ($is_geo == 1) {
+	$radius = $_GET["radius"];
+
+	$latitude = $_GET["latitude"];
+	$latitude = doubleval($latitude);
+
+	$longitude = $_GET["longitude"];
+	$longitude = doubleval($longitude);
+}
+
 $matches = preg_match('/^http(s)*:\\/\\/[a-zA-Z0-9\\-]+(\\.[a-zA-Z0-9\\-]+)+$/',$url);
 if (($matches == 0) || ($matches == false)) {
 	printf("The URL entered was invalid. Please try again.");
@@ -78,8 +94,15 @@ if ($result->count() != 0) {
 
 $rand_num = rand(0,99999999);
 
-$statement = $session->prepare('INSERT INTO data (id, url, shortlink, when_created) VALUES (?,?,?,toTimestamp(now())) USING TTL 20');
-$result = $session->execute($statement,array('arguments' => array($rand_num,$url,$shortlink)));
+$statement = $session->prepare('INSERT INTO data (id, url, shortlink, is_geo, radius, latitude, longitude, when_created) VALUES (?,?,?,?,?,?,?,toTimestamp(now())) USING TTL 20');
+
+if ($is_geo == 1) {
+	$options = array($rand_num,$url,$shortlink,boolval($is_geo),intval($radius), $latitude, $longitude);
+} else {
+	$options = array($rand_num,$url,$shortlink,boolval($is_geo),null,null,null);
+}
+
+$result = $session->execute($statement,array('arguments' => $options));
 
 //$stringRepresentation= json_encode($result[0]);
 
