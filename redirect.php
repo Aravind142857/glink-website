@@ -15,7 +15,7 @@
 		$keyspace = 'glink';
 		$session = $cluster->connect($keyspace);
 
-		$statement = $session->prepare('SELECT url FROM data WHERE shortlink=? ALLOW FILTERING;');
+		$statement = $session->prepare('SELECT url,is_geo FROM data WHERE shortlink=? ALLOW FILTERING;');
 		$result = $session->execute($statement,array('arguments' => array($uri)));
 
 		if ($result->count() == 0) {
@@ -28,7 +28,13 @@
 				printf('The given GLink was invalid, and doesn\'t point to a specific web page.');
 				exit;
 			} else {
-				header("Location: " . $row['url']);
+				if ($row['is_geo'] == true) {
+					header("Location: https://glink.zip/reqloc.html");
+					exit;
+				} else {
+					header("Location: " . $row['url']);
+					exit;
+				}
 			}
 		}
 	}
