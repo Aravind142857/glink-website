@@ -1,44 +1,94 @@
 // const submit = document.getElementById("button");
-// submit.addEventListener('click', validate);
-
 mycheckbox = document.getElementById("restricted");
 mycheckbox.addEventListener('change',checkboxCallback);
+window.onload = function() {
+    if (mycheckbox.checked) {
+        document.getElementById("radiusLabel").hidden = false;
+        document.getElementById("mandatory-radius").hidden = false;
+        var radiusSelect = document.getElementById("radiusSelect");
+        radiusSelect.hidden = false;
+        radiusSelect.required = true;
+    }
+}
 
+var lat = document.getElementById("latitude");
+lat.setValue = function(newValue) {
+    this.value = newValue;
+    valueReceived();
+}
+
+function valueReceived() {
+    let load = document.getElementById("loadingText");
+    load.innerHTML = "Location retrieved";
+    load.style.color = "green";
+
+}
+function valueRequested() {
+    let load = document.getElementById("loadingText");
+    load.innerHTML = "Location requested. Please wait...";
+    load.style.color = "red";
+
+}
 function checkboxCallback(event) {
-	if (event.currentTarget.checked) {
-		getLocation();
-	}
+    const radiusLabel = document.getElementById("radiusLabel");
+    const radiusSelect = document.getElementById("radiusSelect");
+    const mandatoryRadius = document.getElementById("mandatory-radius");
+    if (event.currentTarget.checked) {
+        radiusLabel.hidden = false;
+        mandatoryRadius.hidden = false;
+        radiusSelect.hidden = false;
+        radiusSelect.required = true;
+        valueRequested();
+        getLocation();
+    } else {
+        radiusLabel.hidden = true;
+        mandatoryRadius.hidden = true;
+        radiusSelect.hidden = true;
+        radiusSelect.required = false;
+    }
 }
 
 function getLocation() {
-	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(showPosition);
-	  } else {
-		  console.log("Your browser does not support geolocation.");
-	  }
+    console.log("GeoLocation");
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        console.log("Your browser does not support geolocation.");
+    }
 }
 
 function showPosition(position) {
-	console.log(position.coords.latitude);
-	console.log(position.coords.longitude);
+    console.log("Gotten positions");
+    console.log(position.coords.latitude);
+    console.log(position.coords.longitude);
 
-	document.getElementById("latitude").value = position.coords.latitude;
-	document.getElementById("longitude").value = position.coords.longitude;
+    document.getElementById("latitude").setValue(position.coords.latitude);
+    document.getElementById("longitude").value = position.coords.longitude;
+    console.log("done");
 }
 
+// submit.addEventListener('click', validate);
+    function validate() {
+        //e.preventDefault();
+        const checked = document.getElementById("restricted");
+        if (checked.checked) {
+            const lat = document.getElementById("latitude");
+            const long = document.getElementById("longitude");
+            if (lat.value === "" || long.value === "") {
+                /* wait */
+                return false
+            }
+        }
 
-function validate() {
-	//e.preventDefault();
-
-	const url = document.getElementById("URL");
-	let glink = document.getElementById("GLink");
-	const error = document.getElementById("error");
-	// if (!url) {
-	//     /* Flag */
-	// }
-	let valid = true;
-	const domainExp = new RegExp("^http(s)*:\\/\\/[a-zA-Z0-9\\-]+(\\.[a-zA-Z0-9\\-]+)+$");
-	const filepathExp = new RegExp("^[a-zA-Z]+$");
+        const url = document.getElementById("URL");
+        let glink = document.getElementById("GLink");
+        const error = document.getElementById("error");
+        // if (!url) {
+        //     /* Flag */
+        // }
+        let valid = true;
+        const domainExp = new RegExp("^http(s)*:\\/\\/[a-zA-Z0-9\\-]+(\\.[a-zA-Z0-9\\-]+)+$");
+        const filepathExp = new RegExp("^[a-zA-Z]+$");
         const glinkExp = new RegExp("^[a-zA-Z]*$");
         let glinkStr = glink.value;
         let count = 0;
@@ -71,8 +121,6 @@ function validate() {
             var result = window.confirm("You have left the glink field blank. A random one will be generated for you.");
             if (result === false) {
                 return false;
-            } else {
-                glinkStr = getRandomGLink();
             }
         }
 
