@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>Location needed</title>
+</head>
+<body onload="get_location()">
+This link is geo-restricted. Your location is needed to verify that you are authorized to access this link.
+
+<script>
+var params = new URLSearchParams(window.location.search);
+var glink = params.get("glink");
+
+var lat;
+var long;
+var method = "GET";
+var request;
+
+function requestHandler() {
+	if (request.readyState === XMLHttpRequest.DONE) {
+		if (request.status === 200) {
+			alert(request.responseText);
+		} else {
+			console.log("Error sending data to server.");
+		}
+	} 
+}
+
+function storeLocation(position) {
+	lat = position.coords.latitude;
+	long = position.coords.longitude;
+}
+
+function callbackFunction(position) {
+	storeLocation(position);
+	request = new XMLHttpRequest();
+	request.onreadystatechange = requestHandler;
+	if (method == "GET") {
+		request.open("GET","/checkloc.php?latitude=" + encodeURIComponent(lat) + "&longitude=" + encodeURIComponent(long) + "&glink=" + encodeURIComponent(glink));
+		request.send();
+	} else if (method == "POST") {
+		request.open("POST","/checkloc.php");
+		request.send("latitude=" + encodeURIComponent(lat) + "&longitude=" + encodeURIComponent(long));
+	}
+}
+
+function get_location() {
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(callbackFunction);
+		
+	} else {
+		alert('You cannot access this GLink as your browser does not support geolocation.');
+	}
+}
+</script>
+</body>
+</html>
