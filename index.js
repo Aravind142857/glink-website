@@ -3,9 +3,9 @@ mycheckbox = document.getElementById("restricted");
 mycheckbox.addEventListener('change',checkboxCallback);
 window.onload = function() {
     if (mycheckbox.checked) {
-        document.getElementById("radiusLabel").hidden = false;
+        document.getElementById("radius_label").hidden = false;
         document.getElementById("mandatory-radius").hidden = false;
-        var radiusSelect = document.getElementById("radiusSelect");
+        var radiusSelect = document.getElementById("radius");
         radiusSelect.hidden = false;
         radiusSelect.required = true;
     }
@@ -30,8 +30,8 @@ function valueRequested() {
 
 }
 function checkboxCallback(event) {
-    const radiusLabel = document.getElementById("radiusLabel");
-    const radiusSelect = document.getElementById("radiusSelect");
+    const radiusLabel = document.getElementById("radius_label");
+    const radiusSelect = document.getElementById("radius");
     const mandatoryRadius = document.getElementById("mandatory-radius");
     if (event.currentTarget.checked) {
         radiusLabel.hidden = false;
