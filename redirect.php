@@ -29,7 +29,7 @@
 				exit;
 			} else {
 				if ($row['is_geo'] == true) {
-					header("Location: https://glink.zip/reqloc.html");
+					header("Location: https://glink.zip/reqloc.html?glink=" . $uri);
 					exit;
 				} else {
 					header("Location: " . $row['url']);
