@@ -17,7 +17,11 @@ var request;
 function requestHandler() {
 	if (request.readyState === XMLHttpRequest.DONE) {
 		if (request.status === 200) {
-			alert(request.responseText);
+			if (request.responseText == "B") {
+				alert("You are not authorized to access this GLink, as you are outside the permitted radius. If you think this is an error, please try again on a mobile device.");
+			} else {
+				window.location.replace(request.responseText);
+			}
 		} else {
 			console.log("Error sending data to server.");
 		}
