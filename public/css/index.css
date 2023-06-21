@@ -1,3 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@font-face {
+    font-family: "Rubik";
+    src: url('./fonts/Rubik-Medium.ttf');
+}
+@font-face {
+    font-family: "GrenzeGotisch";
+    src: url('./fonts/GrenzeGotisch-Regular.ttf');
+}
+@font-face {
+    font-family: "FingerPaint";
+    src: url("./fonts/FingerPaint-Regular.ttf");
+}
+@font-face {
+    font-family: "PTSansNarrow";
+    src: url("./fonts/PTSansNarrow-Bold.ttf");
+}
+
 ul {
     display: flex;
     list-style: none;
@@ -5,24 +25,27 @@ ul {
 li {
     padding-left: 10px;
 }
+h1 {
+    color: black;
+
+}
 #root {
     color: black;
-    font-family: chalkduster;
+
 }
 #button {
     width: 100px;
     height: 30px;
-    background: lightgreen;
     font-size: large;
-    font-family: Futura;
+
 }
 .glink {
-    font-family: "Avenir Next"
+
 }
 #error {
     display: none;
     color: red;
-    font-family: "Big Caslon"
+
 }
 #error.visible {
     display: block;

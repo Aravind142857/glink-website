@@ -1,5 +1,4 @@
 const path = require('path');
-//const http = require('http');
 const express = require('express');
 const app = express();
 const staticPath = path.join(__dirname, "/public");
@@ -10,9 +9,9 @@ const client = new cassandra.Client({
 	localDataCenter: 'datacenter1',
 	keyspace: 'glink'
 });
-//var server = http.createServer(app);
 let id = 1;	/* Ideally should initialize id to be nextFromDB or write to file and read */
 const port = 63342;	// Port that the server listens on */
+const RADIUS_OF_EARTH_IN_MILES = 3958.7614580848;
 
 app.use( bodyParser.json() );
 app.use(bodyParser.urlencoded({
@@ -62,9 +61,6 @@ function filter(path) {
 		if (path.charAt(0) === '/') {
 			path = path.substring(1);
 		}
-		if (path.charAt(path.length - 1) === '/' && path.length > 1) {
-			path = path.substring(0, path.length - 1);
-		}
 		return path;
 	} else {
 		console.log("failed check. path is " + path);
@@ -72,49 +68,74 @@ function filter(path) {
 	}
 
 }
-app.get('/', (request, response) => {
- 	response.render("index.html");
- })
+function calculateDistance(lat1, lat2, long1, long2) {
+	console.log(lat1 + " " + lat2 + " " + long1 + " " + long2);
+	lat1 = lat1 * (Math.PI / 180);
+	lat2 = lat2 * (Math.PI / 180);
+	long1 = long1 * (Math.PI / 180);
+	long2 = long2 * (Math.PI / 180);
+
+	/* 2 asin(((lat2 - lat1)/2) ^ 2)*/
+	return (2 * Math.asin(Math.sqrt(Math.pow(Math.sin((lat2 - lat1)/2), 2) + Math.pow(Math.sin((long2 - long1)/2), 2) * Math.cos(lat1) * Math.cos(lat2))) * RADIUS_OF_EARTH_IN_MILES);
+}
+// app.get('/', (request, response) => {
+//  	response.render("index.html");
+//  })
 app.get('/node_modules/', (request, response) => {
-	response.sendFile(path.join(staticPath, "/error.html"));
+	response.redirect("./error.html");
 })
 app.get('/public/', (request, response) => {
-	response.sendFile(path.join(staticPath, "/error.html"));
+	response.redirect("./error.html");
 })
 
 
 
-const query = "INSERT INTO data (id, url, glink) VALUES (?, ?, ?)";
+const query = "INSERT INTO data (id, url, glink, time, isGeo, radius, latitude, longitude) VALUES (?, ?, ?, toTimestamp(now()), ?, ?, ?, ?)";
 
-app.post('/add', function(req, res) {
+app.post('/__add', function(req, res) {
 	let input_url = req.body.url;
 	let input_glink = req.body.glink;
 	let input_checkbox = req.body.restricted;
 	let input_radius = req.body.radiusSelect;
 	let input_latitude = req.body.latitude;
 	let input_longitude = req.body.longitude;
-	console.log("Received query " + input_url + " and " + input_glink);
-	let currID = nextId();
+	let geoBool = false;
+	let geoString = "off";
+	//console.log("Received query " + input_url + " and " + input_glink);
+	if (input_checkbox) {
+		geoString = "on";
+		geoBool = true;
+	} else {
+		input_radius = null;
+		input_latitude = null;
+		input_longitude = null;
+	}
+
 	if (input_glink === "") {
 		input_glink = getRandomGLink();
-		client.execute(query, [currID, input_url, input_glink], {prepare: true}, function(err,result) {
+		let currID = nextId();
+		console.log(currID, input_url, input_glink, geoBool, input_radius, input_latitude, input_longitude)
+		client.execute(query, [currID, input_url, input_glink, geoBool, input_radius, input_latitude, input_longitude], {prepare: true}, function(err,result) {
 			if (err) {
-				res.send("<html><body><p style=\"font-family:Futura; font-size:large; color:red;\">" + err.message + "</p></body></html>");
+				res.send("<html><body><p style=\"font-family:Rubik; color:red;\">" + err.message + "</p></body></html>");
 			} else {
-				res.send("<html><body><p style=\"font-family:Futura; font-size:large; color:green;\">New entry has been added with url = " + req.body.url + " and glink = " + input_glink + "</p></body></html>");
+				res.send("<html><body><p style=\"font-family:Rubik; color:green;\">New entry has been added with url = " + req.body.url + " and glink = " + input_glink + " with geolocation turned " + geoString + "</p></body></html>");
 			}
 		});
 	} else {
 		let selectQuery = "SELECT id FROM data where glink = ? allow filtering";
+		console.log(input_glink);
 		client.execute(selectQuery, [input_glink],{} ,function(err, result) {
 			if (result.rows.length === 0) {
-				client.execute(query, [currID, input_url, input_glink], {prepare: true}, function(err,result) {
+				let currID = nextId();
+				console.log("values are: " + currID, input_url, input_glink, geoBool, input_radius, input_latitude, input_longitude);
+				client.execute(query, [currID, input_url, input_glink, geoBool, input_radius, input_latitude, input_longitude], {prepare: true}, function(err,result) {
 					if (err) {
-						res.send("<html><body><p style=\"font-family:Futura; font-size:large; color:red;\">{err.message}</p></body></html>");
+						res.send("<html><body><p style=\"font-family:Rubik; font-size:large; color:red;\">" + err.message + "</p></body></html>");
 					} else {
 						res.send("<html><head><link rel=\"stylesheet\" href=\"./css/response.css\"></head>" +
 							"<body><p class=\"para\">" +
-							"New entry has been added with url = " + req.body.url + " and glink = " /*+ req.body.glink*/ + "" +
+							"New entry has been added with geolocation turned " + geoString + " and url = " + req.body.url + " and glink = " +
 							"</p>" +
 							"<input type=\"text\" value=\"" + req.body.glink + "\" readOnly=\"true\" id=\"myInput\" class=\"textbox\">" +
 							"<div class=\"tooltip\">" +
@@ -128,36 +149,81 @@ app.post('/add', function(req, res) {
 					}
 				});
 			} else {
-				res.send("<html><body><p style=\"font-family:futura; font-size:large; color:red;\">This glink has already been registered. Please try a different glink</p></body></html>");
+				res.send("<html><body><p style=\"font-family:Rubik; font-size: 20px; color:red;\">This glink has already been registered. Please try a different glink</p></body></html>");
 			}
 		});
 	}
 
 })
-
-/* Redirect requests to corresponding entry in database */
-app.get('/*', (request, response) => {
-	let req_path = request.path;
-	req_path = filter(req_path);
-	console.log("Path is " +req_path);
-	if (req_path == null) {
-		response.sendFile(path.join(staticPath, "/error.html"));
-		return;
-	}
-
-	let selQry = "select url from data where glink = ? allow filtering";
+app.post('/__check', function(req, res) {
+	let user_latitude = req.body.latitude;
+	let user_longitude = req.body.longitude;
+	let req_path = req.body.glink;
+	let selQry = "select url, latitude, longitude, radius from data where glink = ? allow filtering";
 	client.execute(selQry, [req_path], {}, function(err, result) {
 		if (result.rows.length === 0) {
-			console.log("Failed");
-			response.sendFile(path.join(staticPath, "/error.html"));
+			res.redirect("/error.html");
 		} else {
 			let page = result.rows[0]["url"];
-			console.log(page);
-			response.writeHead(301, {Location: page});
-			response.end();
+			let latitude = result.rows[0]["latitude"];
+			let longitude = result.rows[0]["longitude"];
+			let radius = result.rows[0]["radius"];
+			console.log(user_latitude + user_longitude);
+			let distance = calculateDistance(user_latitude, latitude, user_longitude, longitude);
+			console.log(distance  + " " + radius);
+			if (distance < radius) {
+				console.log("inside radius");
+				res.writeHead(301, {Location: page});
+				res.end();
+			} else {
+				res.redirect("./error.html ");
+				console.log("Outside radius");
+			}
 		}
 
 	})
+
+
+
+})
+/* Redirect requests to corresponding entry in database */
+app.get('/*', (request, response, cb) => {
+	let original_request = request.path;
+	if (original_request.charAt(original_request.length - 1) === '/' && original_request.length > 1) {
+		original_request = original_request.substring(0, original_request.length - 1);
+	}
+	let req_path = filter(original_request);
+	if (!req_path) {
+		console.log(staticPath + original_request);
+		response.redirect("./error.html");
+		return cb("");
+	} else {
+		let geoQry = "select isGeo from data where glink = ? allow filtering";
+		client.execute(geoQry, [req_path], {}, function (err, result) {
+			if (result.rows.length === 0) {
+				response.redirect("/error.html");
+			} else {
+				let isGeo = result.rows[0]["isgeo"];
+				if (isGeo) {
+					response.send("<html><head></head><body><p style='color:red;'>Redirecting you to the website! Please wait ...</p><form id=\"form\" action=\"/__check\" method=\"post\"><input type=\"hidden\" name=\"latitude\" id=\"latitude\"><input type=\"hidden\" name=\"longitude\" id=\"longitude\"><input type=\"hidden\" name=\"glink\" id=\"glink\" value=\"" + req_path + "\"></form><script src=\"./src/redirect.js\"></script></body></html>");
+					response.end();
+				} else {
+					let selQry = "select url from data where glink = ? allow filtering";
+					client.execute(selQry, [req_path], {}, function (err, result) {
+						if (result.rows.length === 0) {
+							response.redirect("/error.html");
+						} else {
+							let page = result.rows[0]["url"];
+							response.writeHead(301, {Location: page});
+							response.end();
+						}
+
+					})
+				}
+
+			}
+		})
+	}
 })
 app.listen(port, function(){
 	console.log("server listening on port 63342");
