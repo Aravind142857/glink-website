@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["public/*.{html,js}"],
+  content: ["public/**/*.{html,js}"],
   theme: {
       extend: {
           fontFamily: {
@@ -16,6 +16,8 @@ module.exports = {
           width: ["responsive", "hover", "focus"],
       },
   },
-  plugins: [],
+  plugins: [
+      require('@tailwindcss/forms'),
+  ],
 }
 

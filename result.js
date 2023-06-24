@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const app = express();
 const staticPath = path.join(__dirname, "/public");
+const fs = require('fs');
 var bodyParser = require('body-parser')
 const cassandra = require('cassandra-driver');
 const client = new cassandra.Client({
@@ -68,6 +69,16 @@ function filter(path) {
 	}
 
 }
+function checkFileExistsSync(fp){
+	let exists = true;
+	try{
+		fs.accessSync(fp, fs.constants.F_OK);
+	}catch(e){
+		exists = false;
+	}
+	return exists;
+}
+
 function calculateDistance(lat1, lat2, long1, long2) {
 	console.log(lat1 + " " + lat2 + " " + long1 + " " + long2);
 	lat1 = lat1 * (Math.PI / 180);
@@ -119,7 +130,19 @@ app.post('/__add', function(req, res) {
 			if (err) {
 				res.send("<html><body><p style=\"font-family:Rubik; color:red;\">" + err.message + "</p></body></html>");
 			} else {
-				res.send("<html><body><p style=\"font-family:Rubik; color:green;\">New entry has been added with url = " + req.body.url + " and glink = " + input_glink + " with geolocation turned " + geoString + "</p></body></html>");
+				res.send("<html><head><link rel=\"stylesheet\" href=\"./css/response.css\"></head>" +
+					"<body><p class=\"para\">" +
+					"New entry has been added with geolocation turned " + geoString + " and url = " + req.body.url + " and glink = " +
+					"</p>" +
+					"<input type=\"text\" value=\"localhost:63342/" + input_glink + "\" readOnly=\"true\" id=\"myInput\" class=\"textbox\">" +
+					"<div class=\"tooltip\">" +
+					"<button onClick=\"myFunction()\" onMouseOut=\"outFunc()\">" +
+					"<span class=\"tooltiptext\" id=\"myTooltip\">Copy to clipboard</span>" +
+					"Copy text" +
+					"</button>" +
+					"</div>" +
+					"<script src=\"./src/response.js\"></script>" +
+					"</body></html>");
 			}
 		});
 	} else {
@@ -137,7 +160,7 @@ app.post('/__add', function(req, res) {
 							"<body><p class=\"para\">" +
 							"New entry has been added with geolocation turned " + geoString + " and url = " + req.body.url + " and glink = " +
 							"</p>" +
-							"<input type=\"text\" value=\"" + req.body.glink + "\" readOnly=\"true\" id=\"myInput\" class=\"textbox\">" +
+							"<input type=\"text\" value=\"localhost:63342/" + req.body.glink + "\" readOnly=\"true\" id=\"myInput\" class=\"textbox\">" +
 							"<div class=\"tooltip\">" +
 								"<button onClick=\"myFunction()\" onMouseOut=\"outFunc()\">" +
 									"<span class=\"tooltiptext\" id=\"myTooltip\">Copy to clipboard</span>" +
@@ -188,15 +211,20 @@ app.post('/__check', function(req, res) {
 })
 /* Redirect requests to corresponding entry in database */
 app.get('/*', (request, response, cb) => {
+	console.log("Entered");
 	let original_request = request.path;
+	console.log(original_request);
 	if (original_request.charAt(original_request.length - 1) === '/' && original_request.length > 1) {
 		original_request = original_request.substring(0, original_request.length - 1);
 	}
 	let req_path = filter(original_request);
 	if (!req_path) {
-		console.log(staticPath + original_request);
-		response.redirect("./error.html");
-		return cb("");
+		if (checkFileExistsSync(original_request)) {
+			response.redirect(original_request);
+		} else {
+			response.redirect("/error.html");
+			return cb("");
+		}
 	} else {
 		let geoQry = "select isGeo from data where glink = ? allow filtering";
 		client.execute(geoQry, [req_path], {}, function (err, result) {
@@ -214,6 +242,7 @@ app.get('/*', (request, response, cb) => {
 							response.redirect("/error.html");
 						} else {
 							let page = result.rows[0]["url"];
+							console.log(page);
 							response.writeHead(301, {Location: page});
 							response.end();
 						}
@@ -229,4 +258,4 @@ app.listen(port, function(){
 	console.log("server listening on port 63342");
 })
 /** Validate url and glink on client side as well */
-/** Put the glink in a span or label and make it copyable */
+/** Validate to make sure request is a file before sending it */
