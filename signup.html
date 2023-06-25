@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-white">
+<head>
+  <link rel="stylesheet" href="output.css">
+  <title>Title</title>
+</head>
+<body class="h-full">
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
+    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign up for an account</h2>
+  </div>
+
+  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <form class="space-y-6" action="signup.php" method="GET">
+      <div>
+        <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+        <div class="mt-2">
+          <input id="email" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          <div id="email-error" class="hidden mt-2 text-red-800 text-xs">
+            invalid Email
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="flex items-center justify-between">
+          <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+        </div>
+        <div class="mt-2 relative block">
+          <input id="password" name="password" type="password" autocomplete="off" required class="block w-11/12 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+
+          <span id="pswd-invisible" class="absolute inset-y-0 right-0 flex items-center px-1 rounded-r-md">
+                    <svg class="w-6 h-6 m-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" color="black"
+                              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                        </path>
+                    </svg>
+                </span>
+          <span id="pswd-visible" class="absolute inset-y-0 right-0 flex items-center px-1 hidden">
+                    <svg class="w-6 h-6 m-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21">
+                        </path>
+                    </svg>
+                </span>
+        </div>
+        <p id="domain" class="hidden text-red-800 text-xs">
+          <b>Invalid characters entered</b>
+        </p>
+        <p id="letter" class="hidden text-red-800 text-xs">
+          A <b>lowercase</b> letter
+        </p>
+        <p id="capital" class="hidden text-red-800 text-xs">
+          A <b>capital (uppercase)</b> letter
+        </p>
+        <p id="number" class="hidden text-red-800 text-xs">
+          A <b>number</b>
+        </p>
+        <p id="symbol" class="hidden text-red-800 text-xs">
+          A <b>symbol</b>
+        </p>
+        <p id="length" class="hidden text-red-800 text-xs">
+          Minimum <b>10 characters</b>
+        </p>
+      </div>
+        <div>
+        <div class="flex items-center justify-between">
+            <label for="check-password" class="block text-sm font-medium leading-6 text-gray-900">Retype Password</label>
+        </div>
+      <div class="mt-2 relative block">
+        <input id="check-password" name="check-password" type="password" autocomplete="off" required class="block w-11/12 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+
+        <span id="check-pswd-invisible" class="absolute inset-y-0 right-0 flex items-center px-1 rounded-r-md">
+                    <svg class="w-6 h-6 m-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" color="black"
+                              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                        </path>
+                    </svg>
+                </span>
+        <span id="check-pswd-visible" class="absolute inset-y-0 right-0 flex items-center px-1 hidden">
+                    <svg class="w-6 h-6 m-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21">
+                        </path>
+                    </svg>
+                </span>
+      </div>
+      <p id="check-password-error" class="hidden text-red-800 text x-s">
+        Passwords <b>do not</b> match
+      </p>
+    </div>
+      <div>
+        <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign up</button>
+      </div>
+    </form>
+  </div>
+</div>
+<script src="login.js"></script>
+</body>
+</html>
