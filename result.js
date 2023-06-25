@@ -14,6 +14,7 @@ const client = new cassandra.Client({
 	keyspace: 'glink'
 });
 let id = 1;	/* Ideally should initialize id to be nextFromDB or write to file and read */
+let idAccount = 1;
 const port = 63342;	// Port that the server listens on */
 const RADIUS_OF_EARTH_IN_MILES = 3958.7614580848;
 
@@ -55,9 +56,14 @@ function newString(n) {
 	return str;
 }
 
-function nextId() {
+function nextIdData() {
 	let next = id;
 	id = id + 1;
+	return next;
+}
+function nextIdAccount() {
+	let next = idAccount;
+	idAccount = idAccount + 1;
 	return next;
 }
 function filter(path) {
@@ -127,7 +133,7 @@ app.post('/__add', function(req, res) {
 
 	if (input_glink === "") {
 		input_glink = getRandomGLink();
-		let currID = nextId();
+		let currID = nextIdData();
 		console.log(currID, input_url, input_glink, geoBool, input_radius, input_latitude, input_longitude)
 		client.execute(query, [currID, input_url, input_glink, geoBool, input_radius, input_latitude, input_longitude], {prepare: true}, function(err,result) {
 			if (err) {
@@ -153,7 +159,7 @@ app.post('/__add', function(req, res) {
 		console.log(input_glink);
 		client.execute(selectQuery, [input_glink],{} ,function(err, result) {
 			if (result.rows.length === 0) {
-				let currID = nextId();
+				let currID = nextIdData();
 				console.log("values are: " + currID, input_url, input_glink, geoBool, input_radius, input_latitude, input_longitude);
 				client.execute(query, [currID, input_url, input_glink, geoBool, input_radius, input_latitude, input_longitude], {prepare: true}, function(err,result) {
 					if (err) {
@@ -208,11 +214,42 @@ app.post('/__check', function(req, res) {
 		}
 	})
 })
-
-app.post('/__login', function(req, res) {
+app.post('/__signup', function(req, res, cb) {
+	console.log("Entered signup");
 	let email = req.body.email;
 	let password = req.body.password;
-	/** TODO: Validate to make sure user-password exists */
+	let confirm_password = req.body.verify;
+	console.log(confirm_password);
+	console.log(email);
+	console.log(password);
+	if (password === confirm_password) {
+		bcrypt.hash(password, saltRounds).then(hash => {
+		console.log(hash);
+
+		let add_qry = "insert into account (id, email, password) values (?, ?, ?)";
+		let id = nextIdAccount();
+
+		console.log(id, email, hash);
+		client.execute(add_qry, [id, email, hash], {prepare: true}, function(err, result) {
+			if (err) {
+				console.log(err.message);
+				return cb("");
+			} else {
+				console.log("signed up");
+				return cb("");
+			}
+		})
+	})
+	} else {
+		console.log("Passwords don't match");
+		return cb("");
+	}
+})
+app.post('/__login', function(req, res, cb) {
+	console.log("entered login");
+	let email = req.body.email;
+	let password = req.body.password;
+	/**  : Validate to make sure user-password exists */
 	let emailRX = new RegExp("^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(\\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z]+)+$");
 	let domainRX = new RegExp("[A-Za-z0-9!@#$%^&*]");
 	let minRXCharUp = new RegExp("[A-Z]");
@@ -224,21 +261,30 @@ app.post('/__login', function(req, res) {
 		client.execute(selQry, [email], {}, function(error, result) {
 			if (error) {
 				console.log(error.message);
+				return cb("");
 			} else {
-				if (result.rows[0].length === 0) {
-					res.redirect("/error.html");
+				if (result.rows.length === 0) {
+					console.log("Wrong email");
+					res.redirect("/login.html?error=auth");
+					return cb("");
 				} else {
 					let hash = result.rows[0]["password"];
+					console.log(password, hash);
 					bcrypt.compare(password, hash)
 						.then(match => {
 							if (match) {
-
+								console.log("Logged in");
+								res.redirect("/index.html");
+								return cb("");
 							} else {
-								res.redirect("/login.html");
+								console.log("Wrong password");
+								res.redirect("/login.html?error=auth");
+								return cb("");
 							}
 						})
 						.catch(err => {
 							console.log(err.message);
+							return cb("");
 						})
 				}
 			}
