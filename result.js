@@ -3,8 +3,11 @@ const express = require('express');
 const app = express();
 const staticPath = path.join(__dirname, "/public");
 const fs = require('fs');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 var bodyParser = require('body-parser')
 const cassandra = require('cassandra-driver');
+const {compare} = require("bcrypt");
 const client = new cassandra.Client({
 	contactPoints: ['127.0.0.1:9042'],
 	localDataCenter: 'datacenter1',
@@ -203,12 +206,49 @@ app.post('/__check', function(req, res) {
 				console.log("Outside radius");
 			}
 		}
-
 	})
-
-
-
 })
+
+app.post('/__login', function(req, res) {
+	let email = req.body.email;
+	let password = req.body.password;
+	/** TODO: Validate to make sure user-password exists */
+	let emailRX = new RegExp("^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(\\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z]+)+$");
+	let domainRX = new RegExp("[A-Za-z0-9!@#$%^&*]");
+	let minRXCharUp = new RegExp("[A-Z]");
+	let minRXCharLow = new RegExp("[a-z]");
+	let minRXNum = new RegExp("[0-9]");
+	let symRX = new RegExp("[!@#$%^&*]");
+	let selQry = "select password from account where email = ? allow filtering";
+	if (emailRX.test(email) && domainRX.test(password) && minRXNum.test(password) && minRXCharUp.test(password) && minRXCharLow.test(password) && symRX.test(password) && password.length >= 10) {
+		client.execute(selQry, [email], {}, function(error, result) {
+			if (error) {
+				console.log(error.message);
+			} else {
+				if (result.rows[0].length === 0) {
+					res.redirect("/error.html");
+				} else {
+					let hash = result.rows[0]["password"];
+					bcrypt.compare(password, hash)
+						.then(match => {
+							if (match) {
+
+							} else {
+								res.redirect("/login.html");
+							}
+						})
+						.catch(err => {
+							console.log(err.message);
+						})
+				}
+			}
+		})
+	}
+});
+
+
+
+
 /* Redirect requests to corresponding entry in database */
 app.get('/*', (request, response, cb) => {
 	console.log("Entered");

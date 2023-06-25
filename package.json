@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@tailwindcss/forms": "^0.5.3",
+    "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
     "cassandra-driver": "^4.6.4",
     "ejs": "^3.1.9",

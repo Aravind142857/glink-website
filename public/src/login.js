@@ -1,6 +1,33 @@
 let email = document.getElementById("email");
 let password = document.getElementById("password");
+let pswd_visible = document.getElementById("pswd-visible");
+let pswd_invisible = document.getElementById("pswd-invisible");
+let check_pswd_visible = document.getElementById("check-pswd-visible");
+let check_pswd_invisible = document.getElementById("check-pswd-invisible");
+let check_password = document.getElementById("check-password");
+pswd_visible.addEventListener('click', () => {
+    pswd_visible.classList.add("hidden");
+    pswd_invisible.classList.remove("hidden");
+    password.type = "password";
+});
+pswd_invisible.addEventListener('click', () => {
+    pswd_invisible.classList.add("hidden");
+    pswd_visible.classList.remove("hidden");
+    password.type = "text";
+});
+check_pswd_visible.addEventListener('click', () => {
+    check_pswd_visible.classList.add("hidden");
+    check_pswd_invisible.classList.remove("hidden");
+    check_password.type = "password";
+});
+check_pswd_invisible.addEventListener('click', () => {
+    check_pswd_invisible.classList.add("hidden");
+    check_pswd_visible.classList.remove("hidden");
+    check_password.type = "text";
+});
 let emailRX = new RegExp("^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(\\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z]+)+$");
+let domainError = document.getElementById("domain");
+let domainRX = new RegExp("^[a-zA-Z0-9!@#$%^&*]*$");
 let emailError = document.getElementById("email-error");
 let capsRX = new RegExp(".*[A-Z]+");
 let capsError = document.getElementById("capital");
@@ -12,6 +39,9 @@ let symbolRX = new RegExp(".*[!@#$%^&*]+");
 let symbolError = document.getElementById("symbol");
 let MIN_LENGTH = 10;
 let lenError = document.getElementById("length");
+let check_password_error = document.getElementById("check-password-error");
+
+
 email.addEventListener('keyup', function(event) {
     if (emailRX.test(email.value)) {
         console.log("email valid");
@@ -33,7 +63,7 @@ email.addEventListener('keyup', function(event) {
         return false;
     }
 });
-password.addEventListener('keyup', function() {
+password.addEventListener('keyup', () => {
     let pswd = password.value;
     if (!capsRX.test(pswd)) {
         capsError.classList.remove("hidden");
@@ -63,6 +93,13 @@ password.addEventListener('keyup', function() {
         symbolError.classList.add("hidden");
         symbolError.classList.remove("block");
     }
+    if (!domainRX.test(pswd)) {
+        domainError.classList.remove("hidden");
+        domainError.classList.add("block");
+    } else {
+        domainError.classList.add("hidden");
+        domainError.classList.remove("block");
+    }
     if (pswd.length < MIN_LENGTH) {
         lenError.classList.remove("hidden");
         lenError.classList.add("block");
@@ -81,4 +118,25 @@ password.addEventListener('keyup', function() {
         password.classList.remove("ring-red-400");
         password.classList.remove("focus:ring-red-400");
     }
-})
+});
+check_password.addEventListener("keyup", () => {
+    let check = check_password.value;
+    if (check !== password.value) {
+        check_password_error.classList.remove("hidden");
+        check_password_error.classList.add("block");
+    } else {
+        check_password_error.classList.add("hidden");
+        check_password_error.classList.remove("block")
+    }
+    if (check_password_error.classList.contains("block")) {
+        check_password.classList.remove("ring-green-400");
+        check_password.classList.remove("focus:ring-green-400");
+        check_password.classList.add("ring-red-400");
+        check_password.classList.add("focus:ring-red-400");
+    } else {
+        check_password.classList.add("ring-green-400");
+        check_password.classList.add("focus:ring-green-400");
+        check_password.classList.remove("ring-red-400");
+        check_password.classList.remove("focus:ring-red-400");
+    }
+});
