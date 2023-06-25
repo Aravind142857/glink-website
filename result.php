@@ -1,4 +1,5 @@
 <?php
+require_once 'db.inc.php';
 
 function gen_base62_rand_shortlink($len) {
 	$rand_bytes = random_bytes(intval(($len * 2) / 3));
@@ -29,9 +30,7 @@ function gen_rand_shortlink($len) {
 
 ini_set('display_errors', 1);
 
-$cluster = Cassandra::cluster()->withPersistentSessions(true)->build();
-$keyspace = 'glink';
-$session = $cluster->connect($keyspace);
+$session = init_cass_db();
 
 $url = $_GET["url"];
 

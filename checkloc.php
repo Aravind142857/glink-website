@@ -1,5 +1,13 @@
 <?php
-
+	session_start();
+	require_once 'db.inc.php';
+	if (isset($_SESSION['glink']) && !empty($_SESSION['glink'])) {
+		session_unset();
+		session_destroy();
+	} else {
+		http_response_code(403);
+		die('Forbidden.');
+	}
 	// FUNCTION TO CALCULATE HAVERSINE DISTANCE GIVEN COORDINATES OF
 	// TWO POINTS, AND RADIUS (IN KM)
 	function haversine_distance($lat1, $long1, $lat2, $long2, $radius) {
@@ -36,9 +44,8 @@
 	$user_long = $user_long * (M_PI / 180);
 	$glink = $_GET["glink"];
 
-	$cluster = Cassandra::cluster()->withPersistentSessions(true)->build();
-	$keyspace = 'glink';
-	$session = $cluster->connect($keyspace);
+	$session = init_cass_db();
+
 	$statement = $session->prepare('SELECT latitude,longitude,radius,url FROM data WHERE shortlink=? ALLOW FILTERING;');
 	$result = $session->execute($statement,array('arguments' => array($glink)));
 

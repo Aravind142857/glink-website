@@ -1,4 +1,7 @@
 <?php
+	require_once 'db.inc.php';
+	ini_set("session.cookie_secure",1);
+	session_start();
 	use Cassandra;
 
 	$uri = $_SERVER['REQUEST_URI'];
@@ -7,13 +10,11 @@
 	$matches_uri = preg_match('/^[a-zA-Z]+$/',$uri);
 
 	if (($matches_uri == 0) || ($matches_uri == false)) {
-		header("Location: http://glink.zip/");
+		header("Location: https://glink.zip/");
 	        exit;
 	} else {
 
-		$cluster = Cassandra::cluster()->withPersistentSessions(true)->build();
-		$keyspace = 'glink';
-		$session = $cluster->connect($keyspace);
+		$session = init_cass_db();
 
 		$statement = $session->prepare('SELECT url,is_geo FROM data WHERE shortlink=? ALLOW FILTERING;');
 		$result = $session->execute($statement,array('arguments' => array($uri)));
@@ -29,6 +30,7 @@
 				exit;
 			} else {
 				if ($row['is_geo'] == true) {
+					$_SESSION['glink'] = $uri;
 					header("Location: https://glink.zip/reqloc.html?glink=" . $uri);
 					exit;
 				} else {
