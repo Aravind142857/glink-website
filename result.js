@@ -34,43 +34,7 @@ app.use(sessions({
 app.use(cookieParser());
 var session;
 app.use(express.static(staticPath));
-app.get('/bruh', function(req, res) {
-	var tagline;
-	var signup;
-	var loc;
-	if (req.session.userId) {
-		tagline = "logout";
-		signup = "hidden";
-		loc = "/__logout";
-	} else {
-		tagline = "log in";
-		loc = "login.html"
-	}
-	res.render('pages/index', {
-		tagline: tagline,
-		signup: signup,
-		loc: loc
-	});
-})
-app.get('/', function(req, res) {
-	console.log("Moving to a diff site");
-	var tagline;
-	var signup;
-	var loc;
-	if (req.session.userId) {
-		tagline = "logout";
-		signup = "hidden";
-		loc = "__logout";
-	} else {
-		tagline = "log in";
-		loc = "login.html";
-	}
-	res.render('pages/index', {
-		tagline: tagline,
-		signup: signup,
-		loc: loc
-	});
-})
+
 const GLINK_SIZE = 6;
 function getRandomGLink() {
 	let glink = "";
@@ -127,6 +91,8 @@ function filter(path) {
 }
 function checkFileExistsSync(fp){
 	let exists = true;
+	console.log(staticPath + fp);
+	fp = staticPath + fp;
 	try{
 		fs.accessSync(fp, fs.constants.F_OK);
 	}catch(e){
@@ -159,6 +125,25 @@ app.get('/public/', (request, response) => {
 
 const query = "INSERT INTO data (id, url, glink, time, isGeo, radius, latitude, longitude) VALUES (?, ?, ?, toTimestamp(now()), ?, ?, ?, ?)";
 
+app.get('/', function(req, res) {
+	console.log("Moving to a diff site");
+	var tagline;
+	var signup;
+	var loc;
+	if (req.session.userId) {
+		tagline = "logout";
+		signup = "hidden";
+		loc = "__logout";
+	} else {
+		tagline = "log in";
+		loc = "login.html";
+	}
+	res.render('pages/index', {
+		tagline: tagline,
+		signup: signup,
+		loc: loc
+	});
+})
 app.post('/__add', function(req, res) {
 	session = req.session;
 	console.log("add " + req.session);
@@ -253,15 +238,16 @@ app.get('/__logout', function(req, res, cb) {
 	} else {
 		console.log("session invalid");
 		tagline = "log in";
-		loc = "/login.html";
+		loc = "login.html";
 	}
-	res.render('pages/index', {
-		tagline: tagline,
-		signup: signup,
-		loc: loc
-	});
+	// res.render('pages/index', {
+	// 	tagline: tagline,
+	// 	signup: signup,
+	// 	loc: loc
+	// });
+	res.redirect("/");
 	console.log("done");
-
+	res.end();
 })
 app.post('/__check', function(req, res) {
 	let user_latitude = req.body.latitude;
@@ -291,7 +277,7 @@ app.post('/__check', function(req, res) {
 		}
 	})
 })
-app.get('/__signup', function(req, res, cb) {
+app.get('/__signup', function(req, res) {
 	console.log("Entered signup");
 	let email = req.body.email;
 	let password = req.body.password;
@@ -310,19 +296,70 @@ app.get('/__signup', function(req, res, cb) {
 		client.execute(add_qry, [id, email, hash], {prepare: true}, function(err, result) {
 			if (err) {
 				console.log(err.message);
-				return cb("");
+				res.end();
 			} else {
 				console.log("signed up");
-				return cb("");
+				res.end();
 			}
 		})
 	})
 	} else {
 		console.log("Passwords don't match");
-		return cb("");
+		res.end();
 	}
 })
-app.post('/__login', function(req, res, cb) {
+app.post('/__login', function(req, res) {
+	console.log("entered login");
+	let email = req.body.email;
+	let password = req.body.password;
+	/**   Validate to make sure user-password exists */
+	let emailRX = new RegExp("^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(\\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z]+)+$");
+	let domainRX = new RegExp("[A-Za-z0-9!@#$%^&*]");
+	let minRXCharUp = new RegExp("[A-Z]");
+	let minRXCharLow = new RegExp("[a-z]");
+	let minRXNum = new RegExp("[0-9]");
+	let symRX = new RegExp("[!@#$%^&*]");
+	let selQry = "select password from account where email = ? allow filtering";
+	if (emailRX.test(email) && domainRX.test(password) && minRXNum.test(password) && minRXCharUp.test(password) && minRXCharLow.test(password) && symRX.test(password) && password.length >= 10) {
+		client.execute(selQry, [email], {}, function(error, result) {
+			if (error) {
+				console.log(error.message);
+				res.end();
+			} else {
+				if (result.rows.length === 0) {
+					console.log("Wrong email");
+					res.redirect("/login.html?error=auth");
+					res.end();
+				} else {
+					let hash = result.rows[0]["password"];
+					console.log(password, hash);
+					bcrypt.compare(password, hash)
+						.then(match => {
+							if (match) {
+								console.log("Logged in");
+								req.session.userId = email;
+								session = req.session;
+								console.log(req.session);
+								res.redirect("/");
+								/*res.redirect("/index_1.html");*/
+								res.end();
+							} else {
+								console.log("Wrong password");
+								res.redirect("/login.html?error=auth");
+								res.end();
+							}
+						})
+						.catch(err => {
+							console.log(err.message);
+							res.end();
+						})
+				}
+			}
+		})
+	}
+});
+
+app.get('/__login', function(req, res) {
 	console.log("entered login");
 	let email = req.body.email;
 	let password = req.body.password;
@@ -355,22 +392,7 @@ app.post('/__login', function(req, res, cb) {
 								session = req.session;
 								console.log(req.session);
 
-								var tagline;
-								var signup;
-								var loc;
-								if (req.session.userId) {
-									tagline = "logout";
-									signup = "hidden";
-									loc = "/__logout"
-								} else {
-									tagline = "log in";
-									loc = "login.html";
-								}
-								res.render('pages/index', {
-									tagline: tagline,
-									signup: signup,
-									loc: loc
-								});
+								res.redirect("/");
 								/*res.redirect("/index_1.html");*/
 								res.end();
 							} else {
@@ -391,9 +413,8 @@ app.post('/__login', function(req, res, cb) {
 
 
 
-
 /* Redirect requests to corresponding entry in database */
-app.get('/*', (request, response, cb) => {
+app.get('/*', (request, response) => {
 	console.log("Entered");
 	let original_request = request.path;
 	console.log(original_request);
@@ -401,12 +422,14 @@ app.get('/*', (request, response, cb) => {
 		original_request = original_request.substring(0, original_request.length - 1);
 	}
 	let req_path = filter(original_request);
+	console.log(checkFileExistsSync(original_request));
 	if (!req_path) {
 		if (checkFileExistsSync(original_request)) {
+			console.log(original_request + " unable");
 			response.redirect(original_request);
 		} else {
 			response.redirect("/error.html");
-			return cb("");
+			response.end();
 		}
 	} else {
 		let geoQry = "select isGeo from data where glink = ? allow filtering";
