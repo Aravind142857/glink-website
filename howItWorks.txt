@@ -1,0 +1,5 @@
+1. Enter the URL that you want to shorten.
+2. Enter the GLink - a keyword used to identify your URL. This is optional, and if this textbox is left blank, a random GLink will be generated for you. The GLink that you enter will be appended to the URL, like so: glink.zip/<your keyword>
+3. If you don't want to geo-restrict it, you're good to go! Skip to step 5.
+4. If you want to geo-restrict the link, select the checkbox, and provide a radius to use as a 'containment zone'. Only those individuals who are within that radius from your current location will be able to access the Glink.
+5. Click 'Zip it!' to generate your custom URL.
