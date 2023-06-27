@@ -3,6 +3,8 @@ const express = require('express');
 const app = express();
 const staticPath = path.join(__dirname, "/public");
 const fs = require('fs');
+const cookieParser = require('cookie-parser');
+const sessions = require('express-session');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 var bodyParser = require('body-parser')
@@ -13,6 +15,7 @@ const client = new cassandra.Client({
 	localDataCenter: 'datacenter1',
 	keyspace: 'glink'
 });
+app.set('view engine', 'ejs');
 let id = 1;	/* Ideally should initialize id to be nextFromDB or write to file and read */
 let idAccount = 1;
 const port = 63342;	// Port that the server listens on */
@@ -22,8 +25,26 @@ app.use( bodyParser.json() );
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
-app.use(express.static(staticPath));
 
+app.use(sessions({
+	secret: "iamasecretkey123",
+	saveUninitialized: true,
+	resave: false,
+}))
+app.use(cookieParser());
+var session;
+app.get('/', function(req, res) {
+	var tagline;
+	if (req.session.userId) {
+		tagline = "logout";
+	} else {
+		tagline = "log in";
+	}
+	res.render('pages/index', {
+		tagline: tagline
+	});
+})
+app.use(express.static(staticPath));
 const GLINK_SIZE = 6;
 function getRandomGLink() {
 	let glink = "";
@@ -113,6 +134,8 @@ app.get('/public/', (request, response) => {
 const query = "INSERT INTO data (id, url, glink, time, isGeo, radius, latitude, longitude) VALUES (?, ?, ?, toTimestamp(now()), ?, ?, ?, ?)";
 
 app.post('/__add', function(req, res) {
+	session = req.session;
+	console.log("add " + req.session);
 	let input_url = req.body.url;
 	let input_glink = req.body.glink;
 	let input_checkbox = req.body.restricted;
@@ -187,6 +210,15 @@ app.post('/__add', function(req, res) {
 	}
 
 })
+app.get('/__logout', function(req, res, cb) {
+	console.log("Entered logout");
+	console.log(req.session);
+	console.log(session);
+	req.session.destroy();
+	res.redirect('/login.html');
+	console.log("done");
+	res.end();
+})
 app.post('/__check', function(req, res) {
 	let user_latitude = req.body.latitude;
 	let user_longitude = req.body.longitude;
@@ -210,6 +242,7 @@ app.post('/__check', function(req, res) {
 			} else {
 				res.redirect("./error.html ");
 				console.log("Outside radius");
+				res.end();
 			}
 		}
 	})
@@ -249,7 +282,7 @@ app.post('/__login', function(req, res, cb) {
 	console.log("entered login");
 	let email = req.body.email;
 	let password = req.body.password;
-	/**  : Validate to make sure user-password exists */
+	/**   Validate to make sure user-password exists */
 	let emailRX = new RegExp("^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(\\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z]+)+$");
 	let domainRX = new RegExp("[A-Za-z0-9!@#$%^&*]");
 	let minRXCharUp = new RegExp("[A-Z]");
@@ -261,12 +294,12 @@ app.post('/__login', function(req, res, cb) {
 		client.execute(selQry, [email], {}, function(error, result) {
 			if (error) {
 				console.log(error.message);
-				return cb("");
+				res.end();
 			} else {
 				if (result.rows.length === 0) {
 					console.log("Wrong email");
 					res.redirect("/login.html?error=auth");
-					return cb("");
+					res.end();
 				} else {
 					let hash = result.rows[0]["password"];
 					console.log(password, hash);
@@ -274,17 +307,30 @@ app.post('/__login', function(req, res, cb) {
 						.then(match => {
 							if (match) {
 								console.log("Logged in");
-								res.redirect("/index.html");
-								return cb("");
+								req.session.userId = email;
+								session = req.session;
+								console.log(req.session);
+
+								var tagline;
+								if (req.session.userId) {
+									tagline = "logout";
+								} else {
+									tagline = "log in";
+								}
+								res.render('pages/index', {
+									tagline: tagline
+								});
+								/*res.redirect("/index.html");*/
+								res.end();
 							} else {
 								console.log("Wrong password");
 								res.redirect("/login.html?error=auth");
-								return cb("");
+								res.end();
 							}
 						})
 						.catch(err => {
 							console.log(err.message);
-							return cb("");
+							res.end();
 						})
 				}
 			}

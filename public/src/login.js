@@ -31,7 +31,7 @@ if (window.location.pathname === '/signup.html') {
 }
 let emailRX = new RegExp("^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(\\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z]+)+$");
 let domainError = document.getElementById("domain");
-let domainRX = new RegExp("^[a-zA-Z0-9!@#$%^&*]*$");
+let domainRX = new RegExp("^[a-zA-Z0-9!@#$%^&*_]*$");
 let emailError = document.getElementById("email-error");
 let capsRX = new RegExp(".*[A-Z]+");
 let capsError = document.getElementById("capital");
@@ -39,7 +39,7 @@ let lowRX = new RegExp(".*[a-z]+");
 let lowError = document.getElementById("letter");
 let numRX = new RegExp(".*[0-9]+");
 let numError = document.getElementById("number");
-let symbolRX = new RegExp(".*[!@#$%^&*]+");
+let symbolRX = new RegExp(".*[!@#$%^&*_]+");
 let symbolError = document.getElementById("symbol");
 let MIN_LENGTH = 10;
 let lenError = document.getElementById("length");
