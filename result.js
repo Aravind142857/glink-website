@@ -33,18 +33,44 @@ app.use(sessions({
 }))
 app.use(cookieParser());
 var session;
-app.get('/', function(req, res) {
+app.use(express.static(staticPath));
+app.get('/bruh', function(req, res) {
 	var tagline;
+	var signup;
+	var loc;
 	if (req.session.userId) {
 		tagline = "logout";
+		signup = "hidden";
+		loc = "/__logout";
 	} else {
 		tagline = "log in";
+		loc = "login.html"
 	}
 	res.render('pages/index', {
-		tagline: tagline
+		tagline: tagline,
+		signup: signup,
+		loc: loc
 	});
 })
-app.use(express.static(staticPath));
+app.get('/', function(req, res) {
+	console.log("Moving to a diff site");
+	var tagline;
+	var signup;
+	var loc;
+	if (req.session.userId) {
+		tagline = "logout";
+		signup = "hidden";
+		loc = "__logout";
+	} else {
+		tagline = "log in";
+		loc = "login.html";
+	}
+	res.render('pages/index', {
+		tagline: tagline,
+		signup: signup,
+		loc: loc
+	});
+})
 const GLINK_SIZE = 6;
 function getRandomGLink() {
 	let glink = "";
@@ -120,7 +146,7 @@ function calculateDistance(lat1, lat2, long1, long2) {
 	return (2 * Math.asin(Math.sqrt(Math.pow(Math.sin((lat2 - lat1)/2), 2) + Math.pow(Math.sin((long2 - long1)/2), 2) * Math.cos(lat1) * Math.cos(lat2))) * RADIUS_OF_EARTH_IN_MILES);
 }
 // app.get('/', (request, response) => {
-//  	response.render("index.html");
+//  	response.render("index_1.html");
 //  })
 app.get('/node_modules/', (request, response) => {
 	response.redirect("./error.html");
@@ -215,9 +241,27 @@ app.get('/__logout', function(req, res, cb) {
 	console.log(req.session);
 	console.log(session);
 	req.session.destroy();
-	res.redirect('/login.html');
+	var tagline;
+	var signup;
+	var loc;
+	console.log(req.session);
+	if ( req.session && req.session.userId) {
+		console.log("session valid");
+		tagline = "logout";
+		signup = "hidden";
+		loc = "__logout";
+	} else {
+		console.log("session invalid");
+		tagline = "log in";
+		loc = "/login.html";
+	}
+	res.render('pages/index', {
+		tagline: tagline,
+		signup: signup,
+		loc: loc
+	});
 	console.log("done");
-	res.end();
+
 })
 app.post('/__check', function(req, res) {
 	let user_latitude = req.body.latitude;
@@ -247,7 +291,7 @@ app.post('/__check', function(req, res) {
 		}
 	})
 })
-app.post('/__signup', function(req, res, cb) {
+app.get('/__signup', function(req, res, cb) {
 	console.log("Entered signup");
 	let email = req.body.email;
 	let password = req.body.password;
@@ -312,15 +356,22 @@ app.post('/__login', function(req, res, cb) {
 								console.log(req.session);
 
 								var tagline;
+								var signup;
+								var loc;
 								if (req.session.userId) {
 									tagline = "logout";
+									signup = "hidden";
+									loc = "/__logout"
 								} else {
 									tagline = "log in";
+									loc = "login.html";
 								}
 								res.render('pages/index', {
-									tagline: tagline
+									tagline: tagline,
+									signup: signup,
+									loc: loc
 								});
-								/*res.redirect("/index.html");*/
+								/*res.redirect("/index_1.html");*/
 								res.end();
 							} else {
 								console.log("Wrong password");

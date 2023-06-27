@@ -32,12 +32,18 @@
             <a href="#head" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-black mr-4 hover:bg-gray-200 hover:border hover:border-gray-200 hover:rounded text-teal-200 py-1 px-3">
                 C
             </a>
-            <a href="/index.html" class="block mt-4 lg:inline-block lg:mt-0 bg-blue-600 brightness-125 border border-blue-500 rounded text-teal-200 hover:text-black py-1 px-3">
+            <a href="index.html" class="block mt-4 lg:inline-block lg:mt-0 bg-blue-600 brightness-125 border border-blue-500 rounded text-teal-200 hover:text-black py-1 px-3">
                 Products (Form)
             </a>
         </div>
+
         <div>
-            <a href="/__logout" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">
+            <a href="signup.html" class="inline-block <%= signup %> text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0 mr-4">
+                signup
+            </a>
+        </div>
+        <div>
+            <a href="<%= loc %>" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">
                 <%= tagline %>
             </a>
         </div>
@@ -100,9 +106,9 @@
 
     </form>
     <hr>
-    <img src="./images/cat.gif">
+    <img src="images/cat.gif">
     <p id="footer" class="object-none object-bottom">Insert Footer Here</p>
-    <script src="./src/index.js"></script>
+    <script src="src/index.js"></script>
 
 </div>
 </body>
