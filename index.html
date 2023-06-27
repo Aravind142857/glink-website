@@ -9,6 +9,20 @@
 <body class="bg-gray-50">
 <h1 class="ml-4 text-5xl font-narrow">Link Shortener</h1>
 <p class="ml-4 font-fingerpaint">Hello There!</p>
+
+<?php 
+// The reason this works (i.e. I can use PHP in a .html file)
+// is because I have configured my .htaccess file to treat every file
+// ending in .html, as if it contains embedded PHP.
+// However, this is a strain on resources as it means _every_ HTML
+// file will be parsed for PHP code, even if it doesn't contain any.
+// An alternative to doing this, is to use the .php file extension for
+// any HTML file that has embedded PHP code, and the .html extension
+// for static HTML files.
+?>
+
+<?php include 'header.php'; ?>
+
 <div id="root">
    <form id="form" method="GET" action="result.php" onsubmit="return validate()">
 
