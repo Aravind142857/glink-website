@@ -76,7 +76,7 @@ function validate() {
     //     /* Flag */
     // }
     let valid = true;
-    const domainExp = new RegExp("^http(s)*:\\/\\/[a-zA-Z0-9\\-]+(\\.[a-zA-Z0-9\\-]+)+$");
+    const domainExp = new RegExp("^http(s)*:\\/\\/[a-zA-Z0-9\\-]+(\\.[a-zA-Z0-9\\-]+)+[\\/_#a-zA-Z0-9\\-]*$");
     const filepathExp = new RegExp("^[a-zA-Z]+$");
     const glinkExp = new RegExp("^[a-zA-Z]*$");
     let glinkStr = glink.value;

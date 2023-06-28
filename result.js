@@ -465,3 +465,6 @@ app.listen(port, function(){
 })
 /** Validate url and glink on client side as well */
 /** Validate to make sure request is a file before sending it */
+/** Make sure zip it stays behind using z-index*/
+/** Position all elements*/
+/** Work on home page */
