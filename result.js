@@ -18,7 +18,8 @@ const client = new cassandra.Client({
 app.set('view engine', 'ejs');
 let id = 1;	/* Ideally should initialize id to be nextFromDB or write to file and read */
 let idAccount = 1;
-const port = 63342;	// Port that the server listens on */
+//const port = 63342;	// Port that the server listens on */
+const port = 80;
 const RADIUS_OF_EARTH_IN_MILES = 3958.7614580848;
 
 app.use( bodyParser.json() );
@@ -460,7 +461,7 @@ app.get('/*', (request, response) => {
 		})
 	}
 })
-app.listen(port, function(){
+app.listen(port, "0.0.0.0", function(){
 	console.log("server listening on port 63342");
 })
 /** Validate url and glink on client side as well */
