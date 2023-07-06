@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind forms;
+@font-face {
+    font-family: "Rubik";
+    src: url('./fonts/Rubik-Medium.ttf');
+}
+@font-face {
+    font-family: "GrenzeGotisch";
+    src: url('./fonts/GrenzeGotisch-Regular.ttf');
+}
+@font-face {
+    font-family: "FingerPaint";
+    src: url("./fonts/FingerPaint-Regular.ttf");
+}
+@font-face {
+    font-family: "PTSansNarrow";
+    src: url("./fonts/PTSansNarrow-Bold.ttf");
+}
+
+ul {
+    display: flex;
+    list-style: none;
+}
+li {
+    padding-left: 10px;
+}
+h1 {
+    color: black;
+
+}
+#root {
+    color: black;
+
+}
+#button {
+    width: 100px;
+    height: 30px;
+    font-size: large;
+
+}
+.glink {
+
+}
+#error {
+    display: none;
+    color: red;
+
+}
+#error.visible {
+    display: block;
+}
+input.invalid {
+    border-color: red;
+    border-style: solid;
+    border-width: medium;
+}
+input.valid {
+    border-color: green;
+    border-style: solid;
+    border-width: medium
+}
+.mandatory {
+    color: red;
+}
