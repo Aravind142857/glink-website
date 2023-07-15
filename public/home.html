@@ -1,621 +1,354 @@
 <!DOCTYPE html>
-<html lang="en" class="bg-white">
+<html lang="en" class="bg-black">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
   <link rel="stylesheet" href="css/output.css">
 </head>
-<body class="mx-[10%] bg-white">
-  <main class="m-10 h-auto w-auto dark:bg-white">
-    <nav class="flex items-center opacity-100 lg:justify-between sm:justify-center flex-wrap bg-gray-500 dark:bg-gray-500 p-6 shadow-lg shadow-black/50 sticky top-4 opacity-100 mb-24"> <!--dark:bg-black-->
-      <div class="block lg:hidden cursor-pointer flex:none mr-4" id="HamburgerInactive">
-        <button id="btn" class="flex flex-col items-center px-3 py-[0.4375rem] border rounded text-teal-200 border-teal-400">
-          <span class="block h-0.5 w-5 mb-1 origin-center rounded-full bg-teal-200"></span>
-          <span class="block h-0.5 w-5 mb-1 origin-center rounded-full bg-teal-200"></span>
-          <span class="block h-0.5 w-5 origin-center rounded-full bg-teal-200"></span>
-        </button>
-      </div>
-      <div id="HamburgerActive" class="hidden lg:hidden flex:none cursor-pointer mr-4 block">
-        <button class="space-y-2 px-3 py-2 border rounded text-teal-200 border-teal-400" >
-          <span class="block h-0.5 w-5 origin-center rounded-full bg-teal-200 translate-y-1.5 rotate-45"></span>
-          <span class="block h-0.5 w-5 origin-center rounded-full bg-teal-200 -translate-y-1 -rotate-45"></span>
-          <span class="hidden h-0.5 w-5 origin-center rounded-full bg-white"></span>
-        </button>
-      </div>
-      <div class="flex items-center flex-shrink-0 text-white mr-6 w-full lg:w-auto flex-1 lg:flex-none justify-center">
-        <svg id="logo" class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg>
-        <span class="font-semibold text-xl tracking-tight">G-Link</span>
-      </div>
-      <div id="menu-options" class="bg-gray-500 w-full lg:block flex-grow lg:flex lg:items-center lg:w-auto hidden mr-4">
-        <div class="text-sm lg:flex-grow">
-          <a href="#head" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-black mr-4 hover:bg-gray-200 hover:border hover:border-gray-200 hover:rounded text-teal-200 py-1 px-3">
-            A
-          </a>
-          <a href="#head" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-black mr-4 hover:bg-gray-200 hover:border hover:border-gray-200 hover:rounded text-teal-200 py-1 px-3">
-            B
-          </a>
-          <a href="#head" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-black mr-4 hover:bg-gray-200 hover:border hover:border-gray-200 hover:rounded text-teal-200 py-1 px-3">
-            C
-          </a>
-          <a href="/" class="block mt-4 lg:inline-block lg:mt-0 bg-blue-600 brightness-125 border border-blue-500 rounded text-teal-200 hover:text-black py-1 px-3">
-            Products (Form)
-          </a>
+<body class="mx-[10%]">
+  <main class="m-10 h-auto w-auto ">
+      <!-- previous navbar start-->
+    <div class="hidden">
+<!--    <nav class="flex items-center opacity-100 lg:justify-between sm:justify-center flex-wrap bg-gray-500 dark:bg-gray-500 p-6 shadow-lg shadow-black/50 sticky top-4 opacity-100 mb-24"> &lt;!&ndash;dark:bg-black&ndash;&gt;-->
+<!--      <div class="block lg:hidden cursor-pointer flex:none mr-4" id="HamburgerInactive">-->
+<!--        <button id="btn" class="flex flex-col items-center px-3 py-[0.4375rem] border rounded text-teal-200 border-teal-400">-->
+<!--          <span class="block h-0.5 w-5 mb-1 origin-center rounded-full bg-teal-200"></span>-->
+<!--          <span class="block h-0.5 w-5 mb-1 origin-center rounded-full bg-teal-200"></span>-->
+<!--          <span class="block h-0.5 w-5 origin-center rounded-full bg-teal-200"></span>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--      <div id="HamburgerActive" class="hidden lg:hidden flex:none cursor-pointer mr-4 block">-->
+<!--        <button class="space-y-2 px-3 py-2 border rounded text-teal-200 border-teal-400" >-->
+<!--          <span class="block h-0.5 w-5 origin-center rounded-full bg-teal-200 translate-y-1.5 rotate-45"></span>-->
+<!--          <span class="block h-0.5 w-5 origin-center rounded-full bg-teal-200 -translate-y-1 -rotate-45"></span>-->
+<!--          <span class="hidden h-0.5 w-5 origin-center rounded-full bg-white"></span>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--      <div class="flex items-center flex-shrink-0 text-white mr-6 w-full lg:w-auto flex-1 lg:flex-none justify-center">-->
+<!--        <svg id="logo" class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg>-->
+<!--        <span class="font-semibold text-xl tracking-tight">G-Link</span>-->
+<!--      </div>-->
+<!--      <div id="menu-options" class="bg-gray-500 w-full lg:block flex-grow lg:flex lg:items-center lg:w-auto hidden mr-4">-->
+<!--        <div class="text-sm lg:flex-grow lg:flex">-->
+<!--          <a  class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-black mr-4 hover:bg-gray-200 hover:border hover:border-gray-200 hover:rounded text-teal-200 py-1 px-3">-->
+<!--            A-->
+<!--          </a>-->
+<!--          <a class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-black mr-4 hover:bg-gray-200 hover:border hover:border-gray-200 hover:rounded text-teal-200 py-1 px-3">-->
+<!--            B-->
+<!--          </a>-->
+<!--          <a class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-black mr-4 hover:bg-gray-200 hover:border hover:border-gray-200 hover:rounded text-teal-200 py-1 px-3">-->
+<!--            C-->
+<!--          </a>-->
+<!--          <a href="/" class="block mt-4 lg:inline-block lg:mt-0 bg-blue-600 brightness-125 border border-blue-500 rounded text-teal-200 hover:text-black py-1 px-3">-->
+<!--            Products (Form)-->
+<!--          </a>-->
+<!--        </div>-->
+
+<!--        <div>-->
+<!--          <a href="signup.html" class="inline-block <%= signup %> text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0 mr-4">-->
+<!--            signup-->
+<!--          </a>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <a href="<%= loc %>" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">-->
+<!--            <%= tagline %>-->
+<!--          </a>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--&lt;!&ndash;      <div class="w-9 h-9 rounded-full bg-emerald-800 cursor-pointer outline outline-offset-2 outline-4 outline-white hover:bg-emerald-700">&ndash;&gt;-->
+<!--&lt;!&ndash;        <button class="w-full h-full bg-white rounded-full" id="dropdownDefaultButton" data-dropdown-toggle="dropdown"></button>&ndash;&gt;-->
+<!--&lt;!&ndash;      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;      <div class="group relative cursor-pointer py-2">&ndash;&gt;-->
+<!--&lt;!&ndash;      <div class="w-44 flex items-center justify-between space-x-5 bg-white px-4 bg-gradient-to-tl from-purple-700 to-pink-500 rounded-lg group group-hover:from-purple-500 group-hover:to-pink-500">&ndash;&gt;-->
+<!--&lt;!&ndash;        <a class="menu-hover my-2 py-2 text-base font-medium text-white lg:mx-4 font-bold uppercase group-hover:scale-105 transition-transform" onClick="">&ndash;&gt;-->
+<!--&lt;!&ndash;          Profile&ndash;&gt;-->
+<!--&lt;!&ndash;        </a>&ndash;&gt;-->
+<!--&lt;!&ndash;        <span class="group-hover:hidden">&ndash;&gt;-->
+<!--&lt;!&ndash;            <svg&ndash;&gt;-->
+<!--&lt;!&ndash;                    fill="none"&ndash;&gt;-->
+<!--&lt;!&ndash;                    viewBox="0 0 24 24"&ndash;&gt;-->
+<!--&lt;!&ndash;                    stroke-width="1.5"&ndash;&gt;-->
+<!--&lt;!&ndash;                    stroke="white"&ndash;&gt;-->
+<!--&lt;!&ndash;                    class="h-6 w-6"&ndash;&gt;-->
+<!--&lt;!&ndash;            >&ndash;&gt;-->
+<!--&lt;!&ndash;              <path&ndash;&gt;-->
+<!--&lt;!&ndash;                      stroke-linecap="round"&ndash;&gt;-->
+<!--&lt;!&ndash;                      stroke-linejoin="round"&ndash;&gt;-->
+<!--&lt;!&ndash;                      d="M19.5 8.25l-7.5 7.5l-7.5-7.5"&ndash;&gt;-->
+<!--&lt;!&ndash;              />&ndash;&gt;-->
+<!--&lt;!&ndash;            </svg>&ndash;&gt;-->
+<!--&lt;!&ndash;          </span>&ndash;&gt;-->
+<!--&lt;!&ndash;        <span class="invisible group-hover:visible">&ndash;&gt;-->
+<!--&lt;!&ndash;            <svg&ndash;&gt;-->
+<!--&lt;!&ndash;                      fill="none"&ndash;&gt;-->
+<!--&lt;!&ndash;                      viewBox="0 0 24 24"&ndash;&gt;-->
+<!--&lt;!&ndash;                      stroke-width="1.5"&ndash;&gt;-->
+<!--&lt;!&ndash;                      stroke="white"&ndash;&gt;-->
+<!--&lt;!&ndash;                      class="h-6 w-6"&ndash;&gt;-->
+<!--&lt;!&ndash;            >&ndash;&gt;-->
+<!--&lt;!&ndash;              <path&ndash;&gt;-->
+<!--&lt;!&ndash;                      stroke-linecap="round"&ndash;&gt;-->
+<!--&lt;!&ndash;                      stroke-linejoin="round"&ndash;&gt;-->
+<!--&lt;!&ndash;                      d="M19.5 15.25l-7.5 -7.5l-7.5 7.5"&ndash;&gt;-->
+<!--&lt;!&ndash;              />&ndash;&gt;-->
+<!--&lt;!&ndash;            </svg>&ndash;&gt;-->
+<!--&lt;!&ndash;          </span>&ndash;&gt;-->
+<!--&lt;!&ndash;      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;      <div&ndash;&gt;-->
+<!--&lt;!&ndash;              class="invisible absolute z-50 flex w-full flex-col bg-gray-100 py-1 px-4 divide-y-1 divide-gray-300 text-gray-800 shadow-xl group-hover:visible"&ndash;&gt;-->
+<!--&lt;!&ndash;              onClick=""&ndash;&gt;-->
+<!--&lt;!&ndash;      >&ndash;&gt;-->
+<!--&lt;!&ndash;        <a&ndash;&gt;-->
+<!--&lt;!&ndash;                class="my-2 block border-b border-gray-100 py-1 font-semibold text-gray-500 hover:text-black md:mx-2"&ndash;&gt;-->
+<!--&lt;!&ndash;        >A</a&ndash;&gt;-->
+<!--&lt;!&ndash;        >&ndash;&gt;-->
+<!--&lt;!&ndash;        <a&ndash;&gt;-->
+<!--&lt;!&ndash;                class="my-2 block border-b border-gray-100 py-1 font-semibold text-gray-500 hover:text-black md:mx-2"&ndash;&gt;-->
+<!--&lt;!&ndash;        >B</a&ndash;&gt;-->
+<!--&lt;!&ndash;        >&ndash;&gt;-->
+<!--&lt;!&ndash;        <a&ndash;&gt;-->
+<!--&lt;!&ndash;                class="my-2 block border-b border-gray-100 py-1 font-semibold text-gray-500 hover:text-black md:mx-2"&ndash;&gt;-->
+<!--&lt;!&ndash;        >C</a>&ndash;&gt;-->
+<!--&lt;!&ndash;        <a&ndash;&gt;-->
+<!--&lt;!&ndash;                class="my-2 block border-b border-gray-100 py-1 font-semibold text-gray-500 hover:text-black md:mx-2"&ndash;&gt;-->
+<!--&lt;!&ndash;        >D</a>&ndash;&gt;-->
+<!--&lt;!&ndash;      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;      </div>&ndash;&gt;-->
+
+<!--      <script>-->
+<!--        let active = document.getElementById("HamburgerActive");-->
+<!--        let inactive = document.getElementById("HamburgerInactive");-->
+<!--        let options = document.querySelector("#menu-options");-->
+<!--        active.addEventListener("click", ()=>{-->
+<!--          active.classList.add("hidden");-->
+<!--          inactive.classList.remove("hidden");-->
+<!--          options.classList.toggle("hidden");-->
+<!--        })-->
+<!--        inactive.addEventListener("mouseup", ()=>{-->
+<!--          inactive.classList.add("hidden");-->
+<!--          active.classList.remove("hidden");-->
+<!--          options.classList.toggle("hidden");-->
+<!--        });-->
+<!--      </script>-->
+<!--    </nav>-->
+</div>
+      <!-- previous navbar end-->
+      <!-- New navbar start-->
+    <div class="navbar bg-base-100 rounded-lg shadow-xl shadow-black/50 z-[4] sticky top-0 mb-10">
+      <div class="flex-1 lg:ml-4 ml-2 my-2">
+        <!--Hamburger menu-->
+        <div class="lg:hidden" >
+          <ul class="menu menu-horizontal px-1">
+              <label class="btn btn-circle swap swap-rotate ">
+                <input type="checkbox" class="opacity-0 w-full h-full "/>
+                <svg class="swap-off fill-emerald-400 brightness-125" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"/></svg>
+                <div class="dropdown dropdown-open swap-on">
+                    <svg class="fill-emerald-400 brightness-125" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49"/></svg>
+                  <ul tabindex="0" class="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-36 mt-4">
+                    <li><a class="text-emerald-400 brightness-125">Create</a></li>
+                    <li><a class="text-emerald-400 brightness-125">Signup</a></li>
+                    <li><a class="text-emerald-400 brightness-125">Login</a></li>
+                  </ul>
+                </div>
+              </label>
+          </ul>
         </div>
+        <!-- Hamburger Menu ended -->
 
-        <div>
-          <a href="signup.html" class="inline-block <%= signup %> text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0 mr-4">
-            signup
-          </a>
+        <div class="flex lg:justify-start lg:items-start justify-center items-center lg:w-auto w-full">
+          <a class="btn btn-ghost normal-case text-xl text-emerald-400 brightness-125"><img src="images/GLink-Logo-alt.svg" class="h-full "></a>
         </div>
-        <div>
-          <a href="<%= loc %>" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">
-            <%= tagline %>
-          </a>
-        </div>
-      </div>
-      <div class="w-9 h-9 rounded-full bg-emerald-800 cursor-pointer outline outline-offset-2 outline-4 outline-white hover:bg-emerald-700">
-        <button class="w-full h-full bg-white rounded-full" id="dropdownDefaultButton" data-dropdown-toggle="dropdown">
-
-        </button>
-      </div>
-      <div class="group relative cursor-pointer py-2">
-      <div class="w-44 flex items-center justify-between space-x-5 bg-white px-4 bg-gradient-to-tl from-purple-700 to-pink-500 rounded-lg group group-hover:from-purple-500 group-hover:to-pink-500">
-        <a class="menu-hover my-2 py-2 text-base font-medium text-white lg:mx-4 font-bold uppercase group-hover:scale-105 transition-transform" onClick="">
-          Profile
-        </a>
-        <span class="group-hover:hidden">
-            <svg
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="white"
-                    class="h-6 w-6"
-            >
-              <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M19.5 8.25l-7.5 7.5l-7.5-7.5"
-              />
-            </svg>
-          </span>
-        <span class="invisible group-hover:visible">
-            <svg
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="white"
-                      class="h-6 w-6"
-            >
-              <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M19.5 15.25l-7.5 -7.5l-7.5 7.5"
-              />
-            </svg>
-          </span>
-      </div>
-      <div
-              class="invisible absolute z-50 flex w-full flex-col bg-gray-100 py-1 px-4 divide-y-1 divide-gray-300 text-gray-800 shadow-xl group-hover:visible"
-              onClick=""
-      >
-        <a
-                class="my-2 block border-b border-gray-100 py-1 font-semibold text-gray-500 hover:text-black md:mx-2"
-        >A</a
-        >
-        <a
-                class="my-2 block border-b border-gray-100 py-1 font-semibold text-gray-500 hover:text-black md:mx-2"
-        >B</a
-        >
-        <a
-                class="my-2 block border-b border-gray-100 py-1 font-semibold text-gray-500 hover:text-black md:mx-2"
-        >C</a>
-        <a
-                class="my-2 block border-b border-gray-100 py-1 font-semibold text-gray-500 hover:text-black md:mx-2"
-        >D</a>
-      </div>
-      </div>
-
-      <script>
-        let active = document.getElementById("HamburgerActive");
-        let inactive = document.getElementById("HamburgerInactive");
-        let options = document.querySelector("#menu-options");
-        active.addEventListener("click", ()=>{
-          active.classList.add("hidden");
-          inactive.classList.remove("hidden");
-          options.classList.toggle("hidden");
-        })
-        inactive.addEventListener("mouseup", ()=>{
-          inactive.classList.add("hidden");
-          active.classList.remove("hidden");
-          options.classList.toggle("hidden");
-        });
-      </script>
-    </nav>
-
-    <div class="overflow-x-auto">
-      <table class="table text-amber-950 italic my-4">
-        <!-- head -->
-        <thead>
-        <tr class="text-amber-950 text-center">
-          <th></th>
-          <th>gLink</th>
-          <th>URL</th>
-          <th>Edit</th>
-          <th>Delete</th>
-        </tr>
-        </thead>
-        <tbody>
-        <!-- row 1 -->
-        <tr class="data_row text-center" >
-          <th>1</th>
-          <td><input type="text" class="glink_str text-center italic border-none rounded-lg focus:shadow-lg" readonly value="Link 1"></td>
-          <td><input type="text" class="url_str italic text-center border-none rounded-lg focus:shadow-lg" readonly value="https://www.example.com"></td>
-          <td>
-            <button class="edit_btn btn bg-transparent hover:bg-transparent border-none p-0 m-0" onclick = "    ">
-            <svg width="24"
-                   height="24"
-                   fill="blue"
-                   class="bi bi-pencil"
-                   viewBox="0 0 16 16">
-            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-          </svg></button>
-            <button class="save_btn btn mx-8 bg-transparent hover:bg-transparent border-none p-0 m-0 hidden">
-            <div class="inline-block rotate-45 h-[24px] w-[12px] border-b-4 border-b-green-500 border-r-green-500 border-r-4 hover:border-b-green-300 hover:border-r-green-300"></div>
-          </button>
-            <button class="cancel_btn btn bg-transparent hover:bg-transparent border-none p-0 m-0 hidden">
-            <div class="w-[24px] h-[24px] before:absolute before:content-[' '] before:h-[32px] before:w-[2px] before:bg-red-600 before:rotate-45 after:absolute after:content-[' '] after:h-[32px] after:w-[2px] after:bg-red-600 after:-rotate-45 hover:before:bg-red-400 hover:after:bg-red-400"></div>
-          </button></td>
-<!--          <script>-->
-<!--            // var url_value = document.getElementById("url1").value;-->
-<!--            // var glink_value = document.getElementById("link1").value;-->
-<!--            // function toggle1() {-->
-<!--            //   let txt = document.getElementById("link1");-->
-<!--            //   let url = document.getElementById("url1");-->
-<!--            //   let edit = document.getElementById("edit-icon");-->
-<!--            //   let save = document.getElementById("save-icon");-->
-<!--            //   let cancel = document.getElementById("cancel-icon");-->
-<!--            //   if (txt.readOnly) {-->
-<!--            //     url_value = url.value;-->
-<!--            //     glink_value = txt.value;-->
-<!--            //     txt.readOnly = false;-->
-<!--            //     url.readOnly = false;-->
-<!--            //     txt.classList.add("outline-none", "ring-4", "ring-blue-500/50", "shadow-lg", "focus:outline-none", "focus:ring-4", "focus:ring-blue-500/50", "focus:shadow-lg");-->
-<!--            //     url.classList.add("outline-none", "ring-4", "ring-blue-500/50", "shadow-lg", "focus:outline-none", "focus:ring-4", "focus:ring-blue-500/50", "focus:shadow-lg");-->
-<!--            //     edit.classList.add("hidden");-->
-<!--            //     save.classList.remove("hidden");-->
-<!--            //     cancel.classList.remove("hidden");-->
-<!--            //     txt.focus();-->
-<!--            //   } else {-->
-<!--            //     txt.readOnly = true;-->
-<!--            //     url.readOnly = true;-->
-<!--            //     txt.classList.remove("outline-none", "ring-4", "ring-blue-500/50", "shadow-lg", "focus:outline-none", "focus:ring-4", "focus:ring-blue-500/50", "focus:shadow-lg");-->
-<!--            //     url.classList.remove("outline-none", "ring-4", "ring-blue-500/50", "shadow-lg", "focus:outline-none", "focus:ring-4", "focus:ring-blue-500/50", "focus:shadow-lg");-->
-<!--            //     edit.classList.remove("hidden");-->
-<!--            //     save.classList.add("hidden");-->
-<!--            //     cancel.classList.add("hidden");-->
-<!--            //   }-->
-<!--            // }-->
-<!--            // function cancel1() {-->
-<!--            //   document.getElementById("link1").value = glink_value;-->
-<!--            //   document.getElementById("url1").value = url_value;-->
-<!--            //   document.getElementById("link1").classList.remove("outline-none", "ring-4", "ring-blue-500/50", "shadow-lg", "focus:outline-none", "focus:ring-4", "focus:ring-blue-500/50", "focus:shadow-lg");-->
-<!--            //   document.getElementById("url1").classList.remove("outline-none", "ring-4", "ring-blue-500/50", "shadow-lg", "focus:outline-none", "focus:ring-4", "focus:ring-blue-500/50", "focus:shadow-lg");-->
-<!--            //   document.getElementById("edit-icon").classList.remove("hidden");-->
-<!--            //   document.getElementById("save-icon").classList.add("hidden");-->
-<!--            //   document.getElementById("cancel-icon").classList.add("hidden");-->
-<!--            // }-->
-<!--          </script>-->
-          <!--currentColor-->
-          <td>
-            <button class="delete_btn btn bg-transparent hover:bg-transparent border-none p-0 m-0">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="red" x="0px" y="0px" viewBox="0 0 25 24.8" width="25" height="24" xml:space="preserve" class= "group icon-trashcan ct-delete" data-ember-action="" data-ember-action-1015="1015">
-  <g class="trashcan-open invisible group-hover:visible">
-    <path d="M18.7,24.4H5.9L4.9,7h14.9L18.7,24.4z M7.6,22.6H17l0.8-13.7h-11L7.6,22.6z"></path>
-    <polygon points="13.6,10.3 13.1,21.2 14.9,21.2 15.4,10.3 "></polygon>
-    <polygon points="11.5,21.2 11,10.3 9.2,10.3 9.7,21.2 "></polygon>
-    <path d="M19.1,0.7l-4.7,0.9l-0.8-1.4L8.2,1.3L8,3l-4.7,1l0.2,4.7l17.3-3.5L19.1,0.7z
-
-             M8.8,1.9l4.4 -1.0 l0.5,0.8
-             L8.7,2.8z
-
-             M5.2,6.4l0-1L18,2.8l0.3,0.9L5.2,6.4z"></path>
-  </g>
-  <g class="trashcan-closed group-hover:invisible">
-    <path d="M6.8,8.8h11L17,22.6
-             H7.6L6.8,8.8z
-             M4.9,7l1,17.4h12.8
-             l1-17.4
-             H4.9z"></path>
-    <polygon points="13.6,10.3 13.1,21.2 14.9,21.2 15.4,10.3 "></polygon>
-    <polygon points="11.5,21.2 11,10.3 9.2,10.3 9.7,21.2 "></polygon>
-    <path d="M20.4,4h-4.8l-0.5-1.6
-             H9.5L9,4
-             H4.2
-             L3.5,8.6h17.6
-             L20.4,4z
-
-             M9.9,3.2h4.8
-             L14.9,3.9h-5.2z
-
-             M5.6,6.7l0.2-1 h13l0.2,1
-             H5.6z"></path>
-  </g>
-</svg>
-            </button>
-          </td>
-        </tr>
-        <tr class="notification_row text-center w-full hidden">
-          <td colspan="5"><div class="alert alert-error text-lg">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            <span>You have just deleted a row. Press <button class="undo_btn btn bg-transparent m-0 p-0 h-fit hover:bg-transparent border-none"><kbd class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-100 dark:border-gray-500">undo</kbd></button> to undo the action</span>
-            <button class="close_btn btn bg-transparent hover:bg-transparent broder-none p-0 m-0 "><svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-8 w-8" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></button>
-          </div></td>
-        </tr>
-        </tbody>
-        <!--<script>
-          // function delete1() {
-          //   let row = document.getElementById("row1");
-          //   let notification = document.getElementById("notification1");
-          //   row.classList.add("hidden");
-          //   notification.classList.remove("hidden");
-          //   setTimeout(function(){
-          //     notification.classList.add("hidden");
-          //   }, 4000);
-          // }
-          // function close1() {
-          //   let notification = document.getElementById("notification1");
-          //   notification.classList.add("hidden");
-          // }
-          // function undo1() {
-          //   let row = document.getElementById("row1");
-          //   let notification = document.getElementById("notification1");
-          //   row.classList.remove("hidden");
-          //   notification.classList.add("hidden");
-          // }
-        </script>-->
-        <!-- row 2 -->
-        <tbody>
-        <tr class="data_row text-center">
-          <th>2</th>
-          <td><input type="text" class="glink_str text-center italic border-none focus:outline-none focus:ring-4 rounded-lg focus:ring-blue-500/50 focus:shadow-lg"id="link2" readonly value="Link 1"></td>
-          <td><input type="text" class="url_str italic text-center border-none focus:outline-none focus:ring-4 rounded-lg focus:ring-blue-500/50 focus:shadow-lg"id="url2" readonly value="https://www.example.com"></td>
-          <td><button class="edit_btn btn bg-transparent hover:bg-transparent border-none p-0 m-0"><!--onclick="toggle1()-->
-            <svg width="24"
-                 height="24"
-                 fill="blue"
-                 class="bi bi-pencil"
-                 viewBox="0 0 16 16">
-              <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-            </svg></button>
-            <button class="save_btn btn mx-8 bg-transparent hover:bg-transparent border-none p-0 m-0 hidden">
-              <div class="inline-block rotate-45 h-[24px] w-[12px] border-b-4 border-b-green-500 border-r-green-500 border-r-4 hover:border-b-green-300 hover:border-r-green-300"></div>
-            </button>
-            <button class="cancel_btn btn bg-transparent hover:bg-transparent border-none p-0 m-0 hidden">
-              <div class="w-[24px] h-[24px] before:absolute before:content-[' '] before:h-[32px] before:w-[2px] before:bg-red-600 before:rotate-45 after:absolute after:content-[' '] after:h-[32px] after:w-[2px] after:bg-red-600 after:-rotate-45 hover:before:bg-red-400 hover:after:bg-red-400"></div>
-            </button></td></td>
-
-          <td>
-            <button class="delete_btn btn bg-transparent hover:bg-transparent border-none p-0 m-0">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="red" x="0px" y="0px" viewBox="0 0 25 24.8" width="25" height="24" xml:space="preserve" class= "group icon-trashcan ct-delete" data-ember-action="" data-ember-action-1015="1015">
-  <g class="trashcan-open invisible group-hover:visible">
-    <path d="M18.7,24.4H5.9L4.9,7h14.9L18.7,24.4z M7.6,22.6H17l0.8-13.7h-11L7.6,22.6z"></path>
-    <polygon points="13.6,10.3 13.1,21.2 14.9,21.2 15.4,10.3 "></polygon>
-    <polygon points="11.5,21.2 11,10.3 9.2,10.3 9.7,21.2 "></polygon>
-    <path d="M19.1,0.7l-4.7,0.9l-0.8-1.4L8.2,1.3L8,3l-4.7,1l0.2,4.7l17.3-3.5L19.1,0.7z
-
-             M8.8,1.9l4.4 -1.0 l0.5,0.8
-             L8.7,2.8z
-
-             M5.2,6.4l0-1L18,2.8l0.3,0.9L5.2,6.4z"></path>
-  </g>
-                <g class="trashcan-closed group-hover:invisible">
-    <path d="M6.8,8.8h11L17,22.6
-             H7.6L6.8,8.8z
-             M4.9,7l1,17.4h12.8
-             l1-17.4
-             H4.9z"></path>
-                  <polygon points="13.6,10.3 13.1,21.2 14.9,21.2 15.4,10.3 "></polygon>
-                  <polygon points="11.5,21.2 11,10.3 9.2,10.3 9.7,21.2 "></polygon>
-                  <path d="M20.4,4h-4.8l-0.5-1.6
-             H9.5L9,4
-             H4.2
-             L3.5,8.6h17.6
-             L20.4,4z
-
-             M9.9,3.2h4.8
-             L14.9,3.9h-5.2z
-
-             M5.6,6.7l0.2-1 h13l0.2,1
-             H5.6z"></path>
-  </g>
-</svg>
-            </button>
-          </td>
-        </tr>
-        <tr class="notification_row text-center w-full hidden">
-          <td colspan="5"><div class="alert alert-error text-lg">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            <span>You have just deleted a row. Press <button class="undo_btn btn bg-transparent m-0 p-0 h-fit hover:bg-transparent border-none"><kbd class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-100 dark:border-gray-500">undo</kbd></button> to undo the action</span>
-            <button class="close_btn btn bg-transparent hover:bg-transparent broder-none p-0 m-0 "><svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-8 w-8" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></button>
-          </div></td>
-        </tr>
-        </tbody>
-        <!-- row 3 -->
-        <tbody>
-          <tr class="data_row text-center">
-            <th>3</th>
-            <td><input type="text" class="glink_str text-center italic border-none focus:outline-none focus:ring-4 rounded-lg focus:ring-blue-500/50 focus:shadow-lg"id="link3" readonly value="Link 1"></td>
-            <td><input type="text" class="url_str italic text-center border-none focus:outline-none focus:ring-4 rounded-lg focus:ring-blue-500/50 focus:shadow-lg"id="url3" readonly value="https://www.example.com"></td>
-            <td><button class="edit_btn btn bg-transparent hover:bg-transparent border-none p-0 m-0"><!--onclick="toggle1()-->
-              <svg width="24"
-                   height="24"
-                   fill="blue"
-                   class="bi bi-pencil"
-                   viewBox="0 0 16 16">
-                <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-              </svg></button>
-              <button class="save_btn btn mx-8 bg-transparent hover:bg-transparent border-none p-0 m-0 hidden">
-                <div class="inline-block rotate-45 h-[24px] w-[12px] border-b-4 border-b-green-500 border-r-green-500 border-r-4 hover:border-b-green-300 hover:border-r-green-300"></div>
-              </button>
-              <button class="cancel_btn btn bg-transparent hover:bg-transparent border-none p-0 m-0 hidden" >
-                <div class="w-[24px] h-[24px] before:absolute before:content-[' '] before:h-[32px] before:w-[2px] before:bg-red-600 before:rotate-45 after:absolute after:content-[' '] after:h-[32px] after:w-[2px] after:bg-red-600 after:-rotate-45 hover:before:bg-red-400 hover:after:bg-red-400"></div>
-              </button></td></td>
-            <td>
-              <button class="delete_btn btn bg-transparent hover:bg-transparent border-none p-0 m-0">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="red" x="0px" y="0px" viewBox="0 0 25 24.8" width="25" height="24" xml:space="preserve" class= "group icon-trashcan ct-delete" data-ember-action="" data-ember-action-1015="1015">
-    <g class="trashcan-open invisible group-hover:visible">
-      <path d="M18.7,24.4H5.9L4.9,7h14.9L18.7,24.4z M7.6,22.6H17l0.8-13.7h-11L7.6,22.6z"></path>
-      <polygon points="13.6,10.3 13.1,21.2 14.9,21.2 15.4,10.3 "></polygon>
-      <polygon points="11.5,21.2 11,10.3 9.2,10.3 9.7,21.2 "></polygon>
-      <path d="M19.1,0.7l-4.7,0.9l-0.8-1.4L8.2,1.3L8,3l-4.7,1l0.2,4.7l17.3-3.5L19.1,0.7z
-
-               M8.8,1.9l4.4 -1.0 l0.5,0.8
-               L8.7,2.8z
-
-               M5.2,6.4l0-1L18,2.8l0.3,0.9L5.2,6.4z"></path>
-    </g>
-                  <g class="trashcan-closed group-hover:invisible">
-      <path d="M6.8,8.8h11L17,22.6
-               H7.6L6.8,8.8z
-               M4.9,7l1,17.4h12.8
-               l1-17.4
-               H4.9z"></path>
-                    <polygon points="13.6,10.3 13.1,21.2 14.9,21.2 15.4,10.3 "></polygon>
-                    <polygon points="11.5,21.2 11,10.3 9.2,10.3 9.7,21.2 "></polygon>
-                    <path d="M20.4,4h-4.8l-0.5-1.6
-               H9.5L9,4
-               H4.2
-               L3.5,8.6h17.6
-               L20.4,4z
-
-               M9.9,3.2h4.8
-               L14.9,3.9h-5.2z
-
-               M5.6,6.7l0.2-1 h13l0.2,1
-               H5.6z"></path>
-    </g>
-  </svg>
-              </button>
-            </td>
-          </tr>
-          <tr class="notification_row text-center w-full hidden">
-            <td colspan="5"><div class="alert alert-error text-lg">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-              <span>You have just deleted a row. Press <button class="undo_btn btn bg-transparent m-0 p-0 h-fit hover:bg-transparent border-none"><kbd class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-100 dark:border-gray-500">undo</kbd></button> to undo the action</span>
-              <button class="close_btn btn bg-transparent hover:bg-transparent broder-none p-0 m-0 "><svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-8 w-8" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></button>
-            </div></td>
-          </tr>
-        </tbody>
-        <script>
-          let allButtons = document.getElementsByClassName('btn');
-          for (let btn of allButtons) {
-            var url_value;
-            var glink_value;
-
-              btn.addEventListener('click', () => {
-                if (btn.classList.contains("close_btn")) {
-                  let notificationRow = btn.parentElement.parentElement.parentElement;
-                  notificationRow.classList.add("hidden");
-                } else if (btn.classList.contains("undo_btn")) {
-                  let notificationRow = btn.parentElement.parentElement.parentElement.parentElement;
-                  let row = notificationRow.parentElement.getElementsByClassName("data_row")[0];
-                  row.classList.remove("hidden");
-                  notificationRow.classList.add("hidden");
-                }
-                else {
-                  var clickedElement = btn;
-                  var clickedRow = clickedElement.parentElement.parentElement;
-                  let txt = clickedRow.getElementsByClassName("glink_str")[0];
-                  let url = clickedRow.getElementsByClassName("url_str")[0];
-                  let edit = clickedRow.getElementsByClassName("edit_btn")[0];
-                  let save = clickedRow.getElementsByClassName("save_btn")[0];
-                  let cancel = clickedRow.getElementsByClassName("cancel_btn")[0];
-                  if (btn.classList.contains("edit_btn") || btn.classList.contains("save_btn")) {
-                    if (txt.readOnly) {
-                      url_value = url.value;
-                      glink_value = txt.value;
-                      txt.readOnly = false;
-                      url.readOnly = false;
-                      txt.classList.add("outline-none", "ring-4", "ring-blue-500/50", "shadow-lg", "focus:outline-none", "focus:ring-4", "focus:ring-blue-500/50", "focus:shadow-lg");
-                      url.classList.add("outline-none", "ring-4", "ring-blue-500/50", "shadow-lg", "focus:outline-none", "focus:ring-4", "focus:ring-blue-500/50", "focus:shadow-lg");
-                      edit.classList.add("hidden");
-                      save.classList.remove("hidden");
-                      cancel.classList.remove("hidden");
-                      txt.focus();
-                    } else {
-                      txt.readOnly = true;
-                      url.readOnly = true;
-                      txt.classList.remove("outline-none", "ring-4", "ring-blue-500/50", "shadow-lg", "focus:outline-none", "focus:ring-4", "focus:ring-blue-500/50", "focus:shadow-lg");
-                      url.classList.remove("outline-none", "ring-4", "ring-blue-500/50", "shadow-lg", "focus:outline-none", "focus:ring-4", "focus:ring-blue-500/50", "focus:shadow-lg");
-                      edit.classList.remove("hidden");
-                      save.classList.add("hidden");
-                      cancel.classList.add("hidden");
-                    }
-                  }
-                  if (btn.classList.contains("cancel_btn")) {
-                    txt.value = glink_value;
-                    url.value = url_value;
-                    txt.readOnly = true;
-                    url.readOnly = true;
-                    txt.classList.remove("outline-none", "ring-4", "ring-blue-500/50", "shadow-lg", "focus:outline-none", "focus:ring-4", "focus:ring-blue-500/50", "focus:shadow-lg");
-                    url.classList.remove("outline-none", "ring-4", "ring-blue-500/50", "shadow-lg", "focus:outline-none", "focus:ring-4", "focus:ring-blue-500/50", "focus:shadow-lg");
-                    edit.classList.remove("hidden");
-                    save.classList.add("hidden");
-                    cancel.classList.add("hidden");
-                  }
-                  if (btn.classList.contains("delete_btn")) {
-                    let row = clickedRow;
-                    let notification = row.parentElement.getElementsByClassName("notification_row")[0];
-                    row.classList.add("hidden");
-                    notification.classList.remove("hidden");
-                    setTimeout(function () {
-                      notification.classList.add("hidden");
-                    }, 4000);
-                  }
-                }
-              });
-          }
-
-
-          // function toggle(event) {
-          //   var clickedElement = event.target;
-          //   var clickedRow = clickedElement.parentElement.parentElement.parentElement;
-          //   console.log(clickedRow);
-          //   console.log(clickedElement.parentElement);
-          //   console.log(clickedElement);
-          //   clickedRow.classList.add("hidden");
-          //   let txt = document.getElementById("link1");
-          //   let url = document.getElementById("url1");
-          //   let edit = document.getElementById("edit-icon");
-          //   let save = document.getElementById("save-icon");
-          //   let cancel = document.getElementById("cancel-icon");
-          //   if (txt.readOnly) {
-          //     url_value = url.value;
-          //     glink_value = txt.value;
-          //     txt.readOnly = false;
-          //     url.readOnly = false;
-          //     txt.classList.add("outline-none", "ring-4", "ring-blue-500/50", "shadow-lg", "focus:outline-none", "focus:ring-4", "focus:ring-blue-500/50", "focus:shadow-lg");
-          //     url.classList.add("outline-none", "ring-4", "ring-blue-500/50", "shadow-lg", "focus:outline-none", "focus:ring-4", "focus:ring-blue-500/50", "focus:shadow-lg");
-          //     edit.classList.add("hidden");
-          //     save.classList.remove("hidden");
-          //     cancel.classList.remove("hidden");
-          //     txt.focus();
-          //   } else {
-          //     txt.readOnly = true;
-          //     url.readOnly = true;
-          //     txt.classList.remove("outline-none", "ring-4", "ring-blue-500/50", "shadow-lg", "focus:outline-none", "focus:ring-4", "focus:ring-blue-500/50", "focus:shadow-lg");
-          //     url.classList.remove("outline-none", "ring-4", "ring-blue-500/50", "shadow-lg", "focus:outline-none", "focus:ring-4", "focus:ring-blue-500/50", "focus:shadow-lg");
-          //     edit.classList.remove("hidden");
-          //     save.classList.add("hidden");
-          //     cancel.classList.add("hidden");
-          //   }
-          // }
-          // function cancel1() {
-          //   document.getElementById("link1").value = glink_value;
-          //   document.getElementById("url1").value = url_value;
-          //   document.getElementById("link1").classList.remove("outline-none", "ring-4", "ring-blue-500/50", "shadow-lg", "focus:outline-none", "focus:ring-4", "focus:ring-blue-500/50", "focus:shadow-lg");
-          //   document.getElementById("url1").classList.remove("outline-none", "ring-4", "ring-blue-500/50", "shadow-lg", "focus:outline-none", "focus:ring-4", "focus:ring-blue-500/50", "focus:shadow-lg");
-          //   document.getElementById("edit-icon").classList.remove("hidden");
-          //   document.getElementById("save-icon").classList.add("hidden");
-          //   document.getElementById("cancel-icon").classList.add("hidden");
-          // }
-        </script>
-      </table>
-    </div>
-
-
-
-
-    <div class="flex lg:flex-row flex-col w-full mb-24 justify-center items-center">
-      <div class="h-96 lg:w-auto sm:w-full flex flex-col flex-grow mb-24">
-        <div class="w-full flex items-center justify-center mb-6 border-8 border-black">
-          <h1 class="text-4xl md:text-5xl lg:text-6xl m-5 text-center">Create and Share Geo-Restricted Links</h1>
-        </div>
-        <div class="h-72 w-full flex items-center justify-center text-2xl border-8 border-black">
-          <p>
-            Insert description or whatever ...
-          </p>
+        <div class="w-full justify-center items-center lg:flex hidden">
+          <a class="btn btn-outline btn-success brightness-125 lg:text-xl text-sm" href="/">Create</a>
         </div>
       </div>
-<!--      <img class="w-auto flex-grow-0 h-96 w-96" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGpfMagCsgrJkELG_GOjtxqssEPXd-3vr2PmPdaB-0Y5Rp-bv1VOouyoXmG2QxZWHpdYI&usqp=CAU">-->
-      <div class="relative items-center w-auto h-auto sm:w-full flex-grow-0">
-        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-          <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-        </div>
-        <div class="absolute inset-y-0 left-0 flex items-center w-full pl-10 pointer-events-none">
-          <div type="search" id="default-search" class="block w-full p-2 pl-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500">
-            <div class="typewriter bg-transparent w-fit h-auto justify-center items-center mx-auto">
-              <h1 class="text-2xl text-center overflow-x-hidden border-r border-r-2 border-r-orange-600 whitespace-nowrap m-auto tracking-wider "></h1>
+      <div class="justify-center items-center lg:flex mr-10 my-2 hidden">
+        <a class="btn btn-outline btn-success brightness-125 lg:text-xl text-sm" href="signup.html">Signup</a>
+      </div>
+
+      <div class="flex-none my-2">
+
+        <div class="dropdown dropdown-end">
+          <label tabindex="0" class="btn btn-ghost btn-circle avatar border border-2 border-emerald-500 brightness-125 hover:border-none hover:ring-2 hover:ring-emerald-400 focus:ring-2 focus:ring-emerald-400">
+            <div class="w-10 rounded-full cursor-pointer ">
+              <div class="w-full h-full bg-white rounded-full text-center"></div>
             </div>
-          </div>
+          </label>
+          <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-36">
+            <li><a href="links.html">My Links</a></li>
+            <li><a>Logout</a></li>
+          </ul>
         </div>
       </div>
-      <style>
-        .typewriter h1{
-          background: transparent;
-          overflow: hidden; /* Ensures the content is not revealed until the animation */
-          border-right: .15em solid orange; /* The typwriter cursor */
-          white-space: nowrap; /* Keeps the content on a single line */
-          margin: auto; /* Gives that scrolling effect as the typing happens */
-          letter-spacing: .15em; /* Adjust as needed */
-          content: "";
-          animation:
-                  typing 9s steps(40, start) 0s infinite,
-                  blink-caret .95s step-end 0s infinite;
-        }
-
-        /* The typing effect */
-        @keyframes typing {
-          0% { width: 0}
-          30% { width: 100% }
-          40% { width: 100% }
-          55% { width: 0 }
-          65% { width: 0}
-          95% {width: 100%}
-          100% {width: 100%}
-        }
-
-        /* The typewriter cursor effect */
-        @keyframes blink-caret {
-          from, to { border-color: transparent }
-          50% { border-color: orange; }
-        }
-        .typewriter h1::after {
-          animation: change 9s steps(40, start) 0s infinite;
-        }
-        @keyframes change {
-          0% {content: "netflix.com"}
-          60% {content: "netflix.com"}
-          65% {content: "glink.com/video"}
-          100% {content: "glink.com/video"}
-        }
-      </style>
-
     </div>
-    <div class="flex lg:flex-col h-auto flex-col w-full mb-24 border-8 border-black">
-      <div class="w-full justify-center items-center flex border-8 border-black">
-        <p class="text-4xl md:text-5xl lg:text-6xl">
+      <!-- Navbar ended -->
+      <!-- Old hero start -->
+    <div class="hidden">
+<!--    <div class="flex lg:flex-row flex-col w-full mb-24 justify-center items-center">-->
+<!--      <div class="h-96 lg:w-auto sm:w-full flex flex-col flex-grow mb-24">-->
+<!--        <div class="w-full flex items-center justify-center mb-6 border-8 border-black">-->
+<!--          <h1 class="text-4xl md:text-5xl lg:text-6xl m-5 text-center">Create and Share Geo-Restricted Links</h1>-->
+<!--        </div>-->
+<!--        <div class="h-72 w-full flex items-center justify-center text-2xl border-8 border-black">-->
+<!--          <p>-->
+<!--            Insert description or whatever ...-->
+<!--          </p>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--&lt;!&ndash;      <img class="w-auto flex-grow-0 h-96 w-96" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGpfMagCsgrJkELG_GOjtxqssEPXd-3vr2PmPdaB-0Y5Rp-bv1VOouyoXmG2QxZWHpdYI&usqp=CAU">&ndash;&gt;-->
+<!--      <div class="relative items-center w-auto h-auto sm:w-full flex-grow-0">-->
+<!--        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">-->
+<!--          <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>-->
+<!--        </div>-->
+<!--        <div class="absolute inset-y-0 left-0 flex items-center w-full pl-10 pointer-events-none">-->
+<!--          <div type="search" id="default-search" class="block w-full p-2 pl-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500">-->
+<!--            <div class="typewriter bg-transparent w-fit h-auto justify-center items-center mx-auto">-->
+<!--              <h1 class="text-2xl text-center overflow-x-hidden border-r border-r-2 border-r-orange-600 whitespace-nowrap m-auto tracking-wider "></h1>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <style>-->
+<!--        .typewriter h1{-->
+<!--          background: transparent;-->
+<!--          overflow: hidden; /* Ensures the content is not revealed until the animation */-->
+<!--          border-right: .15em solid orange; /* The typwriter cursor */-->
+<!--          white-space: nowrap; /* Keeps the content on a single line */-->
+<!--          margin: auto; /* Gives that scrolling effect as the typing happens */-->
+<!--          letter-spacing: .15em; /* Adjust as needed */-->
+<!--          content: "";-->
+<!--          animation:-->
+<!--                  typing 9s steps(40, start) 0s infinite,-->
+<!--                  blink-caret .95s step-end 0s infinite;-->
+<!--        }-->
+
+<!--        /* The typing effect */-->
+<!--        @keyframes typing {-->
+<!--          0% { width: 0}-->
+<!--          30% { width: 100% }-->
+<!--          40% { width: 100% }-->
+<!--          55% { width: 0 }-->
+<!--          65% { width: 0}-->
+<!--          95% {width: 100%}-->
+<!--          100% {width: 100%}-->
+<!--        }-->
+
+<!--        /* The typewriter cursor effect */-->
+<!--        @keyframes blink-caret {-->
+<!--          from, to { border-color: transparent }-->
+<!--          50% { border-color: orange; }-->
+<!--        }-->
+<!--        .typewriter h1::after {-->
+<!--          animation: change 9s steps(40, start) 0s infinite;-->
+<!--        }-->
+<!--        @keyframes change {-->
+<!--          0% {content: "netflix.com"}-->
+<!--          60% {content: "netflix.com"}-->
+<!--          65% {content: "glink.com/video"}-->
+<!--          100% {content: "glink.com/video"}-->
+<!--        }-->
+<!--      </style>-->
+
+<!--    </div>-->
+</div>
+      <!-- Old hero end -->
+      <!-- New hero start -->
+      <div class="hero py-16 h-auto bg-primary rounded-lg my-8 shadow-lg shadow-primary">
+          <div class="hero-content flex-col-reverse lg:flex-row-reverse">
+              <div class="relative items-center w-auto h-auto sm:w-full flex-grow-0 mt-8 lg:mt-0 justify-center mx-auto">
+<!--                  <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">-->
+<!--                      <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>-->
+<!--                  </div>-->
+                  <div class="absolute inset-y-0 left-0 flex items-center w-full lg:pl-10 pointer-events-none">
+                      <div type="search" id="default-search" class="block w-full p-2 pl-6 text-sm text-gray-900 ring-4 border-none ring-emerald-400 shadow-lg shadow-emerald-400/50 rounded-lg bg-gray-50">
+                          <div class="typewriter bg-transparent w-fit h-auto justify-center items-center mx-auto">
+                              <h1 class="text-2xl text-center overflow-x-hidden border-r border-r-2 border-r-orange-600 whitespace-nowrap m-auto tracking-wider "></h1>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <style>
+                  .typewriter h1{
+                      background: transparent;
+                      overflow: hidden; /* Ensures the content is not revealed until the animation */
+                      border-right: .15em solid orange; /* The typwriter cursor */
+                      white-space: nowrap; /* Keeps the content on a single line */
+                      margin: auto; /* Gives that scrolling effect as the typing happens */
+                      letter-spacing: .15em; /* Adjust as needed */
+                      content: "";
+                      animation:
+                              typing 9s steps(40, start) 0s infinite,
+                              blink-caret .95s step-end 0s infinite;
+                  }
+
+                  /* The typing effect */
+                  @keyframes typing {
+                      0% { width: 0}
+                      30% { width: 100% }
+                      40% { width: 100% }
+                      55% { width: 0 }
+                      65% { width: 0}
+                      95% {width: 100%}
+                      100% {width: 100%}
+                  }
+
+                  /* The typewriter cursor effect */
+                  @keyframes blink-caret {
+                      from, to { border-color: transparent }
+                      50% { border-color: orange; }
+                  }
+                  .typewriter h1::after {
+                      animation: change 9s steps(40, start) 0s infinite;
+                  }
+                  @keyframes change {
+                      0% {content: "netflix.com"}
+                      60% {content: "netflix.com"}
+                      65% {content: "glink.com/video"}
+                      100% {content: "glink.com/video"}
+                  }
+              </style>
+
+              <div>
+                  <h1 class="text-5xl font-bold text-emerald-400">Create and share geo-restricted links</h1>
+                  <p class="py-6 text-gray-300">GLinkZip enables you to generate and distribute geo-restricted URLs for private, secure access.</p>
+                  <div class="flex justify-center items-center">
+                  <button class="btn btn-success text-xl hover:shadow-lg hover:shadow-emerald-400/50">Get Started</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- New hero end -->
+    <div class="flex lg:flex-col flex-col w-full mb-24 bg-primary rounded-lg shadow-lg shadow-primary">
+      <div class="w-full my-12 justify-center items-center flex">
+        <p class="text-4xl md:text-5xl lg:text-6xl text-emerald-400 font-bold brightness-125">
           How it works
         </p>
       </div>
-      <div class="flex lg:flex-row flex-col justify-between items-center h-auto w-auto mx-5 mb-5">
-        <div class="flex flex-col items-center h-full lg:w-1/3 w-full">
-          <img src="" alt="pic2" class="bg-black flex-grow m-5 w-full rounded">
-          <p class="text-xl">
+      <div class="flex lg:flex-row flex-col  items-start h-auto w-auto mx-5 mb-5">
+        <div class="flex flex-col items-center h-full lg:w-1/3 w-full pt-0">
+          <img src="images/step1.png" alt="pic2" class="bg-black flex-grow m-5 w-full rounded">
+          <h1 class="text-5xl text-success">
             Step 1
-          </p>
+          </h1>
+            <p class="py-6 text-gray-300">Create the GLink. You can either create a regular shortened URL, or a geo-restricted one, in which case you can restrict it to a specific radius around your current location.</p>
         </div>
-        <div class="flex flex-col items-center h-full lg:w-1/3 w-full">
+        <div class="flex flex-col items-center h-full lg:w-1/3 w-full pt-0">
           <img src="" alt="pic2" class="bg-black flex-grow m-5 w-full rounded">
-          <p class="text-xl">
+          <h1 class="text-5xl text-success">
             Step 2
-          </p>
+          </h1>
+            <p class="py-6 text-gray-300">
+            Distribute the GLink. If you created a regular link i.e. with no restrictions, then the service works similar to other link shorteners, like TinyURL or Bitly.
+            </p>
         </div>
-        <div class="flex flex-col items-center h-full lg:w-1/3 w-full">
+        <div class="flex flex-col items-center h-full lg:w-1/3 w-full pt-0 flex-grow flex-shrink-0">
           <img src="" alt="pic2" class="bg-black flex-grow m-5 w-full rounded">
-          <p class="text-xl">
+          <h1 class="text-5xl text-success ">
             Step 3
-          </p>
+          </h1>
+            <p class="py-6 text-gray-300">
+            If the link is geo-restricted, then anyone who accesses it will have to provide their location co-ordinates for authorization.
+            </p>
         </div>
       </div>
     </div>
