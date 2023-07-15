@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'db.inc.php';
 
 function gen_base62_rand_shortlink($len) {
@@ -58,6 +59,12 @@ if (($matches == 0) || ($matches == false)) {
 
 $shortlink = $_GET["glink"];
 
+if (isset($_GET["ttl"])) {
+	$ttl = $_GET["ttl"];
+} else {
+	$ttl = 0;
+}
+
 if ($shortlink != '') {
 	$matches_shortlink = preg_match('/^[a-zA-Z]+$/',$shortlink);
 	if (($matches_shortlink == 0) || ($matches_shortlink == false)) {
@@ -91,14 +98,13 @@ if ($result->count() != 0) {
 	exit;
 }
 
-$rand_num = rand(0,99999999);
 
-$statement = $session->prepare('INSERT INTO data (id, url, shortlink, is_geo, radius, latitude, longitude, when_created) VALUES (?,?,?,?,?,?,?,toTimestamp(now())) USING TTL 20');
+$statement = $session->prepare('INSERT INTO data (id, url, shortlink, is_geo, radius, latitude, longitude, user, when_created) VALUES (now(),?,?,?,?,?,?,?,toTimestamp(now())) USING TTL ?;');
 
 if ($is_geo == 1) {
-	$options = array($rand_num,$url,$shortlink,boolval($is_geo),intval($radius), $latitude, $longitude);
+	$options = array($url,$shortlink,boolval($is_geo),intval($radius), $latitude, $longitude, $_SESSION['user'], intval($ttl));
 } else {
-	$options = array($rand_num,$url,$shortlink,boolval($is_geo),null,null,null);
+	$options = array($url,$shortlink,boolval($is_geo),null,null,null,$_SESSION['user'],intval($ttl));
 }
 
 $result = $session->execute($statement,array('arguments' => $options));
