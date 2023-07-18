@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html id="html-tag" lang="en" class="py-[0%] my-[0%]">
+<html id="html-tag" lang="en" class="py-[0%] my-[0%]">  <!--html-tag facilitates dark mode and light mode -->
 <head class="py-0 my-0 h-0">
     <meta charset="UTF-8" />
     <title>Home</title>
@@ -139,15 +139,15 @@
         <!--Hamburger menu-->
         <div class="lg:hidden" >
           <ul class="menu menu-horizontal px-1">
-              <label class="btn btn-circle swap swap-rotate ">
+              <label class="group btn btn-circle bg-transparent dark:bg-gray-800 swap swap-rotate border-emerald-300">
                 <input type="checkbox" class="opacity-0 w-full h-full "/>
-                <svg class="swap-off fill-emerald-400 brightness-125" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"/></svg>
+                <svg class="swap-off fill-emerald-300 group-hover:fill-black dark:fill-emerald-400 dark:group-hover:fill-white brightness-125" xmlns="http://www.w3.org/2000/svg" width="32" height="32"  viewBox="0 0 512 512"><path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"/></svg>
                 <div class="dropdown dropdown-open swap-on">
-                    <svg class="fill-emerald-400 brightness-125" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49"/></svg>
-                  <ul tabindex="0" class="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-36 mt-4">
-                    <li><a class="text-emerald-400 brightness-125">Create</a></li>
-                    <li><a class="text-emerald-400 brightness-125">Signup</a></li>
-                    <li><a class="text-emerald-400 brightness-125">Login</a></li>
+                    <svg class="fill-emerald-300 group-hover:fill-black dark:fill-emerald-400 dark:group-hover:fill-white brightness-125" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49"/></svg>
+                  <ul tabindex="0" class="menu dropdown-content z-[1] p-2 shadow bg-green-100 dark:bg-gray-800 rounded-box w-36 mt-4">
+                    <li><a class="text-emerald-700 brightness-125 dark:text-emerald-400 dark:hover:text-white">Create</a></li>
+                    <li><a class="text-emerald-700 brightness-125 dark:text-emerald-400 dark:hover:text-white">Signup</a></li>
+                    <li><a class="text-emerald-700 brightness-125 dark:text-emerald-400 dark:hover:text-white">Login</a></li>
                   </ul>
                 </div>
               </label>
@@ -162,8 +162,8 @@
           <a class="btn btn-outline dark:btn-success dark:bg-transparent border-yellow-300 text-yellow-300 hover:bg-yellow-400 hover:border-none hover:text-black brightness-125 lg:text-xl text-sm" href="/">Create</a>
         </div>
       </div>
-      <div class="justify-center items-center lg:flex mr-10 my-2 hidden">
-        <a class="btn btn-outline dark:btn-success dark:text-success dark:bg-transparent border-yellow-300 text-yellow-300 hover:bg-yellow-400 hover:border-none hover:text-black brightness-125 lg:text-xl text-sm mr-8" href="signup.html">Sign up</a>
+      <div class="justify-center items-center lg:flex mr-10 my-2">
+        <a class="btn btn-outline dark:btn-success dark:text-success dark:bg-transparent border-yellow-300 text-yellow-300 hover:bg-yellow-400 hover:border-none hover:text-black brightness-125 lg:text-xl text-sm mr-8 lg:flex hidden" href="signup.html">Sign up</a>
           <label class="swap swap-rotate">
 
               <!-- this hidden checkbox controls the state -->
@@ -187,6 +187,30 @@
               //             document.getElementById("moon").classList.add("swap-active");
               //         }
               //   }
+              window.addEventListener('load', function(){
+                  if (window.matchMedia &&
+                      window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                      document.getElementById("theme-switcher").checked = true;
+                      console.log("prefers dark");
+                      changeMode();
+                  } else {
+                      document.getElementById("theme-switcher").checked = false;
+                      console.log("prefers light");
+                      changeMode();
+                  }
+              });
+              window.matchMedia('(prefers-color-scheme: dark)')
+              .addEventListener('change',({ matches }) => {
+              if (matches) {
+                  console.log("change to dark mode!");
+                  document.getElementById("theme-switcher").checked = true;
+                  changeMode();
+              } else {
+                  console.log("change to light mode!");
+                  document.getElementById("theme-switcher").checked = false;
+                  changeMode();
+              }
+              });
 
               function changeMode() {
                   let html_tag = document.getElementById("html-tag")
@@ -205,7 +229,7 @@
           </script>
       </div>
 
-      <div class="flex-none my-2">
+      <div class="flex-none my-2 mr-2">
 
         <div class="dropdown dropdown-end">
           <label tabindex="0" class="btn btn-ghost btn-circle avatar border border-2 border-gray-800 dark:border-emerald-500 brightness-125 hover:border-none hover:ring-2 hover:ring-gray-800 dark:hover:ring-emerald-400 focus:ring-2 focus:ring-gray-800 dark:focus:ring-emerald-400">
@@ -213,9 +237,9 @@
               <div class="w-full h-full bg-yellow-200 rounded-full flex justify-center items-center"><h1 class="self-center text-xl font-bold font-serif">B</h1></div>
             </div>
           </label>
-          <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-36">
-            <li><a href="links.html">My Links</a></li>
-            <li><a>Logout</a></li>
+          <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-green-100 dark:bg-gray-800 rounded-box w-36">
+            <li><a class="text-emerald-700 brightness-125 dark:text-emerald-400 font-bold uppercase dark:hover:text-white" href="links.html">My Links</a></li>
+            <li><a class="text-emerald-700 brightness-125 dark:text-emerald-400 font-bold uppercase dark:hover:text-white">Logout</a></li>
           </ul>
         </div>
       </div>
