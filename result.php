@@ -99,7 +99,7 @@ if ($result->count() != 0) {
 }
 
 
-$statement = $session->prepare('INSERT INTO data (id, url, shortlink, is_geo, radius, latitude, longitude, user, when_created) VALUES (now(),?,?,?,?,?,?,?,toTimestamp(now())) USING TTL ?;');
+$statement = $session->prepare('INSERT INTO data (id, url, shortlink, is_geo, radius, latitude, longitude, user, purgatory, hell, when_created) VALUES (now(),?,?,?,?,?,?,?,false, false, toTimestamp(now())) USING TTL ?;');
 
 if ($is_geo == 1) {
 	$options = array($url,$shortlink,boolval($is_geo),intval($radius), $latitude, $longitude, $_SESSION['user'], intval($ttl));
