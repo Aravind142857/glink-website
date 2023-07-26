@@ -11,8 +11,8 @@ $row_id = $result[0]['id'];
 
 
 
-$statement = $session->prepare('UPDATE data SET shortlink=?, url=?, user=? WHERE id=?;');
-$new_result = $session->execute($statement,array('arguments' => array($_POST['link'], $result[0]['url'], $result[0]['user'], $row_id)));
+$statement = $session->prepare('UPDATE data SET url=? WHERE id=?;');
+$new_result = $session->execute($statement,array('arguments' => array($_POST['url'], $row_id)));
 
 http_response_code(204);
 ?>
