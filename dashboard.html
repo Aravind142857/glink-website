@@ -5,27 +5,26 @@ if (!isset($_SESSION['user'])) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html id="html-tag" lang="en" class="py-[0%] my-[0%]">
+<head class="py-0 my-0 h-0">
     <meta charset="UTF-8">
     <title>Dashboard</title>
   <link rel="stylesheet" href="output.css">
 </head>
-<body class="mx-[10%]">
+<body class="w-full my-[0%] py-[0%] px-[10%] min-h-screen bg-gray-300 dark:bg-black">
 <script src="htmx.min.js"></script>
 
-<main class="m-10 h-auto w-auto ">
+<main class="h-auto w-auto py-[5%]">
 
 <?php include 'header.php'; ?>
 
-  <!-- Table start -->
-  <div class="overflow-x-auto">
-    <table class="table text-emerald-400 brightness-125 italic my-4">
+  <div class="overflow-x-auto ">
+    <table class="table text-gray-800 brightness-125 italic my-4 bg-green-100 dark:bg-gray-800">
       <!-- head -->
       <thead>
-      <tr class="text-emerald-400 brightness-125 text-xl font-bold text-center">
+      <tr class="text-gray-800 dark:text-gray-50 brightness-125 text-xl font-bold text-center border-none">
         <th></th>
-        <th>GLink</th>
+        <th>gLink</th>
         <th>URL</th>
         <th>Edit</th>
         <th>Delete</th>
@@ -39,20 +38,20 @@ if (!isset($_SESSION['user'])) {
 	$result = $session->execute($statement,array('arguments' => array($_SESSION['user'])));
 
 	for ($i=0; $i < $result->count(); $i++) { ?>
-      <tr class="data_row text-center" >
-        <th><?php echo($i+1) ?></th>
-        <td><input type="text" class="input input-bordered input-success glink_str text-center italic border-none rounded-lg focus:shadow-lg" readonly value=<?php echo($result[$i]['shortlink']);?>></td>
-        <td><input type="text" class="input input-bordered input-success url_str italic text-center border-none rounded-lg focus:shadow-lg" readonly value="<?php echo($result[$i]['url']);?>"></td>
+      <!-- row 1 -->
+      <tr class="data_row text-center border-none" >
+        <th class="dark:bg-transparent dark:text-white"><?php echo($i+1) ?></th>
+        <td><input type="text" class="dark:bg-transparent dark:text-white input input-bordered input-success glink_str text-center italic border-none rounded-lg focus:shadow-lg" readonly value="<?php echo($result[$i]['shortlink']);?>"></td>
+        <td><input type="text" class="dark:bg-transparent dark:text-white input input-bordered input-success url_str italic text-center border-none rounded-lg focus:shadow-lg" readonly value="<?php echo($result[$i]['url']);?>"></td>
         <td>
           <button class="edit_btn btn bg-transparent hover:bg-transparent border-none p-0 m-0">
             <svg width="24"
                  height="24"
-                 fill="blue"
-                 class="bi bi-pencil"
+                 class="bi bi-pencil dark:fill-blue-500 fill-[#0304f7]"
                  viewBox="0 0 16 16">
               <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
             </svg></button>
-          <button class="save_btn btn mx-8 bg-transparent hover:bg-transparent border-none p-0 m-0 hidden" hx-post="/updatelink.php" hx-vals='js:{"old_link": "<?php echo($result[$i]['shortlink']); ?>", "old_url": "<?php echo($result[$i]['url']); ?>", "link": event.currentTarget.parentElement.parentElement.getElementsByClassName("glink_str")[0].value, "url": event.currentTarget.parentElement.parentElement.getElementsByClassName("url_str")[0].value}'>
+          <button class="save_btn btn mx-8 bg-transparent hover:bg-transparent border-none p-0 m-0 hidden" hx-post="/updatelink.php" hx-vals='js:{"old_link": "<?php echo($result[$i]['shortlink']); ?>", "old_url": "<?php echo($result[$i]['url']); ?>", "url": event.currentTarget.parentElement.parentElement.getElementsByClassName("url_str")[0].value}'>
             <div class="inline-block rotate-45 h-[24px] w-[12px] border-b-4 border-b-green-500 border-r-green-500 border-r-4 hover:border-b-green-300 hover:border-r-green-300"></div>
           </button>
           <button class="cancel_btn btn bg-transparent hover:bg-transparent border-none p-0 m-0 hidden">
@@ -96,7 +95,7 @@ if (!isset($_SESSION['user'])) {
           </button>
         </td>
       </tr>
-      <tr class="notification_row text-center w-full hidden">
+      <tr class="notification_row text-center w-full hidden border-none">
         <td colspan="5"><div class="alert alert-error text-lg">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           <span>You have just deleted a row. Press <button class="undo_btn btn bg-transparent m-0 p-0 h-fit hover:bg-transparent border-none" hx-post="/undodeletelink.php" hx-vals='{"link": "<?php echo($result[$i]['shortlink']); ?>"}'><kbd class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-100 dark:border-gray-500">undo</kbd></button> to undo the action</span>
@@ -104,7 +103,6 @@ if (!isset($_SESSION['user'])) {
         </div></td>
       </tr>
 	<?php } ?>
-
       </tbody>
       <script>
         let allButtons = document.getElementsByClassName('btn');
@@ -131,21 +129,21 @@ if (!isset($_SESSION['user'])) {
               let save = clickedRow.getElementsByClassName("save_btn")[0];
               let cancel = clickedRow.getElementsByClassName("cancel_btn")[0];
               if (btn.classList.contains("edit_btn") || btn.classList.contains("save_btn")) {
-                if (txt.readOnly) {
+                if (url.readOnly) {
                   url_value = url.value;
-                  glink_value = txt.value;
-                  txt.readOnly = false;
+//                  glink_value = txt.value;
+//                  txt.readOnly = false;
                   url.readOnly = false;
-                  txt.classList.add("outline-none", "ring-4", "ring-emerald-400", "shadow-lg", "focus:outline-none", "focus:ring-4", "focus:ring-emerald-400", "focus:shadow-lg");
+//                  txt.classList.add("outline-none", "ring-4", "ring-emerald-400", "shadow-lg", "focus:outline-none", "focus:ring-4", "focus:ring-emerald-400", "focus:shadow-lg");
                   url.classList.add("outline-none", "ring-4", "ring-emerald-400", "shadow-lg", "focus:outline-none", "focus:ring-4", "focus:ring-emerald-400", "focus:shadow-lg");
                   edit.classList.add("hidden");
                   save.classList.remove("hidden");
                   cancel.classList.remove("hidden");
-                  txt.focus();
+                  url.focus();
                 } else {
-                  txt.readOnly = true;
+//                  txt.readOnly = true;
                   url.readOnly = true;
-                  txt.classList.remove("outline-none", "ring-4", "ring-emerald-400", "shadow-lg", "focus:outline-none", "focus:ring-4", "focus:ring-emerald-400", "focus:shadow-lg");
+//                  txt.classList.remove("outline-none", "ring-4", "ring-emerald-400", "shadow-lg", "focus:outline-none", "focus:ring-4", "focus:ring-emerald-400", "focus:shadow-lg");
                   url.classList.remove("outline-none", "ring-4", "ring-emerald-400", "shadow-lg", "focus:outline-none", "focus:ring-4", "focus:ring-emerald-400", "focus:shadow-lg");
                   edit.classList.remove("hidden");
                   save.classList.add("hidden");
@@ -153,11 +151,11 @@ if (!isset($_SESSION['user'])) {
                 }
               }
               if (btn.classList.contains("cancel_btn")) {
-                txt.value = glink_value;
+//                txt.value = glink_value;
                 url.value = url_value;
-                txt.readOnly = true;
+//                txt.readOnly = true;
                 url.readOnly = true;
-                txt.classList.remove("outline-none", "ring-4", "ring-blue-500/50", "shadow-lg", "focus:outline-none", "focus:ring-4", "focus:ring-blue-500/50", "focus:shadow-lg");
+//                txt.classList.remove("outline-none", "ring-4", "ring-blue-500/50", "shadow-lg", "focus:outline-none", "focus:ring-4", "focus:ring-blue-500/50", "focus:shadow-lg");
                 url.classList.remove("outline-none", "ring-4", "ring-blue-500/50", "shadow-lg", "focus:outline-none", "focus:ring-4", "focus:ring-blue-500/50", "focus:shadow-lg");
                 edit.classList.remove("hidden");
                 save.classList.add("hidden");
