@@ -1,133 +1,160 @@
-<html>
-<head>
+<html id="html-tag" class="py-[0%] my-[0%]">
+<head class="py-0 my-0 h-0">
     <title>GLink</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/output.css">
 </head>
-<body class="bg-gray-50 m-[10%]">
-<nav class="flex items-center lg:justify-between sm:justify-center flex-wrap bg-gray-500 p-6 shadow-lg shadow-black/50 sticky top-4 opacity-100 mb-4"> <!--dark:bg-black-->
-    <div class="block lg:hidden cursor-pointer flex:none mr-4" id="HamburgerInactive">
-        <button id="btn" class="flex flex-col items-center px-3 py-[0.4375rem] border rounded text-teal-200 border-teal-400">
-            <span class="block h-0.5 w-5 mb-1 origin-center rounded-full bg-teal-200"></span>
-            <span class="block h-0.5 w-5 mb-1 origin-center rounded-full bg-teal-200"></span>
-            <span class="block h-0.5 w-5 origin-center rounded-full bg-teal-200"></span>
-        </button>
-    </div>
-    <div id="HamburgerActive" class="hidden lg:hidden flex:none cursor-pointer mr-4 block">
-        <button class="space-y-2 px-3 py-2 border rounded text-teal-200 border-teal-400" >
-            <span class="block h-0.5 w-5 origin-center rounded-full bg-teal-200 translate-y-1.5 rotate-45"></span>
-            <span class="block h-0.5 w-5 origin-center rounded-full bg-teal-200 -translate-y-1 -rotate-45"></span>
-            <span class="hidden h-0.5 w-5 origin-center rounded-full bg-white"></span>
-        </button>
-    </div>
-    <div class="flex items-center flex-shrink-0 text-white mr-6 w-full lg:w-auto flex-1 lg:flex-none justify-center">
-        <svg id="logo" class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg>
-        <span class="font-semibold text-xl tracking-tight">G-Link</span>
-    </div>
-    <div id="menu-options" class="bg-gray-500 w-full lg:block flex-grow lg:flex lg:items-center lg:w-auto hidden mr-4">
-        <div class="text-sm lg:flex-grow">
-            <a href="#head" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-black mr-4 hover:bg-gray-200 hover:border hover:border-gray-200 hover:rounded text-teal-200 py-1 px-3">
-                A
-            </a>
-            <a href="#head" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-black mr-4 hover:bg-gray-200 hover:border hover:border-gray-200 hover:rounded text-teal-200 py-1 px-3">
-                B
-            </a>
-            <a href="#head" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-black mr-4 hover:bg-gray-200 hover:border hover:border-gray-200 hover:rounded text-teal-200 py-1 px-3">
-                C
-            </a>
-            <a href="/" class="block mt-4 lg:inline-block lg:mt-0 bg-blue-600 brightness-125 border border-blue-500 rounded text-teal-200 hover:text-black py-1 px-3">
-                Products (Form)
-            </a>
+<body class="w-full my-[0%] py-[0%] px-[10%] h-fit bg-gray-300 dark:bg-black">
+<!-- New navbar start-->
+<div class="navbar dark:from-gray-800 dark:to-gray-800 rounded-lg bg-gradient-to-r from-rose-400 via-blue-400 to-emerald-400 shadow-xl shadow-black/50 z-[4] sticky top-0 mb-10">
+    <div class="flex-1 lg:ml-4 ml-2 my-2">
+        <!--Hamburger menu-->
+        <div class="lg:hidden" >
+            <ul class="menu menu-horizontal px-1">
+                <label class="group btn btn-circle bg-transparent dark:bg-gray-800 swap swap-rotate border-emerald-300">
+                    <input type="checkbox" class="opacity-0 w-full h-full "/>
+                    <svg class="swap-off fill-emerald-300 group-hover:fill-black dark:fill-emerald-400 dark:group-hover:fill-white brightness-125" xmlns="http://www.w3.org/2000/svg" width="32" height="32"  viewBox="0 0 512 512"><path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"/></svg>
+                    <div class="dropdown dropdown-open swap-on">
+                        <svg class="fill-emerald-300 group-hover:fill-black dark:fill-emerald-400 dark:group-hover:fill-white brightness-125" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49"/></svg>
+                        <ul tabindex="0" class="menu dropdown-content z-[1] p-2 shadow bg-green-100 dark:bg-gray-800 rounded-box w-36 mt-4">
+                            <li><a class="text-emerald-700 brightness-125 dark:text-emerald-400 dark:hover:text-white">Create</a></li>
+                            <li><a class="text-emerald-700 brightness-125 dark:text-emerald-400 dark:hover:text-white">Signup</a></li>
+                            <li><a class="text-emerald-700 brightness-125 dark:text-emerald-400 dark:hover:text-white">Login</a></li>
+                        </ul>
+                    </div>
+                </label>
+            </ul>
         </div>
+        <!-- Hamburger Menu ended -->
 
-        <div>
-            <a href="signup.html" class="inline-block <%= signup %> text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0 mr-4">
-                signup
-            </a>
+        <div class="flex lg:justify-start lg:items-start justify-center items-center lg:w-auto w-full">
+            <a class="btn btn-ghost normal-case text-xl text-emerald-400 brightness-125"><img src="images/GLink-Logo-alt.svg" class="h-full "></a>
         </div>
-        <div>
-            <a href="<%= loc %>" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">
-                <%= tagline %>
-            </a>
+        <div class="w-full justify-center items-center lg:flex hidden">
+            <a class="btn btn-outline dark:btn-success dark:bg-transparent border-yellow-300 text-yellow-300 hover:bg-yellow-400 hover:border-none hover:text-black brightness-125 lg:text-xl text-sm" href="/">Create</a>
         </div>
     </div>
-    <div class="w-9 h-9 rounded-full bg-emerald-800 cursor-pointer outline outline-offset-2 outline-4 outline-white hover:bg-emerald-700">
-        <button class="w-full h-full bg-white rounded-full" id="dropdownDefaultButton" data-dropdown-toggle="dropdown">
+    <div class="justify-center items-center lg:flex mr-10 my-2">
+        <a class="btn btn-outline dark:btn-success dark:text-success dark:bg-transparent border-yellow-300 text-yellow-300 hover:bg-yellow-400 hover:border-none hover:text-black brightness-125 lg:text-xl text-sm mr-8 lg:flex hidden" href="signup.html">Sign up</a>
+        <label class="swap swap-rotate">
 
-        </button>
+            <!-- this hidden checkbox controls the state -->
+            <input type="checkbox" id="theme-switcher" class="h-full w-full hidden" onclick="changeMode()"/>
+
+            <!-- sun icon -->
+            <svg id="sun" class="swap-on fill-yellow-500 w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41Z" fill="yellow"/>
+                <path d="M12,6.5A5.5,5.5,0,1,0,17.5,12A5.51,5.51,0,0,0,12,6.5Z" fill="yellow" /></svg>
+
+            <!-- moon icon -->
+            <svg id="moon" class="swap-off fill-white w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" fill="white"/></svg>
+
+        </label>
+        <script>
+            // window.onload = function(){
+            //         if (document.getElementById("html-tag").contains("dark")) {
+            //             console.log("dark");
+            //             document.getElementById("sun").classList.add("swap-active");
+            //         } else {
+            //             console.log("light");
+            //             document.getElementById("moon").classList.add("swap-active");
+            //         }
+            //   }
+            window.addEventListener('load', function(){
+                if (window.matchMedia &&
+                    window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.getElementById("theme-switcher").checked = true;
+                    console.log("prefers dark");
+                    changeMode();
+                } else {
+                    document.getElementById("theme-switcher").checked = false;
+                    console.log("prefers light");
+                    changeMode();
+                }
+            });
+            window.matchMedia('(prefers-color-scheme: dark)')
+                .addEventListener('change',({ matches }) => {
+                    if (matches) {
+                        console.log("change to dark mode!");
+                        document.getElementById("theme-switcher").checked = true;
+                        changeMode();
+                    } else {
+                        console.log("change to light mode!");
+                        document.getElementById("theme-switcher").checked = false;
+                        changeMode();
+                    }
+                });
+
+            function changeMode() {
+                let html_tag = document.getElementById("html-tag")
+                let box = document.getElementById("theme-switcher");
+                if (box.checked) {
+                    if (!html_tag.classList.contains("dark")) {
+                        html_tag.classList.add("dark");
+                    }
+                }
+                if (!box.checked) {
+                    if (html_tag.classList.contains("dark")) {
+                        html_tag.classList.remove("dark");
+                    }
+                }
+            }
+        </script>
     </div>
-    <div class="relative">
-        <button dropdown-trigger aria-expanded="false" type="button" class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-gradient-to-tl from-purple-700 to-pink-500 leading-pro text-sm ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85 hover:shadow-soft-xs">Dropdown</button>
-        <p class="hidden transform-dropdown-show"></p>
-        <ul dropdown-menu class="z-10 text-sm lg:shadow-soft-3xl duration-250 before:duration-350 before:font-awesome before:ease-soft min-w-44 before:text-5.5 transform-dropdown pointer-events-none absolute left-auto top-1/2 m-0 -mr-4 mt-2 list-none rounded-lg border-0 border-solid border-transparent bg-white bg-clip-padding px-0 py-2 text-left text-slate-500 opacity-0 transition-all before:absolute before:right-7 before:left-auto before:top-0 before:z-40 before:text-white before:transition-all before:content-['\f0d8']">
-            <li>
-                <a class="py-1.2 lg:ease-soft clear-both block w-full whitespace-nowrap border-0 bg-transparent px-4 text-left font-normal text-slate-500 hover:bg-gray-200 hover:text-slate-700 dark:text-white dark:hover:bg-gray-200/80 dark:hover:text-slate-700 lg:transition-colors lg:duration-300" href="javascript:;">Action</a>
-            </li>
-            <li>
-                <a class="py-1.2 lg:ease-soft clear-both block w-full whitespace-nowrap border-0 bg-transparent px-4 text-left font-normal text-slate-500 hover:bg-gray-200 hover:text-slate-700 dark:text-white dark:hover:bg-gray-200/80 dark:hover:text-slate-700 lg:transition-colors lg:duration-300" href="javascript:;">Another action</a>
-            </li>
-            <li>
-                <a class="py-1.2 lg:ease-soft clear-both block w-full whitespace-nowrap border-0 bg-transparent px-4 text-left font-normal text-slate-500 hover:bg-gray-200 hover:text-slate-700 dark:text-white dark:hover:bg-gray-200/80 dark:hover:text-slate-700 lg:transition-colors lg:duration-300" href="javascript:;">Something else here</a>
-            </li>
-        </ul>
+
+    <div class="flex-none my-2 mr-2">
+
+        <div class="dropdown dropdown-end">
+            <label tabindex="0" class="btn btn-ghost btn-circle avatar border border-2 border-gray-800 dark:border-emerald-500 brightness-125 hover:border-none hover:ring-2 hover:ring-gray-800 dark:hover:ring-emerald-400 focus:ring-2 focus:ring-gray-800 dark:focus:ring-emerald-400">
+                <div class="w-10 rounded-full cursor-pointer ">
+                    <div class="w-full h-full bg-yellow-200 rounded-full flex justify-center items-center"><h1 class="self-center text-xl font-bold font-serif">B</h1></div>
+                </div>
+            </label>
+            <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-green-100 dark:bg-gray-800 rounded-box w-36">
+                <li><a class="text-emerald-700 brightness-125 dark:text-emerald-400 font-bold uppercase dark:hover:text-white" href="links.html">My Links</a></li>
+                <li><a class="text-emerald-700 brightness-125 dark:text-emerald-400 font-bold uppercase dark:hover:text-white">Logout</a></li>
+            </ul>
+        </div>
     </div>
-    <script>
-        let active = document.getElementById("HamburgerActive");
-        let inactive = document.getElementById("HamburgerInactive");
-        let options = document.querySelector("#menu-options");
-        active.addEventListener("click", ()=>{
-            active.classList.add("hidden");
-            inactive.classList.remove("hidden");
-            options.classList.toggle("hidden");
-        })
-        inactive.addEventListener("mouseup", ()=>{
-            inactive.classList.add("hidden");
-            active.classList.remove("hidden");
-            options.classList.toggle("hidden");
-        });
-    </script>
-</nav>
-<h1 id="head" class="ml-4 text-5xl font-narrow">Create a GLink!</h1>
+</div>
+<!-- Navbar ended -->
+<h1 id="head" class="ml-4 mb-4 text-5xl font-narrow dark:text-success dark:brightness-125">Create a GLink!</h1>
 <!--<p class="ml-4 font-fingerpaint">Hello There!</p>-->
 
 
-<div id="root" class="mt-4 w-full">
-    <div id="formspace" class="flex flex-wrap flex-row w-full">
+<div id="root" class="w-full h-full">
+    <div id="formspace" class="flex flex-wrap flex-row w-full bg-white dark:bg-black rounded-lg shadow-lg shadow-black/50">
         <form id="form" class="lg:w-1/2 sm:w-full justify-center" action="/__add" method="post" onsubmit="return validate()">
             <div class="flex flex-wrap">
-                <label for="URL" class="text-2xl ml-4 font-rubik self-center">URL</label>
+                <label for="URL" class="text-2xl ml-4 font-rubik self-center dark:text-[#ffff59] dark:brightness-125">URL</label>
                 <span class="mandatory font-rubik self-center text-2xl">*</span>
-                <span class="font-rubik self-center m-1 text-2xl">:</span>
-                <div class="p-0.5 m-4 rounded-lg max-w-sm bg-gradient-to-r from-cyan-500 to-cyan-500 focus-within:from-rose-400 focus-within:via-fuchsia-500 focus-within:to-indigo-500 focus-within:caret-gray-600 focus-within:p-[3.2px]">
-                    <input type="text" name="url" id="URL" placeholder="https://example.com" required class="p-2 w-full rounded-lg focus:outline-none focus:shadow-lg focus:focus:shadow-black/50 text-center text-lg text-black font-bold">
-                </div>
+                <span class="font-rubik self-center m-1 text-2xl dark:text-[#ffff59] dark:brightness-125">:</span>
+                    <input type="text" name="url" id="URL" placeholder="https://example.com" required class="m-4 p-4 input input-bordered border-2 border-[#761eff] focus:outline-[#761eff]/50 focus:border-[#761eff] dark:focus:border-success dark:border-success dark:focus:outline-success dark:brightness-125 dark:bg-transparent dark:text-white max-w-sm w-full rounded-lg focus-within:ring-none focus:shadow-lg focus:shadow-black/50 text-center text-lg text-black font-bold">
             </div>
 
             <div class="flex flex-wrap">
-                <label for="labels" class="text-2xl ml-4 font-rubik self-center">GLink</label>
+                <label for="labels" class="text-2xl ml-4 font-rubik self-center dark:text-[#ffff59] dark:brightness-125">GLink</label>
                 <span class="mandatory font-rubik text-2xl self-center">*</span>
-                <span class="font-rubik self-center m-1 text-2xl">:</span>
-                <label for="GLink" id="labels" class=" ml-2 glink text-center text-xl self-center">glink.zip/</label>
-                <div class="p-0.5 ml-2 mr-4 my-4 rounded-lg max-w-sm bg-gradient-to-r from-cyan-500 to-cyan-500 focus-within:from-rose-400 focus-within:via-fuchsia-500 focus-within:to-indigo-500 focus-within:caret-gray-600 focus-within:p-[3.2px]">
-                    <input type="text" name="glink" id="GLink" class="glink p-2 w-full rounded-lg focus:outline-none focus:shadow-lg focus:focus:shadow-black/50 text-center text-lg text-black font-bold" placeholder="exampleWebsite">
-                </div>
+                <span class="font-rubik self-center m-1 text-2xl dark:text-[#ffff59] dark:brightness-125">:</span>
+                <label for="GLink" id="labels" class=" ml-2 glink text-center text-xl self-center dark:text-[#ffff59] dark:brightness-125">glink.zip/</label>
+
+                    <input type="text" name="glink" id="GLink" class="m-4 glink p-2 max-w-sm rounded-lg input input-bordered border-2 border-[#761eff] focus:outline-[#761eff]/50 focus:border-[#761eff] dark:focus:border-success dark:border-success dark:focus:outline-success dark:brightness-125 dark:bg-transparent dark:text-white focus:shadow-lg focus:focus:shadow-black/50 text-center text-lg text-black font-bold" placeholder="exampleWebsite">
+
             </div>
 
-            <label for="restricted" class="ml-4 self-center text-2xl font-rubik">Geo-restricted? : </label><input type="checkbox" name="restricted" id="restricted" class="ml-2 mr-4 my-4 text-center font-rubik ease-soft rounded-1.4 w-6 h-6 cursor-pointer checked:accent-blue-700 shadow-lg shadow-black/50 peer"><span id="loadingText" class="font-rubik self-center text-center text-xl" style="position: relative; left: 20px;"></span>
+            <label for="restricted" class="ml-4 self-center text-2xl font-rubik dark:text-[#ffff59] dark:brightness-125">Geo-restricted? : </label><input type="checkbox" name="restricted" id="restricted" class="ml-2 mr-4 my-4 text-center font-rubik ease-soft rounded-1.4 w-6 h-6 cursor-pointer checked:accent-blue-700 shadow-lg shadow-black/50 peer"><span id="loadingText" class="font-rubik self-center text-center text-xl" style="position: relative; left: 20px;"></span>
 
             <span class="flex flex-wrap invisible peer-checked:visible" id="js-enabled">
-                <label for="radiusSelect" id="radiusLabel" class="ml-4 font-rubik text-2xl self-center">Radius</label><span id="mandatory-radius" class="mandatory font-rubik text-2xl self-center">*</span><span class="font-rubik self-center m-1 text-2xl">:</span>
-                <div class="p-0.5 ml-2 mr-4 my-4 rounded-lg max-w-sm bg-gradient-to-r from-cyan-500 to-cyan-500 focus-within:from-rose-400 focus-within:via-fuchsia-500 focus-within:to-indigo-500 focus-within:p-[3.2px]">
-                    <select name="radiusSelect" id="radiusSelect" class="cursor-pointer text-lg p-2 w-full rounded-lg focus:outline-none invalid:text-gray-400 font-bold">
+                <label for="radiusSelect" id="radiusLabel" class="ml-4 font-rubik text-2xl self-center dark:text-[#ffff59] dark:brightness-125">Radius</label><span id="mandatory-radius" class="mandatory font-rubik text-2xl self-center">*</span><span class="font-rubik self-center m-1 text-2xl dark:text-[#ffff59] dark:brightness-125 ">:</span>
+
+                    <select name="radiusSelect" id="radiusSelect" class="m-4 cursor-pointer text-lg pr-8 w-auto rounded-lg input input-bordered border-2 border-[#761eff] focus:outline-[#761eff]/50 focus:border-[#761eff] dark:focus:border-success dark:border-success dark:focus:outline-success dark:brightness-125 dark:bg-transparent dark:text-white invalid:text-gray-400 font-bold">
                         <option value="" selected disabled hidden>Choose a radius for your geo link</option>
                         <option value="5">5 mi</option>
                         <option value="10">10 mi</option>
                         <option value="15">15 mi</option>
                         <option value="20">20 mi</option>
                     </select>
-                </div>
             </span>
             <noscript>
                 <style>
@@ -135,12 +162,11 @@
                 </style>
             </noscript>
             <span role="alert" class="m-4 font-rubik" id="error" aria-hidden="true">Invalid entry</span>
-            <input type="submit" id="button" value="Zip It!" class="scale-125 brightness-125 ml-20 font-rubik bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 hover:shadow-lg hover:shadow-black/50 transition hover:-translate-y-1 hover:scale-150 duration-600 ease-in-out rounded-full cursor-pointer">
+            <input type="submit" id="button" value="Zip It!" class="mt-4 scale-125 brightness-125 ml-20 font-rubik bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 hover:shadow-lg hover:shadow-black/50 transition hover:-translate-y-1 hover:scale-150 duration-600 ease-in-out rounded-full cursor-pointer">
             <input type="hidden" name="latitude" id="latitude">
             <input type="hidden" name="longitude" id="longitude">
-
         </form>
-        <div class="lg:w-1/2 sm:w-full mt-4">
+        <div class="lg:w-1/2 sm:w-full mt-4 dark:text-white">
             <ul class="list-decimal text-left flex flex-col flex-wrap text-lg mx-8 mb-8">
                 <li class="mb-3">Enter the URL</li>
                 <li class="mb-3">Enter the GLink - a keyword used to identify your URL. This is optional, and if left blank, a random GLink will be generated for you.</li>
@@ -151,9 +177,7 @@
             </ul>
         </div>
     </div>
-    <hr>
-    <img src="images/cat.gif">
-    <p id="footer" class="object-none object-bottom">Insert Footer Here</p>
+<!--    <p id="footer" class="object-none object-bottom">Insert Footer Here</p>-->
     <script src="src/index.js"></script>
 
 </div>
