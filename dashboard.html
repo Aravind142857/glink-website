@@ -8,7 +8,7 @@ if (!isset($_SESSION['user'])) {
 <html id="html-tag" lang="en" class="py-[0%] my-[0%]">
 <head class="py-0 my-0 h-0">
     <meta charset="UTF-8">
-    <title>Dashboard</title>
+    <title>Dashboard - GLink</title>
   <link rel="stylesheet" href="output.css">
 </head>
 <body class="w-full my-[0%] py-[0%] px-[10%] min-h-screen bg-gray-300 dark:bg-black">
@@ -42,7 +42,7 @@ if (!isset($_SESSION['user'])) {
       <tr class="data_row text-center border-none" >
         <th class="dark:bg-transparent dark:text-white"><?php echo($i+1) ?></th>
         <td><input type="text" class="dark:bg-transparent dark:text-white input input-bordered input-success glink_str text-center italic border-none rounded-lg focus:shadow-lg" readonly value="<?php echo($result[$i]['shortlink']);?>"></td>
-        <td><input type="text" class="dark:bg-transparent dark:text-white input input-bordered input-success url_str italic text-center border-none rounded-lg focus:shadow-lg" readonly value="<?php echo($result[$i]['url']);?>"></td>
+        <td><input type="url" class="dark:bg-transparent dark:text-white input input-bordered input-success url_str italic text-center border-none rounded-lg focus:shadow-lg" readonly value="<?php echo($result[$i]['url']);?>"></td>
         <td>
           <button class="edit_btn btn bg-transparent hover:bg-transparent border-none p-0 m-0">
             <svg width="24"
@@ -51,7 +51,7 @@ if (!isset($_SESSION['user'])) {
                  viewBox="0 0 16 16">
               <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
             </svg></button>
-          <button class="save_btn btn mx-8 bg-transparent hover:bg-transparent border-none p-0 m-0 hidden" hx-post="/updatelink.php" hx-vals='js:{"old_link": "<?php echo($result[$i]['shortlink']); ?>", "old_url": "<?php echo($result[$i]['url']); ?>", "url": event.currentTarget.parentElement.parentElement.getElementsByClassName("url_str")[0].value}'>
+          <button class="save_btn btn mx-8 bg-transparent hover:bg-transparent border-none p-0 m-0 hidden" hx-trigger='click[checkURL(event.currentTarget.parentElement.parentElement.getElementsByClassName("url_str")[0].value)]' hx-post="/updatelink.php" hx-vals='js:{"old_link": "<?php echo($result[$i]['shortlink']); ?>", "url": event.currentTarget.parentElement.parentElement.getElementsByClassName("url_str")[0].value}'>
             <div class="inline-block rotate-45 h-[24px] w-[12px] border-b-4 border-b-green-500 border-r-green-500 border-r-4 hover:border-b-green-300 hover:border-r-green-300"></div>
           </button>
           <button class="cancel_btn btn bg-transparent hover:bg-transparent border-none p-0 m-0 hidden">
@@ -116,7 +116,7 @@ if (!isset($_SESSION['user'])) {
               notificationRow.classList.add("hidden");
             } else if (btn.classList.contains("undo_btn")) {
               let notificationRow = btn.parentElement.parentElement.parentElement.parentElement;
-              let row = notificationRow.parentElement.getElementsByClassName("data_row")[0];
+              let row = notificationRow.previousElementSibling;
               row.classList.remove("hidden");
               notificationRow.classList.add("hidden");
             }
@@ -129,7 +129,7 @@ if (!isset($_SESSION['user'])) {
               let save = clickedRow.getElementsByClassName("save_btn")[0];
               let cancel = clickedRow.getElementsByClassName("cancel_btn")[0];
               if (btn.classList.contains("edit_btn") || btn.classList.contains("save_btn")) {
-                if (url.readOnly) {
+                if (url.readOnly) { // Edit button
                   url_value = url.value;
 //                  glink_value = txt.value;
 //                  txt.readOnly = false;
@@ -140,14 +140,21 @@ if (!isset($_SESSION['user'])) {
                   save.classList.remove("hidden");
                   cancel.classList.remove("hidden");
                   url.focus();
-                } else {
-//                  txt.readOnly = true;
-                  url.readOnly = true;
-//                  txt.classList.remove("outline-none", "ring-4", "ring-emerald-400", "shadow-lg", "focus:outline-none", "focus:ring-4", "focus:ring-emerald-400", "focus:shadow-lg");
-                  url.classList.remove("outline-none", "ring-4", "ring-emerald-400", "shadow-lg", "focus:outline-none", "focus:ring-4", "focus:ring-emerald-400", "focus:shadow-lg");
-                  edit.classList.remove("hidden");
-                  save.classList.add("hidden");
-                  cancel.classList.add("hidden");
+                } else { // Save button
+		    if (!checkURL(url.value)) {
+			url.classList.replace("ring-emerald-400","ring-red-400");
+			url.classList.replace("focus:ring-emerald-400","focus:ring-red-400");
+		    } else {
+			url.classList.replace("ring-red-400","ring-emerald-400");
+			url.classList.replace("focus:ring-red-400","focus:ring-emerald-400");
+//                  	txt.readOnly = true;
+                  	url.readOnly = true;
+//                  	txt.classList.remove("outline-none", "ring-4", "ring-emerald-400", "shadow-lg", "focus:outline-none", "focus:ring-4", "focus:ring-emerald-400", "focus:shadow-lg");
+                  	url.classList.remove("outline-none", "ring-4", "ring-emerald-400", "shadow-lg", "focus:outline-none", "focus:ring-4", "focus:ring-emerald-400", "focus:shadow-lg");
+                  	edit.classList.remove("hidden");
+	                save.classList.add("hidden");
+        	        cancel.classList.add("hidden");
+		    }
                 }
               }
               if (btn.classList.contains("cancel_btn")) {
@@ -163,7 +170,8 @@ if (!isset($_SESSION['user'])) {
               }
               if (btn.classList.contains("delete_btn")) {
                 let row = clickedRow;
-                let notification = row.parentElement.getElementsByClassName("notification_row")[0];
+//                let notification = row.parentElement.getElementsByClassName("notification_row")[0];
+		let notification = row.nextElementSibling;
                 row.classList.add("hidden");
                 notification.classList.remove("hidden");
                 setTimeout(function () {
@@ -173,6 +181,15 @@ if (!isset($_SESSION['user'])) {
             }
           });
         }
+
+	function checkURL(url) {
+		try {
+			new URL(url);
+			return true;
+		} catch (err) {
+			return false;
+		}
+	}
       </script>
     </table>
   </div>
