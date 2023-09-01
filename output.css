@@ -8097,10 +8097,6 @@ details.collapse summary::-webkit-details-marker {
   width: 100%;
 }
 
-.max-w-lg {
-  max-width: 32rem;
-}
-
 .max-w-md {
   max-width: 28rem;
 }
@@ -9524,10 +9520,6 @@ details.collapse summary::-webkit-details-marker {
 
 .pl-8 {
   padding-left: 2rem;
-}
-
-.pr-16 {
-  padding-right: 4rem;
 }
 
 .pr-8 {
@@ -10957,6 +10949,11 @@ input.valid {
 }
 
 @media (min-width: 768px) {
+  .md\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
   .md\:text-5xl {
     font-size: 3rem;
     line-height: 1;
@@ -11030,6 +11027,11 @@ input.valid {
   .lg\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
+  }
+
+  .lg\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
   }
 
   .lg\:text-6xl {
