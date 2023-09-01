@@ -2,20 +2,17 @@
 session_start();
 if (!isset($_SESSION['user'])) {
 	header("Location: https://glink.zip/");
-	exit();
 }
 ?>
-<html>
-<head>
-    <title>GLink</title>
+<html id="html-tag" class="py-[0%] my-[0%]">
+<head class="py-0 my-0 h-0">
+    <title>Link Creator - GLink</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="output.css">
 </head>
-<body class="bg-gray-50 mx-[10%]">
-<h1 class="ml-4 text-5xl font-narrow">Link Shortener</h1>
-<p class="ml-4 font-fingerpaint">Hello There!</p>
+<body class="w-full my-[0%] py-[5%] px-[10%] h-fit bg-gray-300 dark:bg-black">
 
 <?php 
 // The reason this works (i.e. I can use PHP in a .html file)
@@ -28,59 +25,63 @@ if (!isset($_SESSION['user'])) {
 // for static HTML files.
 ?>
 
-<?php include 'header.php'; ?>
+<?php include 'header.php';?>
 
-<div id="root">
-   <form id="form" method="GET" action="result.php" onsubmit="return validate()">
+<h1 id="head" class="ml-4 mb-4 text-5xl font-narrow dark:text-success dark:brightness-125">Create a GLink!</h1>
+<!--<p class="ml-4 font-fingerpaint">Hello There!</p>-->
 
-        <div class="flex flex-wrap">
-            <label for="URL" class="text-2xl ml-4 font-rubik self-center">URL</label>
-            <span class="mandatory font-rubik self-center text-2xl">*</span>
-            <span class="font-rubik self-center m-1 text-2xl">:</span>
-            <div class="p-0.5 m-4 rounded-lg max-w-sm bg-gradient-to-r from-cyan-500 to-cyan-500 focus-within:from-rose-400 focus-within:via-fuchsia-500 focus-within:to-indigo-500 focus-within:caret-gray-600 focus-within:p-[3.2px]">
-		<input type="text" name="url" id="URL" placeholder="https://example.com" required class="p-2 w-full rounded-lg focus:outline-none focus:shadow-lg focus:focus:shadow-black/50 text-center text-lg text-black font-bold">
+
+<div id="root" class="w-full h-full">
+    <div id="formspace" class="flex flex-wrap flex-row w-full bg-white dark:bg-black rounded-lg shadow-lg shadow-black/50">
+        <form id="form" class="lg:w-1/2 sm:w-full justify-center" method="GET" action="result.php" onsubmit="return validate()">
+            <div class="flex flex-wrap">
+                <label for="URL" class="text-2xl ml-4 font-rubik self-center dark:text-[#ffff59] dark:brightness-125">URL</label>
+                <span class="mandatory font-rubik self-center text-2xl">*</span>
+                <span class="font-rubik self-center m-1 text-2xl dark:text-[#ffff59] dark:brightness-125">:</span>
+                    <input type="text" name="url" id="URL" placeholder="https://example.com" required class="m-4 p-4 input input-bordered border-2 border-[#761eff] focus:outline-[#761eff]/50 focus:border-[#761eff] dark:focus:border-success dark:border-success dark:focus:outline-success dark:brightness-125 dark:bg-transparent dark:text-white max-w-sm w-full rounded-lg focus-within:ring-none focus:shadow-lg focus:shadow-black/50 text-center text-lg text-black font-bold">
             </div>
+
+            <div class="flex flex-wrap">
+                <label for="labels" class="text-2xl ml-4 font-rubik self-center dark:text-[#ffff59] dark:brightness-125">GLink</label>
+                <span class="mandatory font-rubik text-2xl self-center">*</span>
+                <span class="font-rubik self-center m-1 text-2xl dark:text-[#ffff59] dark:brightness-125">:</span>
+                <label for="GLink" id="labels" class=" ml-2 glink text-center text-xl self-center dark:text-[#ffff59] dark:brightness-125">glink.zip/</label>
+
+                    <input type="text" name="glink" id="GLink" class="m-4 glink p-2 max-w-sm rounded-lg input input-bordered border-2 border-[#761eff] focus:outline-[#761eff]/50 focus:border-[#761eff] dark:focus:border-success dark:border-success dark:focus:outline-success dark:brightness-125 dark:bg-transparent dark:text-white focus:shadow-lg focus:focus:shadow-black/50 text-center text-lg text-black font-bold" placeholder="exampleWebsite">
+
+            </div>
+
+            <label for="restricted" class="ml-4 self-center text-2xl font-rubik dark:text-[#ffff59] dark:brightness-125">Geo-restricted? : </label><input type="checkbox" name="restricted" id="restricted" class="ml-2 mr-4 my-4 text-center font-rubik ease-soft rounded-1.4 w-6 h-6 cursor-pointer checked:accent-blue-700 shadow-lg shadow-black/50 peer"><span id="loadingText" class="font-rubik self-center text-center text-xl" style="position: relative; left: 20px;"></span>
+
+            <span class="flex flex-wrap invisible peer-checked:visible" id="js-enabled">
+                <label for="radius" id="radius_label" class="ml-4 font-rubik text-2xl self-center dark:text-[#ffff59] dark:brightness-125">Radius</label><span id="mandatory-radius" class="mandatory font-rubik text-2xl self-center">*</span><span class="font-rubik self-center m-1 text-2xl dark:text-[#ffff59] dark:brightness-125 ">:</span>
+
+                    <input type="number" name="radius" id="radius" class="m-4 text-lg pr-8 w-auto rounded-lg input input-bordered border-2 border-[#761eff] focus:outline-[#761eff]/50 focus:border-[#761eff] dark:focus:border-success dark:border-success dark:focus:outline-success dark:brightness-125 dark:bg-transparent dark:text-white invalid:text-gray-400 font-bold">
+		    </input>
+            </span>
+            <noscript>
+                <style>
+                    #js-enabled {display: none;}
+                </style>
+            </noscript>
+            <span role="alert" class="m-4 font-rubik" id="error" aria-hidden="true">Invalid entry</span>
+            <input type="submit" id="button" value="Zip It!" class="mt-4 scale-125 brightness-125 ml-20 font-rubik bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 hover:shadow-lg hover:shadow-black/50 transition hover:-translate-y-1 hover:scale-150 duration-600 ease-in-out rounded-full cursor-pointer">
+            <input type="hidden" name="latitude" id="latitude">
+            <input type="hidden" name="longitude" id="longitude">
+        </form>
+        <div class="lg:w-1/2 sm:w-full mt-4 dark:text-white">
+            <ul class="list-decimal text-left flex flex-col flex-wrap text-lg mx-8 mb-8">
+                <li class="mb-3">Enter the URL</li>
+                <li class="mb-3">Enter the GLink - a keyword used to identify your URL. This is optional, and if left blank, a random GLink will be generated for you.</li>
+                <li class="mb-3">The GLink that you enter will be appended to the URL, like so: glink.zip/example</li>
+                <li class="mb-3">If you don't want to geo-restrict it, you're good to go! Skip to step 6.</li>
+                <li class="mb-3">If you want to geo-restrict the link, select the checkbox, and provide a radius to use as a 'containment zone'. Only those individuals who are within that radius from your current location will be able to access the Glink.</li>
+                <li>Click 'Zip it!' to generate your custom URL.</li>
+            </ul>
         </div>
-
-        <div class="flex flex-wrap">
-            <label for="labels" class="text-2xl ml-4 font-rubik self-center">GLink</label>
-            <span class="mandatory font-rubik text-2xl self-center">*</span>
-            <span class="font-rubik self-center m-1 text-2xl">:</span>
-            <label for="GLink" id="labels" class=" ml-2 glink text-center text-xl self-center">glink.zip/</label>
-            <div class="p-0.5 ml-2 mr-4 my-4 rounded-lg max-w-sm bg-gradient-to-r from-cyan-500 to-cyan-500 focus-within:from-rose-400 focus-within:via-fuchsia-500 focus-within:to-indigo-500 focus-within:caret-gray-600 focus-within:p-[3.2px]">
-                <input type="text" name="glink" id="GLink" class="glink p-2 w-full rounded-lg focus:outline-none focus:shadow-lg focus:focus:shadow-black/50 text-center text-lg text-black font-bold" placeholder="exampleWebsite">
-            </div>
-        </div>
-
-        <label for="restricted" class="ml-4 self-center text-2xl font-rubik">Geo-restricted? : </label><input type="checkbox" name="restricted" id="restricted" class="ml-2 mr-4 my-4 text-center font-rubik ease-soft rounded-1.4 w-6 h-6 cursor-pointer checked:accent-blue-700 shadow-lg shadow-black/50 peer"><span id="loadingText" class="font-rubik self-center text-center text-xl" style="position: relative; left: 20px;"></span>
-
-        <span class="flex flex-wrap invisible peer-checked:visible" id="js-enabled">
-            <label for="radiusSelect" id="radius_label" class="ml-4 font-rubik text-2xl self-center">Radius</label><span id="mandatory-radius" class="mandatory font-rubik text-2xl self-center">*</span><span class="font-rubik self-center m-1 text-2xl">:</span>
-            <div class="p-0.5 ml-2 mr-4 my-4 rounded-lg max-w-sm bg-gradient-to-r from-cyan-500 to-cyan-500 focus-within:from-rose-400 focus-within:via-fuchsia-500 focus-within:to-indigo-500 focus-within:p-[3.2px]">
-                <select name="radius" id="radius" class="cursor-pointer text-lg p-2 w-full rounded-lg focus:outline-none invalid:text-gray-400 font-bold">
-                    <option value="" selected disabled hidden>Choose a radius for your geo link</option>
-                    <option value="5">5 mi</option>
-                    <option value="10">10 mi</option>
-                    <option value="15">15 mi</option>
-                    <option value="20">20 mi</option>
-                </select>
-            </div>
-        </span>
-        <noscript>
-            <style>
-                #js-enabled {display: none;}
-            </style>
-        </noscript>
-        <span role="alert" class="m-4 font-rubik" id="error" aria-hidden="true">Invalid entry</span>
-        <input type="submit" id="button" value="Zip It!" class="scale-125 brightness-125 ml-20 font-rubik bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 hover:shadow-lg hover:shadow-black/50 transition hover:-translate-y-1 hover:scale-150 duration-600 ease-in-out rounded-full cursor-pointer">
-        <input type="hidden" name="latitude" id="latitude">
-        <input type="hidden" name="longitude" id="longitude">
-
-    </form>
-    <hr>
-    <img src="./cat.gif">
-    <p id="footer" class="object-none object-bottom">Insert Footer Here</p>
-    <script src="./index.js"></script>
+    </div>
+<!--    <p id="footer" class="object-none object-bottom">Insert Footer Here</p>-->
+    <script src="index.js"></script>
 
 </div>
 </body>
