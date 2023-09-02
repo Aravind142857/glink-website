@@ -38,11 +38,11 @@
 	}
 
 
-	$user_lat = $_GET["latitude"];
+	$user_lat = $_POST["latitude"];
 	$user_lat = $user_lat * (M_PI / 180);
-	$user_long = $_GET["longitude"];
+	$user_long = $_POST["longitude"];
 	$user_long = $user_long * (M_PI / 180);
-	$glink = $_GET["glink"];
+	$glink = $_POST["glink"];
 
 	$session = init_cass_db();
 
