@@ -1,8 +1,8 @@
 <?php
 require_once 'db.inc.php';
 
-$email = $_GET['email'];
-$password = $_GET['password'];
+$email = $_POST['email'];
+$password = $_POST['password'];
 
 $session = init_cass_db();
 

@@ -1,10 +1,10 @@
 <?php
 require_once 'db.inc.php';
 
-$email = $_GET['email'];
+$email = $_POST['email'];
 $email = strval($email);
-$username = $_GET['username'];
-$password = $_GET['password'];
+$username = $_POST['username'];
+$password = $_POST['password'];
 $id = rand(0,99999999);
 
 $hash = password_hash($password,PASSWORD_BCRYPT);

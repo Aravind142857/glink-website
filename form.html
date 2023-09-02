@@ -33,7 +33,7 @@ if (!isset($_SESSION['user'])) {
 
 <div id="root" class="w-full h-full">
     <div id="formspace" class="flex flex-wrap flex-row w-full bg-white dark:bg-black rounded-lg shadow-lg shadow-black/50">
-        <form id="form" class="lg:w-1/2 sm:w-full justify-center" method="GET" action="result.php" onsubmit="return validate()">
+        <form id="form" class="lg:w-1/2 sm:w-full justify-center" method="POST" action="result.php" onsubmit="return validate()">
             <div class="flex flex-wrap">
                 <label for="URL" class="text-2xl ml-4 font-rubik self-center dark:text-[#ffff59] dark:brightness-125">URL</label>
                 <span class="mandatory font-rubik self-center text-2xl">*</span>

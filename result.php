@@ -33,21 +33,21 @@ ini_set('display_errors', 1);
 
 $session = init_cass_db();
 
-$url = $_GET["url"];
+$url = $_POST["url"];
 
-if (isset($_GET["restricted"])) {
+if (isset($_POST["restricted"])) {
 	$is_geo = 1;
 } else {
 	$is_geo = 0;
 }
 
 if ($is_geo == 1) {
-	$radius = $_GET["radius"];
+	$radius = $_POST["radius"];
 
-	$latitude = $_GET["latitude"];
+	$latitude = $_POST["latitude"];
 	$latitude = doubleval($latitude);
 
-	$longitude = $_GET["longitude"];
+	$longitude = $_POST["longitude"];
 	$longitude = doubleval($longitude);
 }
 
@@ -57,10 +57,10 @@ if (($matches == 0) || ($matches == false)) {
 	return;
 }
 
-$shortlink = $_GET["glink"];
+$shortlink = $_POST["glink"];
 
-if (isset($_GET["ttl"])) {
-	$ttl = $_GET["ttl"];
+if (isset($_POST["ttl"])) {
+	$ttl = $_POST["ttl"];
 } else {
 	$ttl = 0;
 }
