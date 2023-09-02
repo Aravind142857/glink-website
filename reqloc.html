@@ -42,7 +42,8 @@ function callbackFunction(position) {
 		request.send();
 	} else if (method == "POST") {
 		request.open("POST","/checkloc.php");
-		request.send("latitude=" + encodeURIComponent(lat) + "&longitude=" + encodeURIComponent(long));
+		request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		request.send("latitude=" + encodeURIComponent(lat) + "&longitude=" + encodeURIComponent(long) + "&glink=" + encodeURIComponent(glink));
 	}
 }
 
