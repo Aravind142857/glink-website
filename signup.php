@@ -15,7 +15,7 @@ $statement = $session->prepare("SELECT id FROM users WHERE email=? ALLOW FILTERI
 $result = $session->execute($statement, array('arguments' => array($email)));
 
 if ($result->count() != 0) {
-	echo('The username or email address already exists. Please try another email address.');
+	echo('That email address is already in use. Please try another email address.');
 	exit();
 }
 
