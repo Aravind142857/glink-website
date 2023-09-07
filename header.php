@@ -13,9 +13,13 @@ session_start();
                 <div class="dropdown dropdown-open swap-on">
                     <svg class="fill-emerald-300 group-hover:fill-black dark:fill-emerald-400 dark:group-hover:fill-white brightness-125" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49"/></svg>
                   <ul tabindex="0" class="menu dropdown-content z-[1] p-2 shadow bg-green-100 dark:bg-gray-800 rounded-box w-36 mt-4">
-                    <li><a class="text-emerald-700 brightness-125 dark:text-emerald-400 dark:hover:text-white">Create</a></li>
-                    <li><a class="text-emerald-700 brightness-125 dark:text-emerald-400 dark:hover:text-white">Signup</a></li>
-                    <li><a class="text-emerald-700 brightness-125 dark:text-emerald-400 dark:hover:text-white">Login</a></li>
+		<?php if(isset($_SESSION['user'])) { ?>
+                    <li><a class="text-emerald-700 brightness-125 dark:text-emerald-400 dark:hover:text-white" href="form.html">Create</a></li>
+                    <li><a class="text-emerald-700 brightness-125 dark:text-emerald-400 dark:hover:text-white" href="logout.php">Log Out</a></li>
+		<?php } else { ?>
+                    <li><a class="text-emerald-700 brightness-125 dark:text-emerald-400 dark:hover:text-white" href="signup.html">Sign Up</a></li>
+                    <li><a class="text-emerald-700 brightness-125 dark:text-emerald-400 dark:hover:text-white" href="login.html">Login</a></li>
+		<?php } ?>
                   </ul>
                 </div>
               </label>
