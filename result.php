@@ -25,7 +25,7 @@ if ($is_geo == 1) {
 	$longitude = doubleval($longitude);
 }
 
-$matches = preg_match('/^http(s)*:\\/\\/[a-zA-Z0-9\\-]+(\\.[a-zA-Z0-9\\-]+)+[\\/_#a-zA-Z0-9\\-]*$/',$url);
+$matches = preg_match('/^http(s)*:\\/\\/[a-zA-Z0-9\\-]+(\\.[a-zA-Z0-9\\-]+)+[\\/_#a-zA-Z0-9=?\\-]*$/',$url);
 if (($matches == 0) || ($matches == false)) {
 	printf("The URL entered was invalid. Please try again.");
 	return;
