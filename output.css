@@ -10209,6 +10209,10 @@ details.collapse summary::-webkit-details-marker {
   a-z-a--z: \-;
 }
 
+.\[hostname\:port\] {
+  hostname: port;
+}
+
 @tailwind forms;
 
 @font-face {
