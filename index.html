@@ -23,7 +23,7 @@ session_start();
               </div>
 
               <div>
-                  <h1 class="text-5xl font-bold text-[#C21EC0] dark:text-[#BF991D] brightness-125 font-serif tracking-wider leading-tight pl-8">Create and share geo-restricted links</h1>
+                  <h1 class="text-5xl font-bold text-[#C21EC0] dark:text-[#BF991D] brightness-125 font-serif leading-tight pl-8">Create and share geo-restricted links</h1>
                   <p class="py-6 text-black dark:text-gray-300 pl-8 text-lg">GLinkZip enables you to generate and distribute geo-restricted URLs for private, secure access.</p>
                   <div class="flex justify-center items-center">
                   <a href="<?php if(!isset($_SESSION['user'])) { echo("signup.html"); } else { echo("form.html"); }?>"><button class="btn btn-success text-black bg-[#C21EC0] border-[#5A1475] border-4 hover:bg-[#C21EC0] hover:border-[#C21EC0] hover:border-none hover:shadow-black/50 dark:bg-[#BF991D] dark:border-black dark:border-4 dark:hover:bg-[#C2B100] dark:hover:border-black dark:hover:border-none text-xl hover:shadow-lg dark:hover:shadow-[#C2B100]/50">Get Started</button></a>
@@ -46,14 +46,14 @@ session_start();
           <h1 class="text-5xl text-success">
             Step 1
           </h1>
-            <p class="py-6 text-gray-300">Create the GLink. You can either create a regular shortened URL, or a geo-restricted one, in which case you can restrict it to a specific radius around your current location.</p>
+            <p class="py-6 text-lg text-gray-300">Create the GLink. You can either create a regular shortened URL, or a geo-restricted one, in which case you can restrict it to a specific radius around your current location.</p>
         </div>
         <div class="flex flex-col items-center h-full lg:w-1/3 w-full pt-0 px-4">
           <img src="step2.png" alt="pic2" class="bg-black flex-grow m-5 w-full rounded">
           <h1 class="text-5xl text-success">
             Step 2
           </h1>
-            <p class="py-6 text-gray-300">
+            <p class="py-6 text-lg text-gray-300">
             Distribute the GLink. If you created a regular link i.e. with no restrictions, then the service works similar to other link shorteners, like TinyURL or Bitly.
             </p>
         </div>
@@ -62,7 +62,7 @@ session_start();
           <h1 class="text-5xl text-success ">
             Step 3
           </h1>
-            <p class="py-6 text-gray-300">
+            <p class="py-6 text-lg text-gray-300">
             If the link is geo-restricted, then anyone who accesses it will have to provide their location co-ordinates for authorization.
             </p>
         </div>
@@ -78,7 +78,7 @@ session_start();
       </div>
       <div class="py-8  sm:flex-grow-0 flex pl-8 flex-wrap px-2">
         <p class="text-2xl md:text-2xl lg:text-3xl fg-black">
-	If you're looking to create a <b>shortened URL</b> for a <u>signup form</u>, an <u>event invitation</u>, or <u>anything else</u>, then this service is for you!
+	If you're looking to create a shortened URL for a signup form, an event invitation, or anything else, then this service is for you!
 	<br>
 	<p class="text-2xl font-bold">
 	Contact us at  <a class="underline" href="mailto:info@glink.zip">info@glink.zip</a>
